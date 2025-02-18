@@ -13,6 +13,9 @@ public class GridManager : MonoBehaviour
     [SerializeField] GameObject cellButtonPrefab, rowCluePrefab, colCluePrefab;
     //Connection to puzzle
     NonogramPuzzle puzzle;
+
+    string filepath = Application.dataPath + "/savefile.json";
+
     private void Awake()
     {
         instance = this;
@@ -131,4 +134,15 @@ public class GridManager : MonoBehaviour
 
         return clues;
     }
+
+    //-----Saving and Loading--------------------------------------------
+    //Called from a button
+    public void SavePuzzle()
+    {
+        puzzle.SolutionData = puzzle.SolutionData;
+        string json = JsonUtility.ToJson(puzzle, true);
+        System.IO.File.WriteAllText(filepath, json);
+        Debug.Log($"Puzzle Saved to {filepath}");
+    }
+
 }
