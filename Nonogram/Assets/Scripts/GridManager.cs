@@ -14,7 +14,8 @@ public class GridManager : MonoBehaviour
     //Connection to puzzle
     NonogramPuzzle puzzle;
 
-    string filepath = Application.dataPath + "/savefile.json";
+    string filepath = Application.dataPath + "/SavedPuzzles/";
+    [SerializeField] TMP_InputField puzzleNameInput;
 
     private void Awake()
     {
@@ -23,6 +24,17 @@ public class GridManager : MonoBehaviour
     void Start()
     {
         //new puzzle
+        puzzle = new NonogramPuzzle(rows, cols);
+        //generate grid
+        GenerateGrid();
+        gridParent.GetComponent<GridLayoutGroup>().constraintCount = cols;
+    }
+
+    public void ResetPuzzle()
+    {
+        //new puzzle
+
+        puzzleNameInput.text = "";
         puzzle = new NonogramPuzzle(rows, cols);
         //generate grid
         GenerateGrid();
@@ -139,10 +151,16 @@ public class GridManager : MonoBehaviour
     //Called from a button
     public void SavePuzzle()
     {
+        if (string.IsNullOrEmpty(puzzleNameInput.text))
+        {
+            Debug.LogError("Must enter a valid puzzle name before saving...");
+            return;
+        }
         puzzle.SolutionData = puzzle.SolutionData;
         string json = JsonUtility.ToJson(puzzle, true);
-        System.IO.File.WriteAllText(filepath, json);
-        Debug.Log($"Puzzle Saved to {filepath}");
+        string fullpath = filepath + puzzleNameInput.text + ".json";
+        System.IO.File.WriteAllText(fullpath, json);
+        Debug.Log($"Puzzle Saved to {fullpath}");
     }
 
 }
