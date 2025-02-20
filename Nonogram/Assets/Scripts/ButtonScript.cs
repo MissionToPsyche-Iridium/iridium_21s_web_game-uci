@@ -29,6 +29,28 @@ public class ButtonScript : MonoBehaviour
         GridManager.instance.OnCellStateChanged();
     }
 
+    public void ChangeGameState()
+    {
+        if(State == CellState.Blank)
+        {
+            puzzle.GridData[row, col] = 1;
+            State = CellState.Filled;
+        }
+        else if(State == CellState.Filled)
+        {
+            puzzle.GridData[row, col] = 2;
+            State = CellState.Unknown;
+        }
+        else
+        {
+            puzzle.GridData[row, col] = 0;
+            State = CellState.Blank;
+        }
+        UpdateVisuals();
+        //Check for win condition
+        GameManager.Instance.CheckWinCondition();
+    }
+
     private void UpdateVisuals()
     {
         switch (State)

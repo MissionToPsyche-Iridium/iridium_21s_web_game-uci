@@ -66,9 +66,9 @@ public class NonogramPuzzle
                 solutionData = new int[Rows, Cols];
                 for (int r = 0; r < Rows; r++)
                 {
-                    for (int c = 0; r < Cols; c++)
+                    for (int c = 0; c < Cols; c++)
                     {
-                        SolutionData[r, c] = SolutionFlatGridData[r * Cols + c];
+                        SolutionData[r,c] = SolutionFlatGridData[r * Cols + c];
                     }
                 }
             }
