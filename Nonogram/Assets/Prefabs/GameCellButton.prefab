@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d5e167c7d9346341bdf9e5126ffa8cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unknownSprite: {fileID: 604931898, guid: 2446c981bb3ead24cb48d200ca212cdd, type: 3}
+  crossedSprite: {fileID: -1327481044, guid: 2446c981bb3ead24cb48d200ca212cdd, type: 3}
   blankSprite: {fileID: 562549789, guid: 2446c981bb3ead24cb48d200ca212cdd, type: 3}
   filledSprite: {fileID: -1017372690, guid: 2446c981bb3ead24cb48d200ca212cdd, type: 3}
   row: 0

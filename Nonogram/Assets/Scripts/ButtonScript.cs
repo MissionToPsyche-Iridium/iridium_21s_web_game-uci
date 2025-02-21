@@ -1,11 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum CellState {Unknown, Blank, Filled }
+public enum CellState {Crossed, Blank, Filled }
 public class ButtonScript : MonoBehaviour
 {
     public CellState State { get; private set; } = CellState.Blank;
-    [SerializeField] Sprite unknownSprite, blankSprite, filledSprite;
+    [SerializeField] Sprite crossedSprite, blankSprite, filledSprite;
 
     [HideInInspector]public int row, col;
     //Connection to puzzle
@@ -39,7 +39,7 @@ public class ButtonScript : MonoBehaviour
         else if(State == CellState.Filled)
         {
             puzzle.GridData[row, col] = 2;
-            State = CellState.Unknown;
+            State = CellState.Crossed;
         }
         else
         {
@@ -57,7 +57,7 @@ public class ButtonScript : MonoBehaviour
         {
             case CellState.Blank: GetComponent<Button>().image.sprite = blankSprite; break;
             case CellState.Filled: GetComponent<Button>().image.sprite = filledSprite; break;
-            case CellState.Unknown: GetComponent<Button>().image.sprite = unknownSprite; break;
+            case CellState.Crossed: GetComponent<Button>().image.sprite = crossedSprite; break;
         }
     }
 }
