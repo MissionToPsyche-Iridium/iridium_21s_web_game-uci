@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         SetPuzzleIndex();
+        // Nonogram puzzle scene loads in and starts the timer
+        TimerScript.instance.BeginTimer();
     }
 
     void SetPuzzleIndex()
