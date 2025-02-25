@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 28
-  productGUID: af850bdf45ef14f66b81cdcf4736437c
+  productGUID: 7ea0cb6632e76d44e80e5216048772d9
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: iridium_21s_web_game-uci
+  productName: Nonogram
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -609,14 +609,14 @@ PlayerSettings:
   editorAssembliesCompatibilityLevel: 1
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: iridium_21s_web_game-uci
+  metroPackageName: Nonogram
   metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: iridium_21s_web_game-uci
+  metroApplicationDescription: Nonogram
   wsaImages: {}
   metroTileShortName: 
   metroTileShowName: 0
@@ -687,11 +687,11 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: 07400186-7170-4af4-81a5-1d782752e27e
+  cloudProjectId: 12999df0-a003-45a6-aa4f-c4034315d3da
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: iridium_21s_web_game-uci 2025-02-13_06-12-55
-  organizationId: jennz12-uci-edu
+  projectName: Nonogram
+  organizationId: lfookes
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
