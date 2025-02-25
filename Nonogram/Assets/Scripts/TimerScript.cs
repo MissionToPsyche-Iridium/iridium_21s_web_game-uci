@@ -37,13 +37,11 @@ public class TimerScript : MonoBehaviour
         if (timerState)
         {
             timerState = false;
-            pausePanel.SetActive(true);
         }
         else
         {
             timerState = true;
             StartCoroutine(UpdateTimer());
-            pausePanel.SetActive(false);
         }
     }
 
@@ -56,6 +54,18 @@ public class TimerScript : MonoBehaviour
             timeCounter.text = timePlaying.ToString("mm':'ss");
 
             yield return null;
+        }
+    }
+
+    public void TogglePausePanel()
+    {
+        if (pausePanel.activeSelf)
+        {
+            pausePanel.SetActive(false);
+        }
+        else
+        {
+            pausePanel.SetActive(true);
         }
     }
 }

@@ -135,16 +135,15 @@ public class GameManager : MonoBehaviour
                 if (puzzle.SolutionData[r,c] == 1 && puzzle.GridData[r,c] != 1 ||
                     puzzle.SolutionData[r,c] == 0 && puzzle.GridData[r,c] == 1)
                 {
-                    //Puzzle not solved
-                    Debug.Log("Puzzle not yet solved.");
+                    //Puzzle not solved;
                     return;
                 }
             }
         }
         //Game is won
         //Show win screen
-        Debug.Log("Puzzle Solved!");
         victoryPanel.SetActive(true);
+        TimerScript.instance.PauseTimer();
     }
 
     void BackToOverworld()
