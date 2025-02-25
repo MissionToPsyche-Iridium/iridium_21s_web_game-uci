@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -11,6 +12,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] List<TextAsset> savedPuzzleFiles;
     [SerializeField] Transform gridParent, rowClueParent, colClueParent;
     [SerializeField] GameObject rowCluePrefab, colCluePrefab, cellButtonPrefab;
+    [Header("Win")]
+    [SerializeField] GameObject victoryPanel;
+    [SerializeField] Button victoryButton;
     int puzzleIndex = 0;
     int rows, columns;
 
@@ -23,6 +27,9 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        victoryButton.onClick.AddListener(BackToOverworld);
+        victoryPanel.SetActive(false);
+
         SetPuzzleIndex();
         // Nonogram puzzle scene loads in and starts the timer
         TimerScript.instance.BeginTimer();
@@ -137,5 +144,11 @@ public class GameManager : MonoBehaviour
         //Game is won
         //Show win screen
         Debug.Log("Puzzle Solved!");
+        victoryPanel.SetActive(true);
+    }
+
+    void BackToOverworld()
+    {
+        SceneManager.LoadScene("Overworld");
     }
 }

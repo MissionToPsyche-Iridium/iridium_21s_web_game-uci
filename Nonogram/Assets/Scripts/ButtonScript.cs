@@ -37,6 +37,7 @@ public class ButtonScript : MonoBehaviour
         int prevState = puzzle.GridData[row, col];
         undoActions.Push(new UserAction(row, col, prevState));
         redoActions.Clear();
+        Debug.Log("undo actions: " + undoActions.Count);
 
         if (State == CellState.Blank)
         {
@@ -60,6 +61,7 @@ public class ButtonScript : MonoBehaviour
 
     public void Undo()
     {
+        Debug.Log("undoActions.count = " + undoActions.Count);
         if (undoActions.Count > 0)
         {
             UserAction prevAction = undoActions.Pop();
@@ -118,6 +120,7 @@ public class ButtonScript : MonoBehaviour
             // Ctrl Z kept redoing my asset changes, so I changed it to Ctrl E for now lol
             if (Input.GetKeyDown(KeyCode.E))
             {
+                Debug.Log("undoActions.count = = " + undoActions.Count);
                 Debug.Log("Undo went through");
                 Undo();
             }
