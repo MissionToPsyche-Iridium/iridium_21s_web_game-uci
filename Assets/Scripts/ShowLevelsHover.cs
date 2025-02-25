@@ -3,22 +3,20 @@ using TMPro;
 
 public class ShowLevelsHover : MonoBehaviour
 {
-    public TextMeshProUGUI[] planetLabels;
-
+    public TextMeshProUGUI[] planetLabels;  
     void Start()
     {
         foreach (var label in planetLabels)
             label.enabled = false;
     }
 
-    void OnMouseEnter()
+    public void ShowPlanetLabels()
     {
-        Debug.Log("Hover detected on Show Levels");  
         foreach (var label in planetLabels)
-            label.enabled = true; 
+            label.enabled = true;
     }
 
-    void OnMouseExit()
+    public void HidePlanetLabels()
     {
         foreach (var label in planetLabels)
             label.enabled = false; 
