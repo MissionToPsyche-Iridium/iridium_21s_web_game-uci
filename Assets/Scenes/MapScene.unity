@@ -323,7 +323,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6be3d6f53bcf49e8be80ddf18920100, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: Nonogram
+  sceneToLoad: NonogramGameScene
+  linkedLevel: {fileID: 4900000, guid: d42678020b41bfd4580575faa1e53b9d, type: 3}
 --- !u!114 &53537789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1418,7 +1419,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6be3d6f53bcf49e8be80ddf18920100, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: SampleScene
+  sceneToLoad: NonogramGameScene
+  linkedLevel: {fileID: 4900000, guid: 82e7d1f76d61745488b8ddd4c021457c, type: 3}
 --- !u!65 &1368717022
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2101,7 +2103,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6be3d6f53bcf49e8be80ddf18920100, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: SampleScene
+  sceneToLoad: NonogramGameScene
+  linkedLevel: {fileID: 4900000, guid: 968ec9e2ba4ba424d8977a9718f3a121, type: 3}
 --- !u!65 &1718689642
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2651,7 +2654,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6be3d6f53bcf49e8be80ddf18920100, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: SampleScene
+  sceneToLoad: NonogramGameScene
+  linkedLevel: {fileID: 4900000, guid: 48fe4a65ad74568438f7d6adb4f0a0fc, type: 3}
 --- !u!65 &2130053484
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -2812,7 +2812,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   savedPuzzleFiles:
+  - {fileID: 4900000, guid: d42678020b41bfd4580575faa1e53b9d, type: 3}
   - {fileID: 4900000, guid: 82e7d1f76d61745488b8ddd4c021457c, type: 3}
+  - {fileID: 4900000, guid: 968ec9e2ba4ba424d8977a9718f3a121, type: 3}
+  - {fileID: 4900000, guid: 48fe4a65ad74568438f7d6adb4f0a0fc, type: 3}
   gridParent: {fileID: 586922232}
   rowClueParent: {fileID: 637068851}
   colClueParent: {fileID: 2052008064}

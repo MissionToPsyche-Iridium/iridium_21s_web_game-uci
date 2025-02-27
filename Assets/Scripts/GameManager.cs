@@ -55,6 +55,10 @@ public class GameManager : MonoBehaviour
 
     NonogramPuzzle LoadPuzzle()
     {
+        if(LevelLoader.puzzleToLoad != null)
+        {
+            return LevelLoader.puzzleToLoad;
+        }
         TextAsset selectedPuzzle = savedPuzzleFiles[puzzleIndex];
         string json = selectedPuzzle.text;
         NonogramPuzzle loadedPuzzle = JsonUtility.FromJson<NonogramPuzzle>(json);
@@ -148,6 +152,6 @@ public class GameManager : MonoBehaviour
 
     void BackToOverworld()
     {
-        SceneManager.LoadScene("Overworld");
+        SceneManager.LoadScene("MapScene");
     }
 }

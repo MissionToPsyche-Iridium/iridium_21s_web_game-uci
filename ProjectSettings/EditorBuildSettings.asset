@@ -6,14 +6,14 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 1
     path: Assets/Scenes/MapScene.unity
     guid: 981f437e3d40443a2b5f64714177500a
   - enabled: 1
-    path: Assets/Scenes/nonogram.unity
-    guid: f2e149212d3e24dadb284fb80321991b
+    path: Assets/Scenes/NonogramGameScene.unity
+    guid: 41d6a01ab5af3b54387ec11754fbb345
+  - enabled: 1
+    path: Assets/Scenes/SampleScene.unity
+    guid: 8c9cfa26abfee488c85f1582747f6a02
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
