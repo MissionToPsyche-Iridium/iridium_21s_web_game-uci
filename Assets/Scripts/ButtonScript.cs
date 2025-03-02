@@ -2,17 +2,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum CellState {Crossed, Blank, Filled }
+public enum CellState { Crossed, Blank, Filled }
 public class ButtonScript : MonoBehaviour
 {
-    private Stack<UserAction> undoActions = new Stack<UserAction>();
-    private Stack<UserAction> redoActions = new Stack<UserAction>();
-    public CellState State { get; private set; } = CellState.Blank;
+    public static ButtonScript instance;
+    public CellState State { get; set; } = CellState.Blank;
     [SerializeField] Sprite crossedSprite, blankSprite, filledSprite;
 
-    [HideInInspector]public int row, col;
+    [HideInInspector] public int row, col;
     //Connection to puzzle
     [HideInInspector] public NonogramPuzzle puzzle;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     public void ChangeGeneratorState()//Called from the button
     {
@@ -25,7 +29,7 @@ public class ButtonScript : MonoBehaviour
             State = CellState.Blank;
         }
 
-        puzzle.SolutionData[row,col] = puzzle.SolutionData[row,col] == 1 ? 0 : 1;
+        puzzle.SolutionData[row, col] = puzzle.SolutionData[row, col] == 1 ? 0 : 1;
 
         UpdateVisuals();
         //Notify GridManager
@@ -35,9 +39,9 @@ public class ButtonScript : MonoBehaviour
     public void ChangeGameState()
     {
         int prevState = puzzle.GridData[row, col];
-        undoActions.Push(new UserAction(row, col, prevState));
-        redoActions.Clear();
-        Debug.Log("undo actions: " + undoActions.Count);
+        UIUndoRedo.instance.undoActions.Push(new UIUndoRedo.UserAction(row, col, prevState));
+        UIUndoRedo.instance.redoActions.Clear();
+        Debug.Log($"undoActions count is {UIUndoRedo.instance.undoActions.Count}");
 
         if (State == CellState.Blank)
         {
@@ -59,91 +63,43 @@ public class ButtonScript : MonoBehaviour
         GameManager.Instance.CheckWinCondition();
     }
 
-    public void Undo()
+    public void UndoCell()
     {
-        Debug.Log("undoActions.count = " + undoActions.Count);
-        if (undoActions.Count > 0)
+        Debug.Log($"row and col is {row} and {col}");
+        if (State == CellState.Blank)
         {
-            UserAction prevAction = undoActions.Pop();
-            int nextState = puzzle.GridData[prevAction.savedRow, prevAction.savedCol];
-
-            redoActions.Push(new UserAction(prevAction.savedRow, prevAction.savedCol, nextState));
-            puzzle.GridData[prevAction.savedRow, prevAction.savedCol] = prevAction.savedState;
-            
-            if (State == CellState.Blank)
-            {
-                State = CellState.Crossed;
-            }
-            else if (State == CellState.Filled)
-            {
-                State = CellState.Blank;
-            }
-            else
-            {
-                State = CellState.Filled;
-            }
-            UpdateVisuals();
+            State = CellState.Crossed;
         }
+        else if (State == CellState.Filled)
+        {
+            State = CellState.Blank;
+        }
+        else
+        {
+            State = CellState.Filled;
+        }
+        UpdateVisuals();
     }
 
-    public void Redo()
+    public void RedoCell()
     {
-        if (redoActions.Count > 0)
+        Debug.Log($"row and col is {row} and {col}");
+        if (State == CellState.Blank)
         {
-            UserAction nextAction = redoActions.Pop();
-            int nextState = puzzle.GridData[nextAction.savedRow, nextAction.savedCol];
-
-            undoActions.Push(new UserAction(nextAction.savedRow, nextAction.savedCol, nextState));
-
-            puzzle.GridData[nextAction.savedRow, nextAction.savedCol] = nextAction.savedState;
-            if (State == CellState.Blank)
-            {
-                State = CellState.Filled;
-            }
-            else if (State == CellState.Filled)
-            {
-                State = CellState.Crossed;
-            }
-            else
-            {
-                State = CellState.Blank;
-            }
-            UpdateVisuals();
+            State = CellState.Filled;
         }
-    }   
-
-    // Detects Ctrl Z and Ctrl Y for Undo and Redo
-    void Update()
-    {
-        if (Input.GetKey(KeyCode.LeftControl))
+        else if (State == CellState.Filled)
         {
-            // Ctrl Z kept redoing my asset changes, so I changed it to Ctrl E for now lol
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                Debug.Log("undoActions.count = = " + undoActions.Count);
-                Debug.Log("Undo went through");
-                Undo();
-            }
-            if (Input.GetKeyDown(KeyCode.Y))
-            {
-                Debug.Log("Redo went through");
-                Redo();
-            }
+            State = CellState.Crossed;
         }
+        else
+        {
+            State = CellState.Blank;
+        }
+        UpdateVisuals();
     }
 
-    private struct UserAction
-    {
-        public int savedRow, savedCol, savedState;
-        public UserAction(int saveRow, int saveCol, int saveState)
-        {
-            savedRow = saveRow;
-            savedCol = saveCol;
-            savedState = saveState;
-        }
-    }
-
-    private void UpdateVisuals()
+    public void UpdateVisuals()
     {
         switch (State)
         {
