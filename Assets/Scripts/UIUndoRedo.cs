@@ -27,7 +27,7 @@ public class UIUndoRedo : MonoBehaviour
         }
         else
         {
-            Debug.Log("Undo count has run out");
+            Debug.Log("Nothing left to undo");
         }
     }
 
@@ -45,7 +45,7 @@ public class UIUndoRedo : MonoBehaviour
         }
         else
         {
-            Debug.Log("Redo count has run out");
+            Debug.Log("Nothing left to redo");
         }
     }
 
@@ -54,8 +54,7 @@ public class UIUndoRedo : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.LeftControl))
         {
-            // Ctrl Z kept undoing my asset changes, so I changed it to Ctrl E for now lol
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.Z))
             {
                 Undo();
             }

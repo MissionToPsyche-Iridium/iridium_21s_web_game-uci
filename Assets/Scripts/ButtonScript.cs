@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public enum CellState { Crossed, Blank, Filled }
 public class ButtonScript : MonoBehaviour
@@ -97,6 +98,11 @@ public class ButtonScript : MonoBehaviour
             State = CellState.Blank;
         }
         UpdateVisuals();
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void UpdateVisuals()

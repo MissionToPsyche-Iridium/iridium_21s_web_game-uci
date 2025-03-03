@@ -12,6 +12,7 @@ public class TimerScript : MonoBehaviour
     private bool timerState = false;
     public float elapsedTime;
     GameObject pausePanel;
+
     private void Awake()
     {
         pausePanel = GameObject.Find("PausePanel");
