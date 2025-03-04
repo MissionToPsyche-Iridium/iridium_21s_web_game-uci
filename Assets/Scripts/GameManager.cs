@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Linq;
+using JetBrains.Annotations;
 using NUnit.Framework;
 using TMPro;
 using UnityEngine;
@@ -10,13 +12,16 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance {get; private set;}
 
     [SerializeField] List<TextAsset> savedPuzzleFiles;
+    [SerializeField] List<Sprite> victorySprites;
     [SerializeField] Transform gridParent, rowClueParent, colClueParent;
     [SerializeField] GameObject rowCluePrefab, colCluePrefab, cellButtonPrefab;
     [Header("Win")]
     [SerializeField] GameObject victoryPanel;
     [SerializeField] Button victoryButton;
     int puzzleIndex = 0;
+    Sprite victoryScreenSprite;
     int rows, columns;
+    public SolutionPanelScript solutionScreen;
 
     NonogramPuzzle puzzle;
 
@@ -57,11 +62,28 @@ public class GameManager : MonoBehaviour
     {
         if(LevelLoader.puzzleToLoad != null)
         {
+            //Assign an index number to each puzzle by name
+            switch (LevelLoader.puzzleName)
+            {
+                case "PsycheLogo":
+                    puzzleIndex = 0;
+                    break;
+                case "Spacecraft":
+                    puzzleIndex = 1;
+                    break;
+                case "Asteroid":
+                    puzzleIndex = 2;
+                    break;
+                case "Instruments":
+                    puzzleIndex = 3;
+                    break;
+            }
             return LevelLoader.puzzleToLoad;
         }
         TextAsset selectedPuzzle = savedPuzzleFiles[puzzleIndex];
         string json = selectedPuzzle.text;
         NonogramPuzzle loadedPuzzle = JsonUtility.FromJson<NonogramPuzzle>(json);
+
         return loadedPuzzle;
     }
 
@@ -146,6 +168,16 @@ public class GameManager : MonoBehaviour
         }
         //Game is won
         //Show win screen
+
+        //Find and set the solution sprite assigned to this puzzle
+        for(int i=0; i < savedPuzzleFiles.Count; ++i)
+        {
+            if(puzzleIndex == i)
+            {
+                victoryScreenSprite = victorySprites[i];
+                solutionScreen.SetSolutionScreen(victoryScreenSprite);
+            }
+        }
         victoryPanel.SetActive(true);
         TimerScript.instance.PauseTimer();
     }

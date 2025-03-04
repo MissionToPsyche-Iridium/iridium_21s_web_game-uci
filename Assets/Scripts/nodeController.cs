@@ -19,5 +19,6 @@ public class NodeController : MonoBehaviour
     {
         NonogramPuzzle loadedPuzzle = JsonUtility.FromJson<NonogramPuzzle>(linkedLevel.text);
         LevelLoader.puzzleToLoad = loadedPuzzle;
+        LevelLoader.puzzleName = linkedLevel.name;
     }
 }

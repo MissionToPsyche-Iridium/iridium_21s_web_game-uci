@@ -3121,6 +3121,11 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 82e7d1f76d61745488b8ddd4c021457c, type: 3}
   - {fileID: 4900000, guid: 968ec9e2ba4ba424d8977a9718f3a121, type: 3}
   - {fileID: 4900000, guid: 48fe4a65ad74568438f7d6adb4f0a0fc, type: 3}
+  victorySprites:
+  - {fileID: 2880233705441623596, guid: e6ff29805a026904f9cc51b58268478a, type: 3}
+  - {fileID: 6186866036763185771, guid: 7046457e29884064fbbbb8c5eb339ed5, type: 3}
+  - {fileID: -8750736584878422888, guid: e5bc8ceb893dd544da0382b9d2642552, type: 3}
+  - {fileID: -9186996030367267186, guid: b9ea8b6ca39ee46438154865a6800564, type: 3}
   gridParent: {fileID: 586922232}
   rowClueParent: {fileID: 637068851}
   colClueParent: {fileID: 2052008064}
@@ -3129,6 +3134,7 @@ MonoBehaviour:
   cellButtonPrefab: {fileID: 5602641254147404881, guid: cf9408f61f1aac14b9531fb0b489282f, type: 3}
   victoryPanel: {fileID: 868836023}
   victoryButton: {fileID: 1702250674}
+  solutionScreen: {fileID: 2005350376}
 --- !u!4 &421472068
 Transform:
   m_ObjectHideFlags: 0
@@ -10588,7 +10594,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -878.75073, y: 458.39856}
+  m_AnchoredPosition: {x: -769, y: 328}
   m_SizeDelta: {x: 95.0122, y: 95.0122}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1372278741
@@ -14550,9 +14556,10 @@ GameObject:
   - component: {fileID: 2005350373}
   - component: {fileID: 2005350375}
   - component: {fileID: 2005350374}
+  - component: {fileID: 2005350376}
   m_Layer: 0
   m_Name: InfoPanel
-  m_TagString: Untagged
+  m_TagString: SolutionPopUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14616,6 +14623,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2005350372}
   m_CullTransparentMesh: 1
+--- !u!114 &2005350376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2005350372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 047717afa4874854c854477f31cba637, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2006001831
 PrefabInstance:
   m_ObjectHideFlags: 0
