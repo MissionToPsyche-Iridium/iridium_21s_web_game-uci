@@ -6,7 +6,7 @@ public class NodeController : MonoBehaviour
     public string sceneToLoad;
     [SerializeField] TextAsset linkedLevel;
 
-    void OnMouseDown()
+    void OnMouseUpAsButton()
     {
         if (!string.IsNullOrEmpty(sceneToLoad))
         {
