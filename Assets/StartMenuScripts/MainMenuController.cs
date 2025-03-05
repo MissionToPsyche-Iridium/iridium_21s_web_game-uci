@@ -1,0 +1,88 @@
+using TMPro;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+
+public class MenuController : MonoBehaviour
+{
+    public GameObject arrowIndicator;
+    public MenuButton[] buttons;
+    private int selectedIndex = 0;
+
+    private bool mouseActive = false;
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        SelectButton(selectedIndex);
+        MoveArrow();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        HandleInput();
+    }
+
+    void HandleInput()
+    {
+        // Keyboard Navigation
+        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
+        {
+            selectedIndex = (selectedIndex - 1 + buttons.Length) % buttons.Length;
+            SelectButton(selectedIndex);
+            MoveArrow();
+            mouseActive = false;
+        }
+        else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
+        {
+            selectedIndex = (selectedIndex + 1) % buttons.Length;
+            SelectButton(selectedIndex);
+            mouseActive = false;
+            MoveArrow();
+        }
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
+        {
+            buttons[selectedIndex].OnSelect();
+        }
+    }
+
+
+    public void SelectButton(int index)
+    {    
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            if (i == index)
+            {
+                buttons[i].OnSelect();
+            }
+            else
+            {
+                buttons[i].OnDeselect();
+            }
+        }
+    }
+
+    public void MoveArrow()
+    {
+        arrowIndicator.transform.position = buttons[selectedIndex].arrowPosition.position;
+    }
+
+    public void MouseHover(MenuButton button)
+    {
+        int index = System.Array.IndexOf(buttons, button);
+        SelectButton(index);
+        selectedIndex = index;
+        MoveArrow();
+        mouseActive = true;
+    }
+
+    public void MouseExit()
+    {
+        if (mouseActive)
+        {
+            mouseActive = false;
+        }
+    }
+}
+
