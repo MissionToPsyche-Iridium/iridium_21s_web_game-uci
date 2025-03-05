@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class MenuButton : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class MenuButton : MonoBehaviour
     public GameObject underline;
     public float speed = 0.2f;
     public Transform arrowPosition;
+    [SerializeField] string sceneToLoad;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -32,9 +34,12 @@ public class MenuButton : MonoBehaviour
     {
         FindFirstObjectByType<MenuController>().MouseHover(this);
     }
-    // Update is called once per frame
-    void Update()
+
+    public void ClickedOption()
     {
-        
+        if (!string.IsNullOrEmpty(sceneToLoad))
+        {
+            SceneManager.LoadScene(sceneToLoad);
+        }
     }
 }
