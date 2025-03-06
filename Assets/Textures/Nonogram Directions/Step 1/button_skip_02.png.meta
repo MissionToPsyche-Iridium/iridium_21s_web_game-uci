@@ -422,7 +422,19 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      button_skip_02_0: 3717083234967975245
+      button_skip_02_1: -7024426845034085210
+      button_skip_02_10: 8931731810849085863
+      button_skip_02_11: 832052696715651840
+      button_skip_02_2: 6646196743065249459
+      button_skip_02_3: 4763273368755510245
+      button_skip_02_4: 2995717774054092089
+      button_skip_02_5: 3257161620412807423
+      button_skip_02_6: 8722759562793952266
+      button_skip_02_7: -5973087026656732183
+      button_skip_02_8: -7189923286212024606
+      button_skip_02_9: -7507854737080480775
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

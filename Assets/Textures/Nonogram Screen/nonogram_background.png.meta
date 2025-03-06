@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      nonogram_background_0: -1885976028209969962
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
