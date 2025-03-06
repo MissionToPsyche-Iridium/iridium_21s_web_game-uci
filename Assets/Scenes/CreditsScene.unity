@@ -1613,7 +1613,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lance Fookes, Vince Pham, Jennifer Zhang, Janice Ngyuen, Chris Kim
+  m_text: Lance Fookes, Vince Pham, Jennifer Zhang, Janice Nguyen, Oscar Rodriguez,
+    Chris Kim
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d51dceff58ca6149b15f5972122f914, type: 2}
   m_sharedMaterial: {fileID: -301753581729109312, guid: 1d51dceff58ca6149b15f5972122f914, type: 2}
