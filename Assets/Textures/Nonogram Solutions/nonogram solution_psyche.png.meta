@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      nonogram solution_psyche_0: 2880233705441623596
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

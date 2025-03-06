@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: cc98ae60d72b5ac49a2383aa51ba59fd
+guid: 91448ac555dbb6644939f30e7b7d5dbe
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -123058118157912311
-    second: next_0
+      213: -1003667974950918684
+    second: PlayHover_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,12 +113,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: next_0
+      name: PlayHover_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 142
+        width: 268
         height: 84
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 90738742b4fca4ef0800000000000000
-      internalID: -123058118157912311
+      spriteID: 4e56d906b414212f0800000000000000
+      internalID: -1003667974950918684
       vertices: []
       indices: 
       edges: []
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      next_0: -123058118157912311
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
