@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      nonogram solution_asteroid_0: -8750736584878422888
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

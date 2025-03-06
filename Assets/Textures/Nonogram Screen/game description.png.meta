@@ -597,7 +597,26 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      game description_0: 4599302984711046426
+      game description_1: -1925016983524269380
+      game description_10: 6510841747188843207
+      game description_11: 4758813737847316174
+      game description_12: 7590453667225042871
+      game description_13: -2643624937791685594
+      game description_14: -7020169410939320226
+      game description_15: 946974641025047163
+      game description_16: 971432325435903300
+      game description_17: 6222447878636608938
+      game description_18: 8941470077982895336
+      game description_2: 7814717206241942366
+      game description_3: 6599364462423337863
+      game description_4: 8856443070936501116
+      game description_5: 5939788883283344360
+      game description_6: -8026493063831078440
+      game description_7: -1657198563957879818
+      game description_8: 430548537844808945
+      game description_9: -179151113286887736
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

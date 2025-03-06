@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      nongram solution_spacecraft_0: 6186866036763185771
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
