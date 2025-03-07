@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 80de717a7d90a0b48b96f45c12a0ad04
+guid: 8e800321c8c4f794981d7f3a44264494
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4438455185444932821
-    second: button_undo_0
+      213: -4727425939253528267
+    second: RedoHover_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: button_undo_0
+      name: RedoHover_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5dc8fe7a97f889d30800000000000000
-      internalID: 4438455185444932821
+      spriteID: 53973dcb72fc46eb0800000000000000
+      internalID: -4727425939253528267
       vertices: []
       indices: 
       edges: []
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      button_undo_0: 4438455185444932821
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
