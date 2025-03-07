@@ -3,17 +3,11 @@ using UnityEngine.UIElements;
 
 public class PausedMenuScript : MonoBehaviour
 {
-    public GameObject pausePanel;
-    public GameObject exitPanel;
-    public GameObject optionPanel;
-    public CanvasGroup pauseButton;
+    [SerializeField] GameObject pausePanel, exitPanel, optionPanel;
+    [SerializeField] CanvasGroup pauseButton;
 
     private bool isPaused = false;
-
-    //private void Awake()
-    //{
-        
-    //}
+    private string sceneToLoad = "";
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,12 +15,6 @@ public class PausedMenuScript : MonoBehaviour
         pausePanel.SetActive(false);
         exitPanel.SetActive(false);
         optionPanel.SetActive(false);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void TogglePausePanel()
@@ -47,5 +35,28 @@ public class PausedMenuScript : MonoBehaviour
             pauseButton.interactable = true;
             pauseButton.alpha = 1f;
         }
+    }
+
+    public void ToggleExitPanel()
+    {
+        pausePanel.SetActive(false);
+        exitPanel.SetActive(true);
+        exitPanel.GetComponent<ExitMenuScript>().SetExitType(sceneToLoad);
+    }
+
+    public void ExitToHome()
+    {
+        sceneToLoad = "StartMenu";
+        pausePanel.SetActive(false);
+        exitPanel.SetActive(true);
+        ExitMenuScript.instance.SendMessage("SetExitType", sceneToLoad);
+    }
+
+    public void ExitToMap()
+    {
+        sceneToLoad = "MapScene";
+        pausePanel.SetActive(false);
+        exitPanel.SetActive(true);
+        ExitMenuScript.instance.SendMessage("SetExitType", sceneToLoad);
     }
 }

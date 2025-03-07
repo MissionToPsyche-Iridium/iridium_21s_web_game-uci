@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b9ea8b6ca39ee46438154865a6800564
+guid: 6f1146d13f0d37642bff1c1c90d9a002
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -9186996030367267186
-    second: nongram solution_dsoc_0
+      213: -342585506271425260
+    second: NoHover_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: nongram solution_dsoc_0
+      name: NoHover_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1778
-        height: 938
+        width: 268
+        height: 84
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e86090109cb318080800000000000000
-      internalID: -9186996030367267186
+      spriteID: 41d8e711c44ee3bf0800000000000000
+      internalID: -342585506271425260
       vertices: []
       indices: 
       edges: []
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      nongram solution_dsoc_0: -9186996030367267186
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
