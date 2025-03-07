@@ -11,17 +11,14 @@ public class TimerScript : MonoBehaviour
     private TimeSpan timePlaying;
     private bool timerState = false;
     public float elapsedTime;
-    GameObject pausePanel;
 
     private void Awake()
     {
-        pausePanel = GameObject.Find("PausePanel");
         instance = this;
     }
 
     public void Start()
     {
-        pausePanel.SetActive(false);
         timeCounter.text = elapsedTime.ToString("mm':'ss");
     }
 
@@ -58,15 +55,5 @@ public class TimerScript : MonoBehaviour
         }
     }
 
-    public void TogglePausePanel()
-    {
-        if (pausePanel.activeSelf)
-        {
-            pausePanel.SetActive(false);
-        }
-        else
-        {
-            pausePanel.SetActive(true);
-        }
-    }
+    
 }
