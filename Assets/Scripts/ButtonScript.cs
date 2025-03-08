@@ -1,12 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public enum CellState { Crossed, Blank, Filled }
-public class ButtonScript : MonoBehaviour
+public class ButtonScript : MonoBehaviour, IPointerClickHandler
 {
     public static ButtonScript instance;
+    AudioManager sounds;
     public CellState State { get; set; } = CellState.Blank;
     [SerializeField] Sprite crossedSprite, blankSprite, filledSprite;
 
@@ -17,6 +19,7 @@ public class ButtonScript : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        sounds = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     public void ChangeGeneratorState()//Called from the button
@@ -39,10 +42,10 @@ public class ButtonScript : MonoBehaviour
 
     public void ChangeGameState()
     {
-        int prevState = puzzle.GridData[row, col];
-        UIUndoRedo.instance.undoActions.Push(new UIUndoRedo.UserAction(row, col, prevState));
+        sounds.PlaySFX(sounds.gridTileSFX);
+
+        UIUndoRedo.instance.undoActions.Push(this.gameObject);
         UIUndoRedo.instance.redoActions.Clear();
-        Debug.Log($"undoActions count is {UIUndoRedo.instance.undoActions.Count}");
 
         if (State == CellState.Blank)
         {
@@ -66,17 +69,19 @@ public class ButtonScript : MonoBehaviour
 
     public void UndoCell()
     {
-        Debug.Log($"row and col is {row} and {col}");
         if (State == CellState.Blank)
         {
+            puzzle.GridData[row, col] = 2;
             State = CellState.Crossed;
         }
         else if (State == CellState.Filled)
         {
+            puzzle.GridData[row, col] = 0;
             State = CellState.Blank;
         }
         else
         {
+            puzzle.GridData[row, col] = 1;
             State = CellState.Filled;
         }
         UpdateVisuals();
@@ -84,25 +89,59 @@ public class ButtonScript : MonoBehaviour
 
     public void RedoCell()
     {
-        Debug.Log($"row and col is {row} and {col}");
         if (State == CellState.Blank)
         {
+            puzzle.GridData[row, col] = 1;
             State = CellState.Filled;
         }
         else if (State == CellState.Filled)
         {
+            puzzle.GridData[row, col] = 2;
             State = CellState.Crossed;
         }
         else
         {
+            puzzle.GridData[row, col] = 0;
             State = CellState.Blank;
         }
         UpdateVisuals();
     }
 
+    public void ClearCell()
+    {
+        if (State != CellState.Blank)
+        {
+            puzzle.GridData[row, col] = 0;
+            State = CellState.Blank;
+            UpdateVisuals();
+        }
+    }
+
     public void Restart()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        sounds.PlaySFX(sounds.restartSFX);
+
+        UIUndoRedo.instance.redoActions.Clear();
+        while (UIUndoRedo.instance.undoActions.Count > 0)
+        {
+            UIUndoRedo.instance.undoActions.Peek().GetComponent<ButtonScript>().ClearCell();
+            UIUndoRedo.instance.undoActions.Pop();
+        }
+    }
+
+    public void OnPointerClick(PointerEventData data)
+    {
+        if (data.button == PointerEventData.InputButton.Right)
+        {
+            sounds.PlaySFX(sounds.gridTileSFX);
+
+            UIUndoRedo.instance.undoActions.Push(this.gameObject);
+            UIUndoRedo.instance.redoActions.Clear();
+
+            puzzle.GridData[row, col] = 2;
+            State = CellState.Crossed;
+            UpdateVisuals();
+        }
     }
 
     public void UpdateVisuals()

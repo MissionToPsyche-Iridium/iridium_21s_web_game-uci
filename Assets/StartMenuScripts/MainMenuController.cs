@@ -10,6 +10,12 @@ public class MenuController : MonoBehaviour
     private int selectedIndex = 0;
 
     private bool mouseActive = false;
+    AudioManager sounds;
+
+    private void Awake()
+    {
+        sounds = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -29,6 +35,7 @@ public class MenuController : MonoBehaviour
         // Keyboard Navigation
         if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
         {
+            sounds.PlaySFX(sounds.hoverSFX);
             selectedIndex = (selectedIndex - 1 + buttons.Length) % buttons.Length;
             SelectButton(selectedIndex);
             MoveArrow();
@@ -36,6 +43,7 @@ public class MenuController : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
         {
+            sounds.PlaySFX(sounds.hoverSFX);
             selectedIndex = (selectedIndex + 1) % buttons.Length;
             SelectButton(selectedIndex);
             mouseActive = false;
@@ -70,6 +78,7 @@ public class MenuController : MonoBehaviour
 
     public void MouseHover(MenuButton button)
     {
+        sounds.PlaySFX(sounds.hoverSFX);
         int index = System.Array.IndexOf(buttons, button);
         SelectButton(index);
         selectedIndex = index;

@@ -5,12 +5,14 @@ using UnityEngine.UI;
 public class UIUndoRedo : MonoBehaviour
 {
     public static UIUndoRedo instance;
-    public Stack<UserAction> undoActions = new Stack<UserAction>();
-    public Stack<UserAction> redoActions = new Stack<UserAction>();
+    public Stack<GameObject> undoActions = new Stack<GameObject>();
+    public Stack<GameObject> redoActions = new Stack<GameObject>();
+    AudioManager sounds;
 
     private void Awake()
     {
         instance = this;
+        sounds = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     public void Undo()
@@ -18,12 +20,11 @@ public class UIUndoRedo : MonoBehaviour
         Debug.Log("Undo function called");
         if (undoActions.Count > 0)
         {
-            UserAction prevAction = undoActions.Pop();
-            int nextState = ButtonScript.instance.puzzle.GridData[prevAction.savedRow, prevAction.savedCol];
-            redoActions.Push(new UserAction(prevAction.savedRow, prevAction.savedCol, nextState));
+            sounds.PlaySFX(sounds.undoRedoSFX);
 
-            ButtonScript.instance.puzzle.GridData[prevAction.savedRow, prevAction.savedCol] = prevAction.savedState;
-            ButtonScript.instance.UndoCell(); // Modify cell State in ButtonScript
+            redoActions.Push(undoActions.Peek());
+            undoActions.Peek().GetComponent<ButtonScript>().UndoCell();
+            undoActions.Pop();
         }
         else
         {
@@ -36,12 +37,10 @@ public class UIUndoRedo : MonoBehaviour
         Debug.Log("Redo function called");
         if (redoActions.Count > 0)
         {
-            UserAction nextAction = redoActions.Pop();
-            int nextState = ButtonScript.instance.puzzle.GridData[nextAction.savedRow, nextAction.savedCol];
-            undoActions.Push(new UserAction(nextAction.savedRow, nextAction.savedCol, nextState));
-
-            ButtonScript.instance.puzzle.GridData[nextAction.savedRow, nextAction.savedCol] = nextAction.savedState;
-            ButtonScript.instance.RedoCell(); // Modify cell State in ButtonScript
+            sounds.PlaySFX(sounds.undoRedoSFX);
+            undoActions.Push(redoActions.Peek());
+            redoActions.Peek().GetComponent<ButtonScript>().RedoCell();
+            redoActions.Pop();
         }
         else
         {
@@ -62,17 +61,6 @@ public class UIUndoRedo : MonoBehaviour
             {
                 Redo();
             }
-        }
-    }
-
-    public struct UserAction
-    {
-        public int savedRow, savedCol, savedState;
-        public UserAction(int saveRow, int saveCol, int saveState)
-        {
-            savedRow = saveRow;
-            savedCol = saveCol;
-            savedState = saveState;
         }
     }
 }
