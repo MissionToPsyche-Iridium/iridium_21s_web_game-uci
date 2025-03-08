@@ -22,12 +22,13 @@ public class GameManager : MonoBehaviour
     Sprite victoryScreenSprite;
     int rows, columns;
     public SolutionPanelScript solutionScreen;
-
+    AudioManager sounds;
     NonogramPuzzle puzzle;
 
     private void Awake()
     {
         Instance = this;
+        sounds = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     void Start()
@@ -168,9 +169,9 @@ public class GameManager : MonoBehaviour
         }
         //Game is won
         //Show win screen
-
+        sounds.PlaySFX(sounds.completeSFX);
         //Find and set the solution sprite assigned to this puzzle
-        for(int i=0; i < savedPuzzleFiles.Count; ++i)
+        for (int i=0; i < savedPuzzleFiles.Count; ++i)
         {
             if(puzzleIndex == i)
             {

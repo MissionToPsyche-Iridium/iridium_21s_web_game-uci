@@ -9,6 +9,12 @@ public class MenuButton : MonoBehaviour
     public float speed = 0.2f;
     public Transform arrowPosition;
     [SerializeField] string sceneToLoad;
+    AudioManager sounds;
+
+    private void Awake()
+    {
+        sounds = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -39,6 +45,7 @@ public class MenuButton : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(sceneToLoad))
         {
+            sounds.PlaySFX(sounds.generalUIButton);
             SceneManager.LoadScene(sceneToLoad);
         }
     }

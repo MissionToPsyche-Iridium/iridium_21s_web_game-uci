@@ -11,10 +11,13 @@ public class TimerScript : MonoBehaviour
     private TimeSpan timePlaying;
     private bool timerState = false;
     public float elapsedTime;
+    GameObject pausePanel;
+    AudioManager sounds;
 
     private void Awake()
     {
         instance = this;
+        sounds = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     public void Start()
@@ -32,6 +35,8 @@ public class TimerScript : MonoBehaviour
 
     public void PauseTimer()
     {
+        sounds.PlaySFX(sounds.pauseSFX);
+
         if (timerState)
         {
             timerState = false;
@@ -54,6 +59,4 @@ public class TimerScript : MonoBehaviour
             yield return null;
         }
     }
-
-    
 }
