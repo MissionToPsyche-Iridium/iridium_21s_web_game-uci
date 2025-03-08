@@ -18,14 +18,14 @@ public class MenuButton : MonoBehaviour
 
     public void OnSelect()
     {
-        buttonText.fontSize = 24f;
+        buttonText.fontSize = 30f;
         buttonText.color = Color.white;
         LeanTween.scaleX(underline, 1, speed).setEaseOutExpo();
     }
 
     public void OnDeselect()
     {
-        buttonText.fontSize = 20f;
+        buttonText.fontSize = 28f;
         buttonText.color = Color.gray;
         LeanTween.scaleX(underline, 0, speed).setEaseOutExpo();
     }

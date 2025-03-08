@@ -37,11 +37,16 @@ public class PausedMenuScript : MonoBehaviour
         }
     }
 
-    public void ToggleExitPanel()
+    public void ToggleOptionPanel()
     {
         pausePanel.SetActive(false);
-        exitPanel.SetActive(true);
-        exitPanel.GetComponent<ExitMenuScript>().SetExitType(sceneToLoad);
+        optionPanel.SetActive(true);
+    }
+
+    public void ReturnPausePanel()
+    {
+        pausePanel.SetActive(true);
+        optionPanel.SetActive(false);
     }
 
     public void ExitToHome()

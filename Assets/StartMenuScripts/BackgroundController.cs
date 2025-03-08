@@ -10,13 +10,17 @@ public class BackgroundController : MonoBehaviour
     public PuzzleManager puzzleManager;
     public TextMeshProUGUI gameTitle;
     public CanvasGroup[] menuButtons;
-    public CanvasGroup arrowIndicator;
+    [SerializeField] CanvasGroup arrowIndicator, optionPanel, menuOptions;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         puzzle.SetActive(false);
         gameTitle.gameObject.SetActive(false);
+        optionPanel.alpha = 0f;
+        optionPanel.interactable = false;
+        optionPanel.blocksRaycasts = false;
         arrowIndicator.alpha = 0f;
         foreach (CanvasGroup button in menuButtons)
         {
@@ -52,6 +56,28 @@ public class BackgroundController : MonoBehaviour
             menuButtons[i].blocksRaycasts = true;
         }
 
+    }
+
+    public void ToggleOptionsPanel()
+    {
+        if (optionPanel.alpha == 0f)
+        {
+            optionPanel.alpha = 1f;
+            optionPanel.interactable = true;
+            optionPanel.blocksRaycasts = true;
+            menuOptions.alpha = 0f;
+            menuOptions.interactable = false;
+            menuOptions.blocksRaycasts = false;
+        }
+        else
+        {
+            optionPanel.alpha = 0f;
+            optionPanel.interactable = false;
+            optionPanel.blocksRaycasts = false;
+            menuOptions.alpha = 1f;
+            menuOptions.interactable = true;
+            menuOptions.blocksRaycasts = true;
+        }
     }
     // Update is called once per frame
     void Update()
