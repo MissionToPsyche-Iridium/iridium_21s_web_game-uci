@@ -54,7 +54,7 @@ public class PausedMenuScript : MonoBehaviour
         sceneToLoad = "StartMenu";
         pausePanel.SetActive(false);
         exitPanel.SetActive(true);
-        ExitMenuScript.instance.SendMessage("SetExitType", sceneToLoad);
+        ExitMenuScript.instance.SendMessage("SetExitScene", sceneToLoad);
     }
 
     public void ExitToMap()
@@ -62,6 +62,6 @@ public class PausedMenuScript : MonoBehaviour
         sceneToLoad = "MapScene";
         pausePanel.SetActive(false);
         exitPanel.SetActive(true);
-        ExitMenuScript.instance.SendMessage("SetExitType", sceneToLoad);
+        ExitMenuScript.instance.SendMessage("SetExitScene", sceneToLoad);
     }
 }

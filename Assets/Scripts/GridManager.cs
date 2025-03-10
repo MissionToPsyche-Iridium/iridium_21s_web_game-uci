@@ -11,7 +11,7 @@ public class GridManager : MonoBehaviour
     [SerializeField] int rows = 4, cols = 4;
     [SerializeField] Transform gridParent, rowClueParent, colClueParent;
     [SerializeField] GameObject cellButtonPrefab, rowCluePrefab, colCluePrefab;
-    //Connection to puzzle
+    // Connection to puzzle
     NonogramPuzzle puzzle;
 
     string filepath = Application.dataPath + "/SavedPuzzles/";
@@ -23,20 +23,22 @@ public class GridManager : MonoBehaviour
     }
     void Start()
     {
-        //new puzzle
+        // New puzzle
         puzzle = new NonogramPuzzle(rows, cols);
-        //generate grid
+
+        // Generate grid
         GenerateGrid();
         gridParent.GetComponent<GridLayoutGroup>().constraintCount = cols;
     }
 
     public void ResetPuzzle()
     {
-        //new puzzle
+        // New puzzle
 
         puzzleNameInput.text = "";
         puzzle = new NonogramPuzzle(rows, cols);
-        //generate grid
+
+        // Generate grid
         GenerateGrid();
         gridParent.GetComponent<GridLayoutGroup>().constraintCount = cols;
     }
@@ -55,7 +57,7 @@ public class GridManager : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-        //Generate new cells
+        // Generate new cells
         for (int r = 0; r < rows; r++)
         {
             for (int c = 0; c < cols; c++)
@@ -66,18 +68,18 @@ public class GridManager : MonoBehaviour
                 ButtonScript cellButton = cell.GetComponent<ButtonScript>();
                 cellButton.row = r;
                 cellButton.col = c;
-                //Add corresponding puzzle
+                // Add corresponding puzzle
                 cellButton.puzzle = puzzle;
             }
         }
-        //Row clues
+        // Row clues
         for(int r = 0; r < rows; r++)
         {
             GameObject rowClue = Instantiate(rowCluePrefab, rowClueParent);
             rowClue.name = $"row clue {r}";
             rowClue.GetComponent<TMP_Text>().text = "0";
         }
-        //Column clues
+        // Column clues
         for (int c = 0; c < rows; c++)
         {
             GameObject colClue = Instantiate(colCluePrefab, colClueParent);
@@ -88,9 +90,10 @@ public class GridManager : MonoBehaviour
 
     public void OnCellStateChanged()
     {
-        //Regenerate the clues
+        // Regenerate the clues
         GenerateClues();
-        //Update the clues UI
+
+        // Update the clues UI
         CluesUIManager.instance.UpdateClues(puzzle);
     }
 
@@ -98,13 +101,13 @@ public class GridManager : MonoBehaviour
     {
         int rr = puzzle.SolutionData.GetLength(0);
         int cc = puzzle.SolutionData.GetLength(1);
-        //Row clues
+        // Row clues
         for (int r = 0; r < rr; r++)
         {
             puzzle.RowClues[r] = new CluesWrapper {Clues = GetCluesForLine(puzzle.SolutionData,r,true)};
         }
 
-        //Column clues
+        // Column clues
         for (int c = 0; c < cc; c++)
         {
             puzzle.ColClues[c] = new CluesWrapper {Clues = GetCluesForLine(puzzle.SolutionData,c,false)};
@@ -132,13 +135,13 @@ public class GridManager : MonoBehaviour
             }
         }
 
-        //If there is a leftover
+        // If there is a leftover
         if(count > 0)
         {
             clues.Add(count);
         }
 
-        //If no clue found, add 0
+        // If no clue found, add 0
         if(clues.Count == 0)
         {
             clues.Add(0);
@@ -148,7 +151,7 @@ public class GridManager : MonoBehaviour
     }
 
     //-----Saving and Loading--------------------------------------------
-    //Called from a button
+    // Called from a button
     public void SavePuzzle()
     {
         if (string.IsNullOrEmpty(puzzleNameInput.text))

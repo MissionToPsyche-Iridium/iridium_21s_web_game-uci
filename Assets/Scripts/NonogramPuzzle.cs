@@ -13,7 +13,15 @@ public class NonogramPuzzle
 {
     public int Rows, Cols;
     public CluesWrapper[] RowClues, ColClues;
-    public int[] SolutionFlatGridData; //For serialization
+    public int[] SaveData;
+    public int[] SolutionFlatGridData; // For serialization
+    public float timer;
+
+    [System.NonSerialized]
+    int[,] gridData;
+
+    [System.NonSerialized]
+    int[,] solutionData;
 
     public NonogramPuzzle(int rows, int cols)
     {
@@ -34,26 +42,37 @@ public class NonogramPuzzle
         //Initialize empty grid
         GridData = new int[rows, cols];
         SolutionData = new int[rows, cols];
+        SaveData = new int[rows * cols];
     }
-    [System.NonSerialized]
-    int[,] gridData;
-    [System.NonSerialized]
-    int[,] solutionData;
+
+    
 
     public int[,] GridData
     {
         get
         {
-            if(gridData == null)
+            if (gridData == null)
             {
-                //initialize empty grid
+                // Initialize empty grid
                 gridData = new int[Rows, Cols];
+
+                if (SaveData != null && SaveData.Length == Rows * Cols)
+                {
+                    for (int r = 0; r < Rows; r++)
+                    {
+                        for (int c = 0; c < Cols; c++)
+                        {
+                            gridData[r, c] = SaveData[r * Cols + c];
+                        }
+                    }
+                }
             }
             return gridData;
         }
         set
         {
             gridData = value;
+            SaveProgress();
         }
     }
 
@@ -61,7 +80,7 @@ public class NonogramPuzzle
     {
         get
         {
-            if(solutionData == null)
+            if (solutionData == null)
             {
                 solutionData = new int[Rows, Cols];
                 for (int r = 0; r < Rows; r++)
@@ -83,6 +102,20 @@ public class NonogramPuzzle
                 for (int c = 0; c < Cols; c++)
                 {
                     SolutionFlatGridData[(r * Cols) + c] = value[r, c];
+                }
+            }
+        }
+    }
+    public void SaveProgress()
+    {
+        if (gridData != null)
+        {
+            SaveData = new int[Rows * Cols];
+            for (int r = 0; r < Rows; r++)
+            {
+                for (int c = 0; c < Cols; c++)
+                {
+                    SaveData[r * Cols + c] = gridData[r, c];
                 }
             }
         }

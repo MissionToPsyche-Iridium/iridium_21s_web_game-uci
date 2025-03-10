@@ -15,15 +15,30 @@ public class GameManager : MonoBehaviour
     [SerializeField] List<Sprite> victorySprites;
     [SerializeField] Transform gridParent, rowClueParent, colClueParent;
     [SerializeField] GameObject rowCluePrefab, colCluePrefab, cellButtonPrefab;
+
     [Header("Win")]
     [SerializeField] GameObject victoryPanel;
     [SerializeField] Button victoryButton;
-    int puzzleIndex = 0;
     Sprite victoryScreenSprite;
-    int rows, columns;
     public SolutionPanelScript solutionScreen;
+
+    int puzzleIndex = 0;
+    int rows, columns;
+
     AudioManager sounds;
     NonogramPuzzle puzzle;
+
+    string saveProgressPath = Application.dataPath + "/ProgressPuzzles/";
+
+    Dictionary<int, string> matchPuzzle = new Dictionary<int, string>()
+    {
+        {0, "PsycheLogo"},
+        {1, "Spacecraft"},
+        {2, "Asteroid"},
+        {3, "Instruments"}
+    };
+
+    
 
     private void Awake()
     {
@@ -37,55 +52,52 @@ public class GameManager : MonoBehaviour
         victoryPanel.SetActive(false);
 
         SetPuzzleIndex();
-        // Nonogram puzzle scene loads in and starts the timer
-        TimerScript.instance.BeginTimer();
     }
 
     void SetPuzzleIndex()
     {
-        //After set
+        // After set
 
-        //Load puzzle
+        // Load puzzle
         LoadCurrentPuzzle();
     }
 
     void LoadCurrentPuzzle()
     {
         puzzle = LoadPuzzle();
-        if(puzzle != null)
+        if (puzzle != null)
         {
-            //Generate new puzzle
+            // Generate new puzzle
             GeneratePuzzle();
         }
     }
 
     NonogramPuzzle LoadPuzzle()
     {
-        if(LevelLoader.puzzleToLoad != null)
+        
+        if (LevelLoader.puzzleToLoad != null)
         {
-            //Assign an index number to each puzzle by name
-            switch (LevelLoader.puzzleName)
+            // Assign an index number to each puzzle by name
+            puzzleIndex = matchPuzzle.FirstOrDefault(x => x.Value == LevelLoader.puzzleName).Key;
+
+            string savedFilePath = saveProgressPath + LevelLoader.puzzleName + ".json";
+            if (System.IO.File.Exists(savedFilePath))
             {
-                case "PsycheLogo":
-                    puzzleIndex = 0;
-                    break;
-                case "Spacecraft":
-                    puzzleIndex = 1;
-                    break;
-                case "Asteroid":
-                    puzzleIndex = 2;
-                    break;
-                case "Instruments":
-                    puzzleIndex = 3;
-                    break;
+                string json = System.IO.File.ReadAllText(savedFilePath);
+                NonogramPuzzle loadedPuzzle = JsonUtility.FromJson<NonogramPuzzle>(json);
+                return loadedPuzzle;
             }
+
             return LevelLoader.puzzleToLoad;
         }
-        TextAsset selectedPuzzle = savedPuzzleFiles[puzzleIndex];
-        string json = selectedPuzzle.text;
-        NonogramPuzzle loadedPuzzle = JsonUtility.FromJson<NonogramPuzzle>(json);
+        else
+        {
+            TextAsset selectedPuzzle = savedPuzzleFiles[puzzleIndex];
+            string json = selectedPuzzle.text;
+            NonogramPuzzle loadedPuzzle = JsonUtility.FromJson<NonogramPuzzle>(json);
 
-        return loadedPuzzle;
+            return loadedPuzzle;
+        }
     }
 
     void GeneratePuzzle()
@@ -93,14 +105,24 @@ public class GameManager : MonoBehaviour
         rows = puzzle.Rows;
         columns = puzzle.Cols;
 
+        if (puzzle.timer > 0)
+        { TimerScript.instance.BeginTimer(puzzle.timer); }
+        else
+        { TimerScript.instance.BeginTimer(0); }
+
+
         gridParent.GetComponent<GridLayoutGroup>().constraintCount = columns;
-        //Clear existing content
+
+        // Clear existing content
         ClearBoard();
-        //Create row clues
+
+        // Create row clues
         GenerateRowClues();
-        //Create column clues
+
+        // Create column clues
         GenerateColumnClues();
-        //Create grid
+
+        // Create grid
         GenerateGrid();
     }
 
@@ -149,6 +171,21 @@ public class GameManager : MonoBehaviour
                 cellButton.row = r;
                 cellButton.col = c;
                 cellButton.puzzle = puzzle;
+
+                switch (puzzle.GridData[r, c])
+                {
+                    case 0:
+                        cellButton.State = CellState.Blank;
+                        break;
+                    case 1:
+                        cellButton.State = CellState.Filled;
+                        break;
+                    case 2:
+                        cellButton.State = CellState.Crossed;
+                        break;
+                }
+
+                cellButton.UpdateVisuals();
             }
         }
     }
@@ -162,18 +199,20 @@ public class GameManager : MonoBehaviour
                 if (puzzle.SolutionData[r,c] == 1 && puzzle.GridData[r,c] != 1 ||
                     puzzle.SolutionData[r,c] == 0 && puzzle.GridData[r,c] == 1)
                 {
-                    //Puzzle not solved;
+                    // Puzzle not solved;
                     return;
                 }
             }
         }
-        //Game is won
-        //Show win screen
+
+        // Game is won
+        // Show win screen
         sounds.PlaySFX(sounds.completeSFX);
-        //Find and set the solution sprite assigned to this puzzle
+
+        // Find and set the solution sprite assigned to this puzzle
         for (int i=0; i < savedPuzzleFiles.Count; ++i)
         {
-            if(puzzleIndex == i)
+            if (puzzleIndex == i)
             {
                 victoryScreenSprite = victorySprites[i];
                 solutionScreen.SetSolutionScreen(victoryScreenSprite);
@@ -186,5 +225,18 @@ public class GameManager : MonoBehaviour
     void BackToOverworld()
     {
         SceneManager.LoadScene("MapScene");
+    }
+
+    public void SaveGame()
+    {
+
+        string fileName = matchPuzzle[puzzleIndex];
+
+        puzzle.SaveProgress();
+        puzzle.timer = TimerScript.instance.elapsedTime;
+
+        string json = JsonUtility.ToJson(puzzle, true);
+        System.IO.File.WriteAllText(saveProgressPath + fileName + ".json", json);
+
     }
 }

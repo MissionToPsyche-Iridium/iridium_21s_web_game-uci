@@ -11,15 +11,16 @@ public class CluesUIManager : MonoBehaviour
     {
         instance = this;
     }
+
     public void UpdateClues(NonogramPuzzle puzzle)
     {
-        //Update rows
+        // Update rows
         for (int r = 0; r < puzzle.RowClues.Length; r++)
         {
             string clueText = string.Join(" ", puzzle.RowClues[r].Clues);
             rowCluesParent.GetChild(r).GetComponent<TMP_Text>().text = clueText;
         }
-        //Update columns
+        // Update columns
         for (int c = 0; c < puzzle.ColClues.Length; c++)
         {
             string clueText = string.Join("\n", puzzle.ColClues[c].Clues);

@@ -15,21 +15,16 @@ public class ExitMenuScript : MonoBehaviour
         instance = this;
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
 
-    public void SetExitType(string destination)
+    public void SetExitScene(string destination)
     {
         sceneToLoad = destination;
-        Debug.Log(sceneToLoad);
     }
 
     public void OnYes()
     {
         // Save the game, exit to main menu or map
+        GameManager.Instance.SaveGame();
         SceneManager.LoadScene(sceneToLoad);
     }
 

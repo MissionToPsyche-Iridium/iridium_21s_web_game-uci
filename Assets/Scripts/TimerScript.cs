@@ -10,9 +10,9 @@ public class TimerScript : MonoBehaviour
     public Text timeCounter;
     private TimeSpan timePlaying;
     private bool timerState = false;
-    public float elapsedTime;
-    GameObject pausePanel;
+    public float elapsedTime { get; set; }
     AudioManager sounds;
+
 
     private void Awake()
     {
@@ -26,10 +26,10 @@ public class TimerScript : MonoBehaviour
     }
 
     //Initiated in GameManager when the scene loads
-    public void BeginTimer()
+    public void BeginTimer(float timer)
     {
         timerState = true;
-        elapsedTime = 0f;
+        elapsedTime = timer;
         StartCoroutine(UpdateTimer());
     }
 

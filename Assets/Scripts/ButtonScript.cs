@@ -13,7 +13,7 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler
     [SerializeField] Sprite crossedSprite, blankSprite, filledSprite;
 
     [HideInInspector] public int row, col;
-    //Connection to puzzle
+    // Connection to puzzle
     [HideInInspector] public NonogramPuzzle puzzle;
 
     private void Awake()
@@ -22,7 +22,7 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler
         sounds = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
-    public void ChangeGeneratorState()//Called from the button
+    public void ChangeGeneratorState()  // Called from the button
     {
         if (State == CellState.Blank)
         {
@@ -63,7 +63,7 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler
             State = CellState.Blank;
         }
         UpdateVisuals();
-        //Check for win condition
+        // Check for win condition
         GameManager.Instance.CheckWinCondition();
     }
 
