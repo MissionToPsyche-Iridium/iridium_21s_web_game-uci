@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "merged_iridium_21s_web_game-uci.sln"
+    "dotnet.defaultSolution": "iridium_21s_web_game-uci.sln"
 }

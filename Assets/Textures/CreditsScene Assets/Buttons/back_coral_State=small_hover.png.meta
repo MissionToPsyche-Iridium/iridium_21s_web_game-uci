@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      back_coral_State=small_hover_0: 8383668944831284766
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
