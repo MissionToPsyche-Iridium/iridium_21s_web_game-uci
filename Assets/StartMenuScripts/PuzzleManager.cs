@@ -5,7 +5,7 @@ public class PuzzleManager : MonoBehaviour
 {
     public RectTransform rope;
     public GameObject secondPuzzle;
-    public float dropDistance = 650f;
+    public float dropDistance = 1050f;
     public float dropSpeed = 5f;
     public float swingDuration = 3f;
 
@@ -32,7 +32,7 @@ public class PuzzleManager : MonoBehaviour
                     .setEase(LeanTweenType.easeInOutSine)
                     .setLoopPingPong(3);
             });
-        
+
         yield return new WaitForSeconds(3f);
 
     }
