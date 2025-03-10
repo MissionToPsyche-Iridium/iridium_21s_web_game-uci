@@ -122,6 +122,7 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler
         sounds.PlaySFX(sounds.restartSFX);
 
         UIUndoRedo.instance.redoActions.Clear();
+
         while (UIUndoRedo.instance.undoActions.Count > 0)
         {
             UIUndoRedo.instance.undoActions.Peek().GetComponent<ButtonScript>().ClearCell();

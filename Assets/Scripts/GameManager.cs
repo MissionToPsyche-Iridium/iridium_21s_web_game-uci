@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI.Table;
 
 public class GameManager : MonoBehaviour
 {
@@ -237,6 +238,12 @@ public class GameManager : MonoBehaviour
 
         string json = JsonUtility.ToJson(puzzle, true);
         System.IO.File.WriteAllText(saveProgressPath + fileName + ".json", json);
+    }
 
+    public void RestartProgress()
+    {
+        puzzle.GridData = new int[rows, columns];
+        puzzle.SaveProgress();
+        GeneratePuzzle();
     }
 }

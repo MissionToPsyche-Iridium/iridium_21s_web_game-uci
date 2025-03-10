@@ -1,6 +1,8 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using UnityEngine.SceneManagement;
+
 using System;
 using Unity.VisualScripting;
 
@@ -79,9 +81,10 @@ public class BackgroundController : MonoBehaviour
             menuOptions.blocksRaycasts = true;
         }
     }
-    // Update is called once per frame
-    void Update()
-    {
 
+    public void ToggleCreditsScene()
+    {
+        SceneManager.LoadScene("CreditsScene");
     }
+
 }
