@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: bae483053c4c565408b37de4c8764ef0
+guid: 50a18fdc8595d05468f3b8a6f12f9320
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5357604232451709170
-    second: TimerBlank_0
+      213: -6133703845682175185
+    second: back_coral_State=small_active_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TimerBlank_0
+      name: back_coral_State=small_active_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1072
-        height: 352
+        width: 84
+        height: 85
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e07269d1657f5a5b0800000000000000
-      internalID: -5357604232451709170
+      spriteID: f23aaa0a9d4b0eaa0800000000000000
+      internalID: -6133703845682175185
       vertices: []
       indices: 
       edges: []
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      button_redo_0: 4434863719463021982
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
