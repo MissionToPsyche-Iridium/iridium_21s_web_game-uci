@@ -5,16 +5,16 @@ public class PuzzleManager : MonoBehaviour
 {
     public RectTransform rope;
     public GameObject secondPuzzle;
-    public float dropDistance = 650f;
-    public float dropSpeed = 5f;
+    public float dropDistance = 0.9f;
+    public float dropSpeed = 6f;
     public float swingDuration = 3f;
 
     public IEnumerator StartPuzzleAnimation()
     {
-        Vector2 initialPos = new Vector2(rope.anchoredPosition.x, Screen.height + 350f);
+        Vector2 initialPos = new Vector2(rope.anchoredPosition.x, Screen.height * 1.3f);
         rope.anchoredPosition = initialPos;
 
-        Vector2 targetPos = rope.anchoredPosition - new Vector2(0, dropDistance);
+        Vector2 targetPos = rope.anchoredPosition - new Vector2(0, Screen.height * dropDistance);
         LeanTween.move(rope, targetPos, dropSpeed).setEase(LeanTweenType.easeOutQuart);
 
         yield return new WaitForSeconds(dropSpeed);

@@ -1874,8 +1874,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rope: {fileID: 982508173}
   secondPuzzle: {fileID: 947753247}
-  dropDistance: 650
-  dropSpeed: 5
+  dropDistance: 0.9
+  dropSpeed: 6
   swingDuration: 3
 --- !u!1 &984876968
 GameObject:
