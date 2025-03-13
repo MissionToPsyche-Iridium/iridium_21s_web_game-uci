@@ -32,7 +32,7 @@ public class PuzzleManager : MonoBehaviour
                     .setEase(LeanTweenType.easeInOutSine)
                     .setLoopPingPong(3);
             });
-        
+
         yield return new WaitForSeconds(3f);
 
     }
