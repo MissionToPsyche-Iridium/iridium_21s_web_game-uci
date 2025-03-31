@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -38,8 +39,8 @@ public class MenuController : MonoBehaviour
             sounds.PlaySFX(sounds.hoverSFX);
             selectedIndex = (selectedIndex - 1 + buttons.Length) % buttons.Length;
             SelectButton(selectedIndex);
-            MoveArrow();
             mouseActive = false;
+            MoveArrow();
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
         {
@@ -49,9 +50,9 @@ public class MenuController : MonoBehaviour
             mouseActive = false;
             MoveArrow();
         }
-        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.KeypadEnter))
         {
-            buttons[selectedIndex].OnSelect();
+            buttons[selectedIndex].ClickedOption();
         }
     }
 
