@@ -52,7 +52,16 @@ public class MenuController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.KeypadEnter))
         {
-            buttons[selectedIndex].ClickedOption();
+            if (selectedIndex == 0 || selectedIndex == 2)
+            {
+                buttons[selectedIndex].ClickedOption();
+            }
+            else if (selectedIndex == 1)
+            {
+                sounds.PlaySFX(sounds.generalUIButton);
+                FindAnyObjectByType<BackgroundController>().ToggleOptionsPanel();
+
+            }
         }
     }
 
