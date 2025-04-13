@@ -12,26 +12,39 @@ public class BackgroundController : MonoBehaviour
     public PuzzleManager puzzleManager;
     public TextMeshProUGUI gameTitle;
     public CanvasGroup[] menuButtons;
+    public static bool hasPlayed = false;
     [SerializeField] CanvasGroup arrowIndicator, optionPanel, menuOptions;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        puzzle.SetActive(false);
-        gameTitle.gameObject.SetActive(false);
         optionPanel.alpha = 0f;
         optionPanel.interactable = false;
         optionPanel.blocksRaycasts = false;
-        arrowIndicator.alpha = 0f;
-        foreach (CanvasGroup button in menuButtons)
+        if (hasPlayed)
+        { 
+            gameTitle.gameObject.SetActive(true);
+            StartCoroutine(ShowButtons());
+
+        }
+        else
         {
-            button.alpha = 0f;
-            button.interactable = false;
-            button.blocksRaycasts = false;
+            puzzle.SetActive(false);
+            gameTitle.gameObject.SetActive(false);
+            
+            arrowIndicator.alpha = 0f;
+            foreach (CanvasGroup button in menuButtons)
+            {
+                button.alpha = 0f;
+                button.interactable = false;
+                button.blocksRaycasts = false;
+            }
+
+            StartCoroutine(ShowMenu());
+            hasPlayed = true;
         }
 
-        StartCoroutine(ShowMenu());
     }
 
     IEnumerator ShowMenu()
@@ -46,6 +59,12 @@ public class BackgroundController : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
+        StartCoroutine(ShowButtons());
+
+    }
+
+    IEnumerator ShowButtons()
+    {
         for (int i = 0; i < menuButtons.Length; i++)
         {
             if (i == 0)
@@ -57,7 +76,6 @@ public class BackgroundController : MonoBehaviour
             menuButtons[i].interactable = true;
             menuButtons[i].blocksRaycasts = true;
         }
-
     }
 
     public void ToggleOptionsPanel()
