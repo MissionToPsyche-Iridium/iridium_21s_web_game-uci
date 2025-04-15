@@ -33,6 +33,11 @@ public class TimerScript : MonoBehaviour
         StartCoroutine(UpdateTimer());
     }
 
+    public void RestartTimer()
+    {
+        elapsedTime = 0;
+    }
+
     public void PauseTimer()
     {
         sounds.PlaySFX(sounds.pauseSFX);

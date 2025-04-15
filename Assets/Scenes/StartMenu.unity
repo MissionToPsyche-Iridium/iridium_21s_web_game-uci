@@ -170,7 +170,7 @@ PrefabInstance:
     - target: {fileID: 3375287051197140606, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
       propertyPath: hoverSFX
       value: 
-      objectReference: {fileID: 8300000, guid: 508ac02e13b43bf4084a11eca71a2c0a, type: 3}
+      objectReference: {fileID: 8300000, guid: 069986774f9dfb4418757930c5feeda6, type: 3}
     - target: {fileID: 3375287051197140606, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
       propertyPath: nodeClickSFX
       value: 

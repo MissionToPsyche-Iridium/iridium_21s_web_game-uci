@@ -539,9 +539,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3375287051197140606, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
+      propertyPath: songVolume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3375287051197140606, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
+      propertyPath: soundVolume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3375287051197140606, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
       propertyPath: 'playlist.Array.data[0]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8300000, guid: 94806785bf8a98d449baef8fc3c5f6d3, type: 3}
     - target: {fileID: 3375287051197140606, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
       propertyPath: 'playlist.Array.data[1]'
       value: 

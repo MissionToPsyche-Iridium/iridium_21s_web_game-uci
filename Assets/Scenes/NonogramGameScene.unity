@@ -4775,6 +4775,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3375287051197140606, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
+      propertyPath: songVolume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3375287051197140606, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
+      propertyPath: completeSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 2b5cadafecd044a419d1e8ddd5cee655, type: 3}
+    - target: {fileID: 3375287051197140606, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
+      propertyPath: gridTileSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 8322984f9fdc3824a95ef848d9b4bb56, type: 3}
+    - target: {fileID: 3375287051197140606, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
+      propertyPath: soundVolume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3375287051197140606, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
+      propertyPath: generalUIButton
+      value: 
+      objectReference: {fileID: 8300000, guid: 6013c999714ab4b4089e4bf7f695996e, type: 3}
+    - target: {fileID: 3375287051197140606, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
+      propertyPath: 'playlist.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 7474fa329eda2fe4e9cbfa2cfdcb38fb, type: 3}
     - target: {fileID: 8165585509999232922, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
       propertyPath: m_Name
       value: AudioManager

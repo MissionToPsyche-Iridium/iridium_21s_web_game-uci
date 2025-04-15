@@ -106,8 +106,8 @@ public class GameManager : MonoBehaviour
         rows = puzzle.Rows;
         columns = puzzle.Cols;
 
-        if (puzzle.timer > 0)
-        { TimerScript.instance.BeginTimer(puzzle.timer); }
+        if (TimerScript.instance.elapsedTime > 0)
+        { TimerScript.instance.RestartTimer(); }
         else
         { TimerScript.instance.BeginTimer(0); }
 

@@ -2,10 +2,13 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    [Header("Volume Mixers")]
+    public float songVolume;
+    public float soundVolume;
+
     [Header("Music")]
     public AudioSource songSource;
     public AudioClip[] playlist;
-    public float volume;
 
     [Header("Nonogram Sounds")]
     public AudioSource soundSource;
@@ -21,7 +24,6 @@ public class AudioManager : MonoBehaviour
 
     [Header("General Sounds")]
     public AudioClip generalUIButton;
-    public AudioClip invalidAction;
 
     void Start()
     {
@@ -35,7 +37,9 @@ public class AudioManager : MonoBehaviour
 
     void Update()
     {
-        songSource.volume = volume;
+        songSource.volume = songVolume;
+
+        soundSource.volume = soundVolume;
 
         if (!songSource.isPlaying)
         {
