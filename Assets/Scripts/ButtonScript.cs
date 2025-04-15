@@ -81,15 +81,28 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler
         }
         else
         {
-            puzzle.GridData[row, col] = 1;
-            State = CellState.Filled;
+            if (puzzle.GridData[row, col] == 3)
+            {
+                puzzle.GridData[row, col] = 4;
+                State = CellState.Blank;
+            }
+            else
+            {
+                puzzle.GridData[row, col] = 1;
+                State = CellState.Filled;
+            }
         }
         UpdateVisuals();
     }
 
     public void RedoCell()
     {
-        if (State == CellState.Blank)
+        if (puzzle.GridData[row, col] == 4)
+        {
+            puzzle.GridData[row, col] = 3;
+            State = CellState.Crossed;
+        }
+        else if (State == CellState.Blank)
         {
             puzzle.GridData[row, col] = 1;
             State = CellState.Filled;
@@ -139,7 +152,7 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler
             UIUndoRedo.instance.undoActions.Push(this.gameObject);
             UIUndoRedo.instance.redoActions.Clear();
 
-            puzzle.GridData[row, col] = 2;
+            puzzle.GridData[row, col] = 3;
             State = CellState.Crossed;
             UpdateVisuals();
         }
