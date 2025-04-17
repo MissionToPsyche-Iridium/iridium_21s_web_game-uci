@@ -19,6 +19,7 @@ public class PausedMenuScript : MonoBehaviour
 
     public void TogglePausePanel()
     {
+        // Toggle the pause menu, pause the game and activate the pause button
         isPaused = !isPaused;
         pausePanel.SetActive(isPaused);
 
@@ -39,18 +40,21 @@ public class PausedMenuScript : MonoBehaviour
 
     public void ToggleOptionPanel()
     {
+        // Toggle the option panel, disabling the pause menu
         pausePanel.SetActive(false);
         optionPanel.SetActive(true);
     }
 
     public void ReturnPausePanel()
     {
+        // Return to the pause menu
         pausePanel.SetActive(true);
         optionPanel.SetActive(false);
     }
 
     public void ExitToHome()
     {
+        // Exit to the home menu
         sceneToLoad = "StartMenu";
         pausePanel.SetActive(false);
         exitPanel.SetActive(true);
@@ -59,6 +63,7 @@ public class PausedMenuScript : MonoBehaviour
 
     public void ExitToMap()
     {
+        // Exit to the map menu
         sceneToLoad = "MapScene";
         pausePanel.SetActive(false);
         exitPanel.SetActive(true);

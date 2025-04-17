@@ -230,7 +230,7 @@ public class GameManager : MonoBehaviour
 
     public void SaveGame()
     {
-
+        // Save the current progress to a file in Progress Puzzles
         string fileName = matchPuzzle[puzzleIndex];
 
         puzzle.SaveProgress();
@@ -242,6 +242,7 @@ public class GameManager : MonoBehaviour
 
     public void RestartProgress()
     {
+        // Restart the progress and regenerate the puzzle
         puzzle.GridData = new int[rows, columns];
         puzzle.SaveProgress();
         GeneratePuzzle();

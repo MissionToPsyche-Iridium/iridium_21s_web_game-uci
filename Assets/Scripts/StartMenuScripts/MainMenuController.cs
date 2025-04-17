@@ -33,7 +33,7 @@ public class MenuController : MonoBehaviour
 
     void HandleInput()
     {
-        // Keyboard Navigation
+        // Keyboard Navigation for up down and w s and space
         if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
         {
             sounds.PlaySFX(sounds.hoverSFX);
@@ -67,7 +67,8 @@ public class MenuController : MonoBehaviour
 
 
     public void SelectButton(int index)
-    {    
+    {
+        // Highlight the button that is getting hover over
         for (int i = 0; i < buttons.Length; i++)
         {
             if (i == index)
@@ -83,11 +84,13 @@ public class MenuController : MonoBehaviour
 
     public void MoveArrow()
     {
+        // Move the arrow indicator to the selected button
         arrowIndicator.transform.position = buttons[selectedIndex].arrowPosition.position;
     }
 
     public void MouseHover(MenuButton button)
     {
+        // Dehighlight all buttons and hover the current one
         sounds.PlaySFX(sounds.hoverSFX);
         int index = System.Array.IndexOf(buttons, button);
         SelectButton(index);
@@ -98,6 +101,7 @@ public class MenuController : MonoBehaviour
 
     public void MouseExit()
     {
+        // Deactivate mouse active
         if (mouseActive)
         {
             mouseActive = false;

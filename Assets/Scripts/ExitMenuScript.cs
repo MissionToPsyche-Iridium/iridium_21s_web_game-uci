@@ -18,6 +18,7 @@ public class ExitMenuScript : MonoBehaviour
 
     public void SetExitScene(string destination)
     {
+        // Set the scene to load when exiting
         sceneToLoad = destination;
     }
 
@@ -37,6 +38,7 @@ public class ExitMenuScript : MonoBehaviour
 
     public void OnCancel()
     {
+        // Cancel the exit menu, return back to the pause menu
         exitPanel.SetActive(false);
         pausePanel.SetActive(true);
     }

@@ -24,6 +24,7 @@ public class MenuButton : MonoBehaviour
 
     public void OnSelect()
     {
+        // Hover over the button highlight
         buttonText.fontSize = 30f;
         buttonText.color = Color.white;
         LeanTween.scaleX(underline, 1, speed).setEaseOutExpo();
@@ -31,6 +32,7 @@ public class MenuButton : MonoBehaviour
 
     public void OnDeselect()
     {
+        // Hover out the button highlight
         buttonText.fontSize = 28f;
         buttonText.color = Color.gray;
         LeanTween.scaleX(underline, 0, speed).setEaseOutExpo();
@@ -38,6 +40,7 @@ public class MenuButton : MonoBehaviour
 
     public void OnMouseEnter()
     {
+        // Activate the mouse hover/ button highlight
         FindFirstObjectByType<MenuController>().MouseHover(this);
     }
 

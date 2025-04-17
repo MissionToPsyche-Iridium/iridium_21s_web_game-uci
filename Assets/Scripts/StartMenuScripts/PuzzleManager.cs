@@ -20,31 +20,34 @@ public class PuzzleManager : MonoBehaviour
 
     public IEnumerator StartPuzzleAnimation()
     {
+        // Get Canvas Height from the parent canvas
         float canvasHeight = parentCanvas.GetComponent<RectTransform>().rect.height;
 
+        // Set initial position and target position of the rope
         float initialPosX = rope.anchoredPosition.x;
-
         float initialPosY = canvasHeight * initial;
         float targetPosY = canvasHeight * target;
 
+        // Start the animation
         Vector2 initialPos = new Vector2(initialPosX, initialPosY);
         rope.anchoredPosition = initialPos;
 
         Vector2 targetPos = new Vector2(initialPosX, targetPosY);
         LeanTween.move(rope, targetPos, dropSpeed).setEase(LeanTweenType.easeOutQuart);
 
+        // Wait for the drop animation to finish
         yield return new WaitForSeconds(5f);
 
+        // Start the swing animation
         LeanTween.rotateAroundLocal(rope.gameObject, Vector3.forward, 10f, swingDuration)
             .setLoopPingPong(2).setEaseInOutSine();
 
         yield return new WaitForSeconds(swingDuration);
 
+        // Set values and start the second puzzle animation
         float puzzlePosY = Screen.height * 0.4f;
         float secondPosY = puzzlePosY + targetPosY*0.3f;
 
-        Debug.Log(puzzlePosY);
-        Debug.Log(Screen.height);
         LeanTween.moveY(secondPuzzle, puzzlePosY, 2f)
             .setEase(LeanTweenType.easeInOutSine)
             .setOnComplete(() =>
