@@ -3,6 +3,7 @@ using System.Linq;
 using JetBrains.Annotations;
 using NUnit.Framework;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -39,7 +40,10 @@ public class GameManager : MonoBehaviour
         {3, "Instruments"}
     };
 
-    
+    Dictionary<int, GameObject> RowClueDictionary = new Dictionary<int, GameObject>();
+    Dictionary<int, GameObject> ColClueDictionary = new Dictionary<int, GameObject>();
+
+
 
     private void Awake()
     {
@@ -149,6 +153,7 @@ public class GameManager : MonoBehaviour
         {
             GameObject rowClue = Instantiate(rowCluePrefab, rowClueParent);
             rowClue.GetComponentInChildren<TMP_Text>().text = string.Join("", puzzle.RowClues[r].Clues);
+            RowClueDictionary.Add(r, rowClue);
         }
     }
 
@@ -158,6 +163,7 @@ public class GameManager : MonoBehaviour
         {
             GameObject colClue = Instantiate(colCluePrefab, colClueParent);
             colClue.GetComponentInChildren<TMP_Text>().text = string.Join("\n", puzzle.ColClues[c].Clues);
+            ColClueDictionary.Add(c, colClue);
         }
     }
 
@@ -193,34 +199,83 @@ public class GameManager : MonoBehaviour
 
     public void CheckWinCondition()
     {
+        bool puzzleSolved = true;
+
+        //check rows
         for (int r = 0; r < puzzle.Rows; r++)
         {
-            for (int c = 0; c < puzzle.Cols; c++)
+            if(CheckRow(r))
             {
-                if (puzzle.SolutionData[r,c] == 1 && puzzle.GridData[r,c] != 1 ||
-                    puzzle.SolutionData[r,c] == 0 && puzzle.GridData[r,c] == 1)
+                RowClueDictionary[r].GetComponentInChildren<TMP_Text>().color = Color.grey;
+            }
+            else
+            {
+                puzzleSolved = false;
+                RowClueDictionary[r].GetComponentInChildren<TMP_Text>().color = Color.black;
+            }
+        }
+
+        //check columns
+        for (int c = 0; c < puzzle.Cols; c++)
+        {
+            if (CheckColumn(c))
+            {
+                ColClueDictionary[c].GetComponentInChildren<TMP_Text>().color = Color.grey;
+            }
+            else
+            {
+                puzzleSolved = false;
+                ColClueDictionary[c].GetComponentInChildren<TMP_Text>().color = Color.black;
+            }
+        }
+
+        if (puzzleSolved)
+        {
+            // Game is won
+            // Show win screen
+            sounds.PlaySFX(sounds.completeSFX);
+
+            // Find and set the solution sprite assigned to this puzzle
+            for (int i = 0; i < savedPuzzleFiles.Count; ++i)
+            {
+                if (puzzleIndex == i)
                 {
-                    // Puzzle not solved;
-                    return;
+                    victoryScreenSprite = victorySprites[i];
+                    solutionScreen.SetSolutionScreen(victoryScreenSprite);
                 }
             }
+            victoryPanel.SetActive(true);
+            TimerScript.instance.PauseTimer();
         }
+        
+    }
 
-        // Game is won
-        // Show win screen
-        sounds.PlaySFX(sounds.completeSFX);
-
-        // Find and set the solution sprite assigned to this puzzle
-        for (int i=0; i < savedPuzzleFiles.Count; ++i)
+    bool CheckRow(int row)
+    {
+        for (int col = 0; col < puzzle.Cols; col++)
         {
-            if (puzzleIndex == i)
+            if (puzzle.SolutionData[row, col] == 1 && puzzle.GridData[row, col] != 1 ||
+                    puzzle.SolutionData[row, col] == 0 && puzzle.GridData[row, col] == 1)
             {
-                victoryScreenSprite = victorySprites[i];
-                solutionScreen.SetSolutionScreen(victoryScreenSprite);
+                // Row not solved;
+                return false;
             }
         }
-        victoryPanel.SetActive(true);
-        TimerScript.instance.PauseTimer();
+        return true;
+    }
+
+    bool CheckColumn(int col)
+    {
+        for (int row = 0; row < puzzle.Rows; row++)
+        {
+            if (puzzle.SolutionData[row, col] == 1 && puzzle.GridData[row, col] != 1 ||
+                    puzzle.SolutionData[row, col] == 0 && puzzle.GridData[row, col] == 1)
+            {
+                // Column not solved;
+                return false;
+            }
+        }
+        return true;
     }
 
     void BackToOverworld()
