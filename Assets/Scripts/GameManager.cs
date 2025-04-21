@@ -154,7 +154,7 @@ public class GameManager : MonoBehaviour
         {
             GameObject rowClue = Instantiate(rowCluePrefab, rowClueParent);
             rowClue.GetComponentInChildren<TMP_Text>().text = string.Join("", puzzle.RowClues[r].Clues);
-            RowClueDictionary.Add(r, rowClue);
+            RowClueDictionary[r] = rowClue;
         }
     }
 
@@ -164,7 +164,7 @@ public class GameManager : MonoBehaviour
         {
             GameObject colClue = Instantiate(colCluePrefab, colClueParent);
             colClue.GetComponentInChildren<TMP_Text>().text = string.Join("\n", puzzle.ColClues[c].Clues);
-            ColClueDictionary.Add(c, colClue);
+            ColClueDictionary[c] = colClue;
         }
     }
 
