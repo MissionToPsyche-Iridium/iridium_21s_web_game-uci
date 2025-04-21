@@ -89,6 +89,7 @@ public class GameManager : MonoBehaviour
             if (System.IO.File.Exists(savedFilePath))
             {
                 string json = System.IO.File.ReadAllText(savedFilePath);
+                Debug.Log("Loading saved puzzle: " + LevelLoader.puzzleName);
                 NonogramPuzzle loadedPuzzle = JsonUtility.FromJson<NonogramPuzzle>(json);
                 return loadedPuzzle;
             }

@@ -2,9 +2,6 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    [Header("Volume Mixers")]
-    public float songVolume;
-    public float soundVolume;
 
     [Header("Music")]
     public AudioSource songSource;
@@ -37,9 +34,6 @@ public class AudioManager : MonoBehaviour
 
     void Update()
     {
-        songSource.volume = songVolume;
-
-        soundSource.volume = soundVolume;
 
         if (!songSource.isPlaying)
         {
