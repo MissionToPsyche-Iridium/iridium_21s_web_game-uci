@@ -1,27 +1,44 @@
 using UnityEngine;
+using TMPro;
 
 public class PlanetHoverZoom : MonoBehaviour
 {
-    public float hoverScale = 1.3f;  
-    public float scaleSpeed = 10f; 
+    public float hoverScale = 1.3f;
+    public float scaleSpeed = 10f;
+    public TextMeshProUGUI levelLabel;
 
     private Vector3 originalScale;
 
     void Start()
     {
-        originalScale = transform.localScale; 
+        originalScale = transform.localScale;
+
+        if (levelLabel != null)
+        {
+            levelLabel.gameObject.SetActive(false);
+        }
     }
 
     void OnMouseEnter()
     {
-        StopAllCoroutines(); 
+        StopAllCoroutines();
         StartCoroutine(ScaleTo(originalScale * hoverScale));
+
+        if (!ShowLevelsHover.showAllActive && levelLabel != null)
+        {
+            levelLabel.gameObject.SetActive(true);
+        }
     }
 
     void OnMouseExit()
     {
         StopAllCoroutines();
         StartCoroutine(ScaleTo(originalScale));
+
+        if (!ShowLevelsHover.showAllActive && levelLabel != null)
+        {
+            levelLabel.gameObject.SetActive(false);
+        }
     }
 
     System.Collections.IEnumerator ScaleTo(Vector3 targetScale)
