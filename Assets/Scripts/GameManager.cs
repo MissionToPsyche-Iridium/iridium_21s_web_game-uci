@@ -153,7 +153,7 @@ public class GameManager : MonoBehaviour
         for(int r = 0; r < rows; r++)
         {
             GameObject rowClue = Instantiate(rowCluePrefab, rowClueParent);
-            rowClue.GetComponentInChildren<TMP_Text>().text = string.Join("", puzzle.RowClues[r].Clues);
+            rowClue.GetComponentInChildren<TMP_Text>().text = string.Join(" ", puzzle.RowClues[r].Clues);
             RowClueDictionary[r] = rowClue;
         }
     }
