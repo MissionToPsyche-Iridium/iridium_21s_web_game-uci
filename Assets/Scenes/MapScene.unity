@@ -352,6 +352,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hoverScale: 1.3
   scaleSpeed: 10
+  levelLabel: {fileID: 2003483218}
 --- !u!1 &265283236
 GameObject:
   m_ObjectHideFlags: 0
@@ -910,7 +911,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e77ac11816b94442a3bd5050d68c468, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planetLabels:
+  levelLabels:
   - {fileID: 2003483218}
   - {fileID: 265283238}
   - {fileID: 539164976}
@@ -1624,6 +1625,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hoverScale: 1.3
   scaleSpeed: 10
+  levelLabel: {fileID: 265283238}
 --- !u!1 &1423025322
 GameObject:
   m_ObjectHideFlags: 0
@@ -2308,6 +2310,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hoverScale: 1.3
   scaleSpeed: 10
+  levelLabel: {fileID: 539164976}
 --- !u!1 &1723408395
 GameObject:
   m_ObjectHideFlags: 0
@@ -2859,6 +2862,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hoverScale: 1.3
   scaleSpeed: 10
+  levelLabel: {fileID: 684655676}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
