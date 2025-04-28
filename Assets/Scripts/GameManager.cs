@@ -234,6 +234,7 @@ public class GameManager : MonoBehaviour
         {
             // Game is won
             // Show win screen
+            PlayerPrefs.SetInt("MaxCurrentLevel", puzzleIndex + 1);
             sounds.PlaySFX(sounds.completeSFX);
 
             // Find and set the solution sprite assigned to this puzzle

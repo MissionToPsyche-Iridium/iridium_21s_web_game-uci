@@ -50,7 +50,6 @@ public class OptionsScript : MonoBehaviour
 
     public void SetSFX(float volume)
     {
-        Debug.Log("Volume set to: " + volume);
         mainAudioMixer.SetFloat("SFXVol", volume);
         if (volume == -80f)
         {
@@ -78,7 +77,6 @@ public class OptionsScript : MonoBehaviour
 
     public void SetMusic(float volume)
     {
-        Debug.Log("Music set to: " + volume);
         mainAudioMixer.SetFloat("MusicVol", volume);
         if (volume == -80f)
         {

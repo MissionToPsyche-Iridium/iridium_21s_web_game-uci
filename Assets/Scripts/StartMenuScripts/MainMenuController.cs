@@ -23,6 +23,7 @@ public class MenuController : MonoBehaviour
     {
         SelectButton(selectedIndex);
         MoveArrow();
+        PlayerPrefs.SetInt("MaxCurrentLevel", 0);
     }
 
     // Update is called once per frame
