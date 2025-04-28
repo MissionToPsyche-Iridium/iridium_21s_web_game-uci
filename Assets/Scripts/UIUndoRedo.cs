@@ -28,6 +28,7 @@ public class UIUndoRedo : MonoBehaviour
         }
         else
         {
+            sounds.PlaySFX(sounds.emptyInput);
             Debug.Log("Nothing left to undo");
         }
     }
@@ -44,6 +45,7 @@ public class UIUndoRedo : MonoBehaviour
         }
         else
         {
+            sounds.PlaySFX(sounds.emptyInput);
             Debug.Log("Nothing left to redo");
         }
     }
