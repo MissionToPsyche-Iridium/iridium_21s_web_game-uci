@@ -3401,12 +3401,8 @@ MonoBehaviour:
     your brain.
 
 
-
-
     The goal is to uncover a hidden picture by following numerical
     clues.
-
-
 
 
     Want to learn more?
@@ -3414,8 +3410,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: cb65fa4377bee784cae201fad802cbdc, type: 2}
-  m_sharedMaterial: {fileID: -322436426756130790, guid: cb65fa4377bee784cae201fad802cbdc, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: dc6bc652b53854c00a92e30bef07a152, type: 2}
+  m_sharedMaterial: {fileID: -2970600107204768917, guid: dc6bc652b53854c00a92e30bef07a152, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3439,8 +3435,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25.8
-  m_fontSizeBase: 25.8
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3845,7 +3841,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 292.1}
+  m_AnchoredPosition: {x: 65.099976, y: 292.09998}
   m_SizeDelta: {x: 399.2, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1028395510
@@ -3870,8 +3866,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Level 1 - Launch
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 7ed27d1bb8fcb144d946d280286f0b19, type: 2}
-  m_sharedMaterial: {fileID: -2607753931099241753, guid: 7ed27d1bb8fcb144d946d280286f0b19, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4eacc7783b4ab46e1ac51fcaa00eff8d, type: 2}
+  m_sharedMaterial: {fileID: 7166956676588880042, guid: 4eacc7783b4ab46e1ac51fcaa00eff8d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3895,8 +3891,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45.4
-  m_fontSizeBase: 45.4
+  m_fontSize: 59
+  m_fontSizeBase: 59
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3933,7 +3929,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 2.218811, w: 0}
+  m_margin: {x: -126.69006, y: 0, z: 2.218811, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
