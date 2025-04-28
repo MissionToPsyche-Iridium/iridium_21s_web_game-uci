@@ -542,8 +542,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Credits
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2e34cf4f11f9645d1b9d8a0feff0b42e, type: 2}
-  m_sharedMaterial: {fileID: 5578194222522695439, guid: 2e34cf4f11f9645d1b9d8a0feff0b42e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a3f1b373668b9194491d5f3c3fd92387, type: 2}
+  m_sharedMaterial: {fileID: 6164090050152161699, guid: a3f1b373668b9194491d5f3c3fd92387, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -782,8 +782,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Disclaimer
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: bbb61104da48e4a9fb3bf71967fcdb1a, type: 2}
-  m_sharedMaterial: {fileID: 2686294901696210017, guid: bbb61104da48e4a9fb3bf71967fcdb1a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a3f1b373668b9194491d5f3c3fd92387, type: 2}
+  m_sharedMaterial: {fileID: 6164090050152161699, guid: a3f1b373668b9194491d5f3c3fd92387, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -807,8 +807,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 38
-  m_fontSizeBase: 38
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1059,8 +1059,8 @@ MonoBehaviour:
     The content is solely the responsibility of the authors and does not necessarily
     represent the official views of ASU or NASA."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: be13a4ecda6b54042a3f6c23c980fc6c, type: 2}
-  m_sharedMaterial: {fileID: -5779575960740649017, guid: be13a4ecda6b54042a3f6c23c980fc6c, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1d51dceff58ca6149b15f5972122f914, type: 2}
+  m_sharedMaterial: {fileID: -301753581729109312, guid: 1d51dceff58ca6149b15f5972122f914, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1084,10 +1084,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 16
+  m_fontSizeBase: 30
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 16
   m_fontSizeMax: 24
   m_fontStyle: 0
@@ -1479,8 +1479,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Created by
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: bbb61104da48e4a9fb3bf71967fcdb1a, type: 2}
-  m_sharedMaterial: {fileID: 2686294901696210017, guid: bbb61104da48e4a9fb3bf71967fcdb1a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a3f1b373668b9194491d5f3c3fd92387, type: 2}
+  m_sharedMaterial: {fileID: 6164090050152161699, guid: a3f1b373668b9194491d5f3c3fd92387, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1613,11 +1613,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Lance Fookes, Vince Pham, Jennifer Zhang, \nJanice Nguyen, Oscar Rodriguez,
-    Chris Kim"
+  m_text: Lance Fookes, Vince Pham, Jennifer Zhang, Janice Nguyen, Oscar Rodriguez,
+    Chris Kim
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: be13a4ecda6b54042a3f6c23c980fc6c, type: 2}
-  m_sharedMaterial: {fileID: -5779575960740649017, guid: be13a4ecda6b54042a3f6c23c980fc6c, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1d51dceff58ca6149b15f5972122f914, type: 2}
+  m_sharedMaterial: {fileID: -301753581729109312, guid: 1d51dceff58ca6149b15f5972122f914, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1641,8 +1641,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
-  m_fontSizeBase: 32
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 20
@@ -1655,7 +1655,7 @@ MonoBehaviour:
   m_wordSpacing: 0
   m_lineSpacing: 40
   m_lineSpacingMax: 0
-  m_paragraphSpacing: -12
+  m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
   m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
