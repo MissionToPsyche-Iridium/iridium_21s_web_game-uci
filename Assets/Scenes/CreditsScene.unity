@@ -542,8 +542,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Credits
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a3f1b373668b9194491d5f3c3fd92387, type: 2}
-  m_sharedMaterial: {fileID: 6164090050152161699, guid: a3f1b373668b9194491d5f3c3fd92387, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4eacc7783b4ab46e1ac51fcaa00eff8d, type: 2}
+  m_sharedMaterial: {fileID: 7166956676588880042, guid: 4eacc7783b4ab46e1ac51fcaa00eff8d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -567,8 +567,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 124
-  m_fontSizeBase: 124
+  m_fontSize: 96
+  m_fontSizeBase: 96
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -782,8 +782,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Disclaimer
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a3f1b373668b9194491d5f3c3fd92387, type: 2}
-  m_sharedMaterial: {fileID: 6164090050152161699, guid: a3f1b373668b9194491d5f3c3fd92387, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4eacc7783b4ab46e1ac51fcaa00eff8d, type: 2}
+  m_sharedMaterial: {fileID: 7166956676588880042, guid: 4eacc7783b4ab46e1ac51fcaa00eff8d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1059,8 +1059,8 @@ MonoBehaviour:
     The content is solely the responsibility of the authors and does not necessarily
     represent the official views of ASU or NASA."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1d51dceff58ca6149b15f5972122f914, type: 2}
-  m_sharedMaterial: {fileID: -301753581729109312, guid: 1d51dceff58ca6149b15f5972122f914, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: dc6bc652b53854c00a92e30bef07a152, type: 2}
+  m_sharedMaterial: {fileID: -2970600107204768917, guid: dc6bc652b53854c00a92e30bef07a152, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1479,8 +1479,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Created by
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a3f1b373668b9194491d5f3c3fd92387, type: 2}
-  m_sharedMaterial: {fileID: 6164090050152161699, guid: a3f1b373668b9194491d5f3c3fd92387, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4eacc7783b4ab46e1ac51fcaa00eff8d, type: 2}
+  m_sharedMaterial: {fileID: 7166956676588880042, guid: 4eacc7783b4ab46e1ac51fcaa00eff8d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1613,11 +1613,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lance Fookes, Vince Pham, Jennifer Zhang, Janice Nguyen, Oscar Rodriguez,
-    Chris Kim
+  m_text: "Lance Fookes, Vince Pham, Jennifer Zhang, \nJanice Nguyen, Oscar Rodriguez,
+    Chris Kim"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1d51dceff58ca6149b15f5972122f914, type: 2}
-  m_sharedMaterial: {fileID: -301753581729109312, guid: 1d51dceff58ca6149b15f5972122f914, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: dc6bc652b53854c00a92e30bef07a152, type: 2}
+  m_sharedMaterial: {fileID: -2970600107204768917, guid: dc6bc652b53854c00a92e30bef07a152, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1641,8 +1641,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 20
