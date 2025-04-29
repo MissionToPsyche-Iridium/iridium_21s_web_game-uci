@@ -9,10 +9,12 @@ public class ExitMenuScript : MonoBehaviour
     [SerializeField] GameObject pausePanel, exitPanel;
 
     private string sceneToLoad = "";
+    AudioManager sounds;
 
     private void Awake()
     {
         instance = this;
+        sounds = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
 
@@ -25,6 +27,7 @@ public class ExitMenuScript : MonoBehaviour
     public void OnYes()
     {
         // Save the game, exit to main menu or map
+        sounds.PlaySFX(sounds.generalUIButton);
         GameManager.Instance.SaveGame();
         SceneManager.LoadScene(sceneToLoad);
     }
@@ -32,6 +35,7 @@ public class ExitMenuScript : MonoBehaviour
     public void OnNo()
     {
         // Don't save the game, exit to main menu or map
+        sounds.PlaySFX(sounds.generalUIButton);
         Debug.Log(sceneToLoad);
         SceneManager.LoadScene(sceneToLoad);
     }
@@ -39,6 +43,7 @@ public class ExitMenuScript : MonoBehaviour
     public void OnCancel()
     {
         // Cancel the exit menu, return back to the pause menu
+        sounds.PlaySFX(sounds.generalUIButton);
         exitPanel.SetActive(false);
         pausePanel.SetActive(true);
     }

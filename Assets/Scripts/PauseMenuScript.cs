@@ -8,6 +8,12 @@ public class PausedMenuScript : MonoBehaviour
 
     private bool isPaused = false;
     private string sceneToLoad = "";
+    AudioManager sounds;
+
+    private void Awake()
+    {
+        sounds = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,6 +26,7 @@ public class PausedMenuScript : MonoBehaviour
     public void TogglePausePanel()
     {
         // Toggle the pause menu, pause the game and activate the pause button
+        sounds.PlaySFX(sounds.pauseSFX);
         isPaused = !isPaused;
         pausePanel.SetActive(isPaused);
 
@@ -41,6 +48,7 @@ public class PausedMenuScript : MonoBehaviour
     public void ToggleOptionPanel()
     {
         // Toggle the option panel, disabling the pause menu
+        sounds.PlaySFX(sounds.generalUIButton);
         pausePanel.SetActive(false);
         optionPanel.SetActive(true);
     }
@@ -48,6 +56,7 @@ public class PausedMenuScript : MonoBehaviour
     public void ReturnPausePanel()
     {
         // Return to the pause menu
+        sounds.PlaySFX(sounds.generalUIButton);
         pausePanel.SetActive(true);
         optionPanel.SetActive(false);
     }
@@ -55,6 +64,7 @@ public class PausedMenuScript : MonoBehaviour
     public void ExitToHome()
     {
         // Exit to the home menu
+        sounds.PlaySFX(sounds.generalUIButton);
         sceneToLoad = "StartMenu";
         pausePanel.SetActive(false);
         exitPanel.SetActive(true);
@@ -64,6 +74,7 @@ public class PausedMenuScript : MonoBehaviour
     public void ExitToMap()
     {
         // Exit to the map menu
+        sounds.PlaySFX(sounds.generalUIButton);
         sceneToLoad = "MapScene";
         pausePanel.SetActive(false);
         exitPanel.SetActive(true);

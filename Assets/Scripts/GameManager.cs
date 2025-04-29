@@ -116,7 +116,6 @@ public class GameManager : MonoBehaviour
         else
         { TimerScript.instance.BeginTimer(0); }
 
-
         gridParent.GetComponent<GridLayoutGroup>().constraintCount = columns;
 
         // Clear existing content

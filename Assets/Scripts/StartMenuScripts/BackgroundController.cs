@@ -14,7 +14,12 @@ public class BackgroundController : MonoBehaviour
     public CanvasGroup[] menuButtons;
     public static bool hasPlayed = false;
     [SerializeField] CanvasGroup arrowIndicator, optionPanel, menuOptions;
+    AudioManager sounds;
 
+    private void Awake()
+    {
+        sounds = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -80,6 +85,7 @@ public class BackgroundController : MonoBehaviour
 
     public void ToggleOptionsPanel()
     {
+        sounds.PlaySFX(sounds.generalUIButton);
         if (optionPanel.alpha == 0f)
         {
             optionPanel.alpha = 1f;
@@ -102,6 +108,7 @@ public class BackgroundController : MonoBehaviour
 
     public void ToggleCreditsScene()
     {
+        sounds.PlaySFX(sounds.generalUIButton);
         SceneManager.LoadScene("CreditsScene");
     }
 

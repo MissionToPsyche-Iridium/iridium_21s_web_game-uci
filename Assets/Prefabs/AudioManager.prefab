@@ -143,8 +143,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbde5a20d782bd4468a62217310f45a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  songVolume: 1
-  soundVolume: 1
   songSource: {fileID: 0}
   playlist:
   - {fileID: 8300000, guid: 7ab8eeee9c344a54788ac26e3f9e38a6, type: 3}
@@ -159,6 +157,7 @@ MonoBehaviour:
   nodeClickSFX: {fileID: 8300000, guid: 2615faaed23ce1f4bbfa2b757c472369, type: 3}
   hoverSFX: {fileID: 8300000, guid: 069986774f9dfb4418757930c5feeda6, type: 3}
   generalUIButton: {fileID: 8300000, guid: 6013c999714ab4b4089e4bf7f695996e, type: 3}
+  emptyInput: {fileID: 8300000, guid: 6eef2211eb629c14ead99026f7165ee3, type: 3}
 --- !u!82 &1874912777310412713
 AudioSource:
   m_ObjectHideFlags: 0

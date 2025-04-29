@@ -22,13 +22,13 @@ public class TimerScript : MonoBehaviour
 
     public void Start()
     {
-        timeCounter.text = elapsedTime.ToString("mm':'ss");
+        timeCounter.text = elapsedTime.ToString("00':'00");
     }
 
     //Initiated in GameManager when the scene loads
     public void BeginTimer(float timer)
     {
-        timerState = true;
+        //timerState = true;
         elapsedTime = timer;
         StartCoroutine(UpdateTimer());
     }
@@ -40,8 +40,6 @@ public class TimerScript : MonoBehaviour
 
     public void PauseTimer()
     {
-        sounds.PlaySFX(sounds.pauseSFX);
-
         if (timerState)
         {
             timerState = false;
