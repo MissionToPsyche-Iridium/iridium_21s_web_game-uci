@@ -21,6 +21,7 @@ public class AudioManager : MonoBehaviour
 
     [Header("General Sounds")]
     public AudioClip generalUIButton;
+    public AudioClip emptyInput;
 
     void Start()
     {
