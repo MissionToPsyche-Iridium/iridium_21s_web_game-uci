@@ -838,7 +838,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 1521760221}
   m_HandleRect: {fileID: 1325221292}
   m_Direction: 0
-  m_MinValue: -80
+  m_MinValue: -35
   m_MaxValue: 0
   m_WholeNumbers: 0
   m_Value: 0
@@ -1332,7 +1332,7 @@ MonoBehaviour:
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: -2264155967373396317, guid: 424e29f922fe2624194d1d6e473773bc, type: 3}
-    m_PressedSprite: {fileID: -4848501102035931023, guid: 8da54d554bb84864ba9b4e239f826f7c, type: 3}
+    m_PressedSprite: {fileID: -6906911574428459060, guid: e103fe3a57cc669458c4705bbc9f2e9b, type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:

@@ -77,14 +77,15 @@ public class OptionsScript : MonoBehaviour
 
     public void SetMusic(float volume)
     {
-        mainAudioMixer.SetFloat("MusicVol", volume);
-        if (volume == -80f)
+        if (volume == -35f)
         {
+            mainAudioMixer.SetFloat("MusicVol", -80f);
             mtMusic.alpha = 1f;
             music.alpha = 0f;
         }
         else
         {
+            mainAudioMixer.SetFloat("MusicVol", volume);
             music.alpha = 1f;
             mtMusic.alpha = 0f;
         }

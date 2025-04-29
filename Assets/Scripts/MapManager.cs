@@ -42,6 +42,13 @@ public class MapManager : MonoBehaviour
             spriteColor.a = isSpriteUnlocked ? 1f : 0f;
             levelSprite[i].color = spriteColor;
 
+            // Deactivate interactable if the sprite is faded
+            BoxCollider collider = levelSprite[i].GetComponent<BoxCollider>();
+            if (collider != null)
+            {
+                collider.enabled = isSpriteUnlocked;
+            }
+
             // Fade canvas
             levelCanvasGroup[i].alpha = isCanvasUnlocked ? 1f : 0f;
             levelCanvasGroup[i].interactable = isCanvasUnlocked;
