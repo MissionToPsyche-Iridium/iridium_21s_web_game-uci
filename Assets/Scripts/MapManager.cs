@@ -46,7 +46,7 @@ public class MapManager : MonoBehaviour
             BoxCollider collider = levelSprite[i].GetComponent<BoxCollider>();
             if (collider != null)
             {
-                collider.enabled = isSpriteUnlocked;
+                collider.enabled = i <= currentLevel ? true : false;
             }
 
             // Fade canvas

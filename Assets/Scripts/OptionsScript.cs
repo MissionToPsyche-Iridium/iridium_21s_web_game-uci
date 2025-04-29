@@ -50,24 +50,27 @@ public class OptionsScript : MonoBehaviour
 
     public void SetSFX(float volume)
     {
-        mainAudioMixer.SetFloat("SFXVol", volume);
-        if (volume == -80f)
+        if (volume == -40f)
         {
+            mainAudioMixer.SetFloat("SFXVol", -80f);
             mtSound.alpha = 1f;
             smSound.alpha = mdSound.alpha = lgSound.alpha = 0f;
         }
-        else if (volume > -80f && volume < -50f)
+        else if (volume > -40f && volume < -25f)
         {
+            mainAudioMixer.SetFloat("SFXVol", volume);
             smSound.alpha = 1f;
             mdSound.alpha = lgSound.alpha = mtSound.alpha = 0f;
         }
-        else if (volume > -50f && volume < -20f)
+        else if (volume >= -25f && volume < -15f)
         {
+            mainAudioMixer.SetFloat("SFXVol", volume);
             smSound.alpha = mdSound.alpha = 1f;
             lgSound.alpha = mtSound.alpha = 0f;
         }
         else
         {
+            mainAudioMixer.SetFloat("SFXVol", volume);
             mtSound.alpha = 0f;
             smSound.alpha = mdSound.alpha = lgSound.alpha = 1f;
         }
@@ -91,5 +94,35 @@ public class OptionsScript : MonoBehaviour
         }
         PlayerPrefs.SetFloat("MusicVol", volume);
         PlayerPrefs.Save();
+    }
+
+    public void MuteSFS()
+    {
+        float sfxVolume = PlayerPrefs.GetFloat("SFXVol", 0f);
+        if (sfxVolume > -40f)
+        {
+            sfxSlider.value = -40f;
+            SetSFX(-40f);
+        }
+        else
+        {
+            sfxSlider.value = 0f;
+            SetSFX(0f);
+        }
+    }
+
+    public void MuteMusic()
+    {
+        float musicVolume = PlayerPrefs.GetFloat("MusicVol", 0f);
+        if (musicVolume > -35f)
+        {
+            musicSlider.value = -35f;
+            SetMusic(-35f);
+        }
+        else
+        {
+            musicSlider.value = 0f;
+            SetMusic(0f);
+        }
     }
 }
