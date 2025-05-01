@@ -156,6 +156,7 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler
                 : puzzle.GridData[row, col] = 3;
             State = CellState.Crossed;
             UpdateVisuals();
+            GameManager.Instance.CheckWinCondition();
         }
     }
 

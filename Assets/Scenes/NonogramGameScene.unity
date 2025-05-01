@@ -1721,6 +1721,7 @@ MonoBehaviour:
     SaveData: 
     SolutionFlatGridData: 
     timer: 0
+    skipTutorial: 0
 --- !u!114 &421472072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1777,6 +1778,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bd425a741a10c948951bf08a36a6184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneToLoad: 
+  transition: {fileID: 0}
 --- !u!1 &432626040
 GameObject:
   m_ObjectHideFlags: 0
@@ -8481,6 +8484,14 @@ PrefabInstance:
       propertyPath: soundVolume
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3375287051197140606, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
+      propertyPath: clueSolvedSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: d21300a5c50582e43afa255c68d31783, type: 3}
+    - target: {fileID: 3375287051197140606, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
+      propertyPath: clueUnsolvedSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: d009e5915ab564b45b46b343b03377ff, type: 3}
     - target: {fileID: 3375287051197140606, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
       propertyPath: generalUIButton
       value: 

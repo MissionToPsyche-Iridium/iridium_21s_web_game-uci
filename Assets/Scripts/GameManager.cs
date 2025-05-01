@@ -206,12 +206,21 @@ public class GameManager : MonoBehaviour
         {
             if(CheckRow(r))
             {
-                RowClueDictionary[r].GetComponentInChildren<TMP_Text>().color = Color.grey;
+                if(RowClueDictionary[r].GetComponentInChildren<TMP_Text>().color != Color.grey)
+                {
+                    RowClueDictionary[r].GetComponentInChildren<TMP_Text>().color = Color.grey;
+                    sounds.PlaySFX(sounds.clueSolvedSFX);
+                }
+                
             }
             else
             {
                 puzzleSolved = false;
-                RowClueDictionary[r].GetComponentInChildren<TMP_Text>().color = Color.black;
+                if(RowClueDictionary[r].GetComponentInChildren<TMP_Text>().color == Color.grey)
+                {
+                    RowClueDictionary[r].GetComponentInChildren<TMP_Text>().color = Color.black;
+                    sounds.PlaySFX(sounds.clueUnsolvedSFX);
+                }
             }
         }
 
@@ -220,12 +229,22 @@ public class GameManager : MonoBehaviour
         {
             if (CheckColumn(c))
             {
-                ColClueDictionary[c].GetComponentInChildren<TMP_Text>().color = Color.grey;
+                if (ColClueDictionary[c].GetComponentInChildren<TMP_Text>().color != Color.grey)
+                {
+                    ColClueDictionary[c].GetComponentInChildren<TMP_Text>().color = Color.grey;
+                    sounds.PlaySFX(sounds.clueSolvedSFX);
+                }
+                
             }
             else
             {
                 puzzleSolved = false;
-                ColClueDictionary[c].GetComponentInChildren<TMP_Text>().color = Color.black;
+                if (ColClueDictionary[c].GetComponentInChildren<TMP_Text>().color == Color.grey)
+                {
+                    ColClueDictionary[c].GetComponentInChildren<TMP_Text>().color = Color.black;
+                    sounds.PlaySFX(sounds.clueUnsolvedSFX);
+                }
+                
             }
         }
 

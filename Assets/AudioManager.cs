@@ -14,6 +14,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip restartSFX;
     public AudioClip completeSFX;
     public AudioClip pauseSFX;
+    public AudioClip clueSolvedSFX;
+    public AudioClip clueUnsolvedSFX;
 
     [Header("Start/Map Sounds")]
     public AudioClip nodeClickSFX;
