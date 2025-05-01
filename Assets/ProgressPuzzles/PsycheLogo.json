@@ -329,5 +329,6 @@
         0,
         0
     ],
-    "timer": 14.969175338745118
+    "timer": 0.0,
+    "skipTutorial": true
 }

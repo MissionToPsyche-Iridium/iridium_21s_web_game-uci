@@ -152,7 +152,8 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler
             UIUndoRedo.instance.undoActions.Push(this.gameObject);
             UIUndoRedo.instance.redoActions.Clear();
 
-            puzzle.GridData[row, col] = 3;
+            puzzle.GridData[row, col] = State == CellState.Filled ? puzzle.GridData[row, col] = 2 
+                : puzzle.GridData[row, col] = 3;
             State = CellState.Crossed;
             UpdateVisuals();
         }

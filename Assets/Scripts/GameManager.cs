@@ -291,6 +291,7 @@ public class GameManager : MonoBehaviour
 
         puzzle.SaveProgress();
         puzzle.timer = TimerScript.instance.elapsedTime;
+        //puzzle.skipTutorial = TutorialManager.instance.skipLaunchPanel;
 
         string json = JsonUtility.ToJson(puzzle, true);
         System.IO.File.WriteAllText(saveProgressPath + fileName + ".json", json);
