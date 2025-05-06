@@ -289,8 +289,9 @@ public class GameManager : MonoBehaviour
             }
             if (numPuzzlesSolved > 3)
             {
+                TimerScript.instance.PauseTimer();
                 PlayerPrefs.SetInt("MaxCurrentLevel", (puzzleIndex + 1)/4);
-                Debug.Log("Current Max Level: " + PlayerPrefs.GetInt("MaxCurrentLevel"));
+
                 // Unity coroutines allow time-based delays
                 StartCoroutine(ShowAnalyzePanelAfterPuzzleSolved());
             }
@@ -303,7 +304,7 @@ public class GameManager : MonoBehaviour
                 LoadCurrentPuzzle();
             }
 
-                TimerScript.instance.PauseTimer();
+                
         }
         
     }
