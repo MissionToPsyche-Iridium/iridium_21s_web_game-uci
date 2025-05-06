@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class HelpMenuScript : MonoBehaviour
 {
     [SerializeField] GameObject helpPanel;
     [SerializeField] CanvasGroup helpButton;

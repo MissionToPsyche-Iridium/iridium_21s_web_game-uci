@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
@@ -17,6 +18,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] List<Sprite> victorySprites;
     [SerializeField] Transform gridParent, rowClueParent, colClueParent;
     [SerializeField] GameObject rowCluePrefab, colCluePrefab, cellButtonPrefab;
+
+    [Header("Analyze")]
+    [SerializeField] GameObject analyzePanel;
+    [SerializeField] Button analyzeButton;
+    [SerializeField] private Animator completedPuzzleToSolutionTransition;
 
     [Header("Win")]
     [SerializeField] GameObject victoryPanel;
@@ -53,6 +59,9 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        analyzeButton.onClick.AddListener(OnAnalyzeButtonClicked);
+        analyzePanel.SetActive(false);
+
         victoryButton.onClick.AddListener(BackToOverworld);
         victoryPanel.SetActive(false);
 
@@ -264,8 +273,9 @@ public class GameManager : MonoBehaviour
                     solutionScreen.SetSolutionScreen(victoryScreenSprite);
                 }
             }
-            victoryPanel.SetActive(true);
             TimerScript.instance.PauseTimer();
+            // Unity coroutines allow time-based delays
+            StartCoroutine(ShowAnalyzePanelAfterPuzzleSolved());
         }
         
     }
@@ -303,6 +313,12 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("MapScene");
     }
 
+    private void OnAnalyzeButtonClicked()
+    {
+        StartCoroutine(ShowSolutionPanelAfterAnalyzing());
+    }
+
+
     public void SaveGame()
     {
         // Save the current progress to a file in Progress Puzzles
@@ -322,5 +338,28 @@ public class GameManager : MonoBehaviour
         puzzle.GridData = new int[rows, columns];
         puzzle.SaveProgress();
         GeneratePuzzle();
+    }
+
+    private IEnumerator ShowAnalyzePanelAfterPuzzleSolved()
+    {
+        completedPuzzleToSolutionTransition.SetTrigger("isPuzzleSolved");
+
+
+        yield return new WaitForSeconds(5.0f);
+
+
+        analyzePanel.SetActive(true);
+    }
+
+
+    private IEnumerator ShowSolutionPanelAfterAnalyzing()
+    {
+        completedPuzzleToSolutionTransition.SetTrigger("isAnalyzing");
+
+
+        yield return new WaitForSeconds(5.0f);
+
+
+        victoryPanel.SetActive(true);
     }
 }
