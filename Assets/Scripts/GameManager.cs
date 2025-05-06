@@ -34,14 +34,28 @@ public class GameManager : MonoBehaviour
 
     Dictionary<int, string> matchPuzzle = new Dictionary<int, string>()
     {
-        {0, "PsycheLogo"},
-        {1, "Spacecraft"},
-        {2, "Asteroid"},
-        {3, "Instruments"}
+        {0, "5x5Rocket"},
+        {1, "5x5SpaceX"},
+        {2, "5x5Sixteen"},
+        {3, "5x5PsycheLogo"},
+        {4, "6x6SatelliteDish"},
+        {5, "6x6HallThruster"},
+        {6, "6x6GravityAssist"},
+        {7, "6x6Spacecraft"},
+        {8, "8x8Belt"},
+        {9, "8x8Spacecraft"},
+        {10, "8x8OrbitAxes"},
+        {11, "8x8Asteroid"},
+        {12, "PsycheLogo"},
+        {13, "Spacecraft"},
+        {14, "Asteroid"},
+        {15, "Instruments"}
     };
 
     Dictionary<int, GameObject> RowClueDictionary = new Dictionary<int, GameObject>();
     Dictionary<int, GameObject> ColClueDictionary = new Dictionary<int, GameObject>();
+
+    int numPuzzlesSolved = 0;
 
 
 
@@ -252,20 +266,34 @@ public class GameManager : MonoBehaviour
         {
             // Game is won
             // Show win screen
-            PlayerPrefs.SetInt("MaxCurrentLevel", puzzleIndex + 1);
             sounds.PlaySFX(sounds.completeSFX);
+            ++numPuzzlesSolved;
 
             // Find and set the solution sprite assigned to this puzzle
             for (int i = 0; i < savedPuzzleFiles.Count; ++i)
             {
-                if (puzzleIndex == i)
+                if (puzzleIndex/4 == i)
                 {
                     victoryScreenSprite = victorySprites[i];
                     solutionScreen.SetSolutionScreen(victoryScreenSprite);
                 }
             }
-            victoryPanel.SetActive(true);
-            TimerScript.instance.PauseTimer();
+            if (numPuzzlesSolved > 3)
+            {
+                PlayerPrefs.SetInt("MaxCurrentLevel", (puzzleIndex + 1)/4);
+                Debug.Log("Current Max Level: " + PlayerPrefs.GetInt("MaxCurrentLevel"));
+                victoryPanel.SetActive(true);
+            }
+            else
+            {
+                TextAsset nextPuzzle = Resources.Load<TextAsset>("SavedPuzzles/"+ matchPuzzle[puzzleIndex + 1]);
+                NonogramPuzzle newPuzzle = JsonUtility.FromJson<NonogramPuzzle>(nextPuzzle.text);
+                LevelLoader.puzzleToLoad = newPuzzle;
+                LevelLoader.puzzleName = nextPuzzle.name;
+                LoadCurrentPuzzle();
+            }
+
+                TimerScript.instance.PauseTimer();
         }
         
     }

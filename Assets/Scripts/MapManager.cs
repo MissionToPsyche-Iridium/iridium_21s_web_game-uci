@@ -15,6 +15,7 @@ public class MapManager : MonoBehaviour
     private void Start()
     {
         currentLevel = PlayerPrefs.GetInt("MaxCurrentLevel", 0);
+        Debug.Log("Current Max Level: " + PlayerPrefs.GetInt("MaxCurrentLevel"));
         SetupLevelNodes();
     }
 
