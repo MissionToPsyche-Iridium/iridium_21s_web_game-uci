@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using UnityEngine.Audio;
 using UnityEngine.Rendering;
 
@@ -13,6 +14,7 @@ public class OptionsScript : MonoBehaviour
 
     private bool isInitialized = false;
     private bool soundSetYet = false;
+    private bool isDragging = false;
 
     public CanvasGroup smSound, mdSound, lgSound, mtSound;
     public CanvasGroup music, mtMusic;
@@ -37,6 +39,8 @@ public class OptionsScript : MonoBehaviour
             SetSFX(sfxVolume);
             SetMusic(musicVolume);
         }
+
+
     }
 
     private void Awake()
@@ -51,6 +55,35 @@ public class OptionsScript : MonoBehaviour
             Destroy(gameObject);
         }
         sounds = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
+
+    public void OnBeginDrag()
+    {
+        //Debug.Log("begin drag triggered");
+        if (!isDragging)
+        {
+            isDragging = true;
+            //if (soundSetYet) { sounds.PlaySFX(sounds.emptyInput); }
+        }
+    }
+
+    public void OnMouseDrag()
+    {
+        if (isDragging)
+        {
+            //Debug.Log("drag triggered");
+            //if (soundSetYet) { sounds.PlaySFX(sounds.emptyInput); }
+        }
+    }
+    public void OnEndDrag()
+    {
+        //Debug.Log("end drag triggered");
+
+        if (isDragging)
+        {
+            isDragging = false;
+            if (soundSetYet) { sounds.PlaySFX(sounds.emptyInput); }
+        }
     }
 
     public void SetSFX(float volume)
@@ -81,7 +114,7 @@ public class OptionsScript : MonoBehaviour
         }
         PlayerPrefs.SetFloat("SFXVol", volume);
         PlayerPrefs.Save();
-        if (soundSetYet) { sounds.PlaySFX(sounds.emptyInput); }
+        //if (soundSetYet) { sounds.PlaySFX(sounds.emptyInput); }
     }
 
     public void SetMusic(float volume)

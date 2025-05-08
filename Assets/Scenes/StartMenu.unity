@@ -2737,6 +2737,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1048514639}
   - component: {fileID: 1048514640}
+  - component: {fileID: 1048514641}
   m_Layer: 0
   m_Name: SoundSlider
   m_TagString: Untagged
@@ -2829,6 +2830,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1048514641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048514638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a79c4e23d4d4b64bfa5fa9e6671a460, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1056895578
 GameObject:
   m_ObjectHideFlags: 0
