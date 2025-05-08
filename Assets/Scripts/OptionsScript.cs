@@ -12,9 +12,11 @@ public class OptionsScript : MonoBehaviour
     public Slider musicSlider;
 
     private bool isInitialized = false;
+    private bool soundSetYet = false;
 
     public CanvasGroup smSound, mdSound, lgSound, mtSound;
     public CanvasGroup music, mtMusic;
+    AudioManager sounds;
 
     private void Start()
     {
@@ -27,6 +29,8 @@ public class OptionsScript : MonoBehaviour
         if (!isInitialized)
         {
             isInitialized = true;
+            // Fix for when sound plays immediately when entering in Options
+            soundSetYet = true; 
         }
         else
         {
@@ -46,6 +50,7 @@ public class OptionsScript : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        sounds = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     public void SetSFX(float volume)
@@ -76,6 +81,7 @@ public class OptionsScript : MonoBehaviour
         }
         PlayerPrefs.SetFloat("SFXVol", volume);
         PlayerPrefs.Save();
+        if (soundSetYet) { sounds.PlaySFX(sounds.emptyInput); }
     }
 
     public void SetMusic(float volume)
