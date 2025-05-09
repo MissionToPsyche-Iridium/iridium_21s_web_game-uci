@@ -15,14 +15,15 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler
     [HideInInspector] public int row, col;
     // Connection to puzzle
     [HideInInspector] public NonogramPuzzle puzzle;
+    public bool isTutorialInteractive = false;
 
     private void Awake()
     {
         instance = this;
-        sounds = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        sounds = GameObject.FindGameObjectWithTag("Audio")?.GetComponent<AudioManager>();
     }
 
-    public void ChangeGeneratorState()  // Called from the button
+    public void ChangeGeneratorState()
     {
         if (State == CellState.Blank)
         {
@@ -36,8 +37,7 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler
         puzzle.SolutionData[row, col] = puzzle.SolutionData[row, col] == 1 ? 0 : 1;
 
         UpdateVisuals();
-        //Notify GridManager
-        GridManager.instance.OnCellStateChanged();
+        GridManager.instance?.OnCellStateChanged();
     }
 
     public void ChangeGameState()
@@ -132,11 +132,11 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler
 
     public void Restart()
     {
-        sounds.PlaySFX(sounds.restartSFX);
+        if (sounds != null) sounds.PlaySFX(sounds.restartSFX);
 
-        UIUndoRedo.instance.redoActions.Clear();
+        UIUndoRedo.instance?.redoActions.Clear();
 
-        while (UIUndoRedo.instance.undoActions.Count > 0)
+        while (UIUndoRedo.instance?.undoActions.Count > 0)
         {
             UIUndoRedo.instance.undoActions.Peek().GetComponent<ButtonScript>().ClearCell();
             UIUndoRedo.instance.undoActions.Pop();
@@ -145,6 +145,14 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData data)
     {
+        Debug.Log($"Cell clicked: ({this.gameObject.GetComponent<ButtonScript>().row},{this.gameObject.GetComponent<ButtonScript>().col})");
+
+        if (isTutorialInteractive && data.button == PointerEventData.InputButton.Left)
+        {
+            ChangeGameState();
+            return;
+        }
+
         if (data.button == PointerEventData.InputButton.Right)
         {
             sounds.PlaySFX(sounds.gridTileSFX);
@@ -152,19 +160,35 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler
             UIUndoRedo.instance.undoActions.Push(this.gameObject);
             UIUndoRedo.instance.redoActions.Clear();
 
-            puzzle.GridData[row, col] = 3;
+            puzzle.GridData[row, col] = State == CellState.Filled ? puzzle.GridData[row, col] = 2 
+                : puzzle.GridData[row, col] = 3;
             State = CellState.Crossed;
             UpdateVisuals();
+            GameManager.Instance.CheckWinCondition();
         }
+
     }
 
     public void UpdateVisuals()
     {
-        switch (State)
+        if (TryGetComponent(out Button uiButton))
         {
-            case CellState.Blank: GetComponent<Button>().image.sprite = blankSprite; break;
-            case CellState.Filled: GetComponent<Button>().image.sprite = filledSprite; break;
-            case CellState.Crossed: GetComponent<Button>().image.sprite = crossedSprite; break;
+            switch (State)
+            {
+                case CellState.Blank: uiButton.image.sprite = blankSprite; break;
+                case CellState.Filled: uiButton.image.sprite = filledSprite; break;
+                case CellState.Crossed: uiButton.image.sprite = crossedSprite; break;
+            }
+        }
+    }
+
+    public void EnableForTutorial(bool isEnabled)
+    {
+        isTutorialInteractive = isEnabled;
+
+        if (TryGetComponent(out Button uiButton))
+        {
+            uiButton.interactable = isEnabled;
         }
     }
 }

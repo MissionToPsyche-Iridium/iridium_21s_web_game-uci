@@ -1,48 +1,49 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.SceneManagement;
 
-public class TutorialManager : MonoBehaviour
+public class TutorialStepManager : MonoBehaviour
 {
     [Header("Panels")]
     public GameObject levelPanel;
     public GameObject tutorialStepPanel;
 
-    [Header("Buttons")]
+    [Header("Intro Buttons")]
     public Button continueTutorialButton;
     public Button skipTutorialButton;
-    public Button continueStepsButton;
 
     [Header("Step UI")]
     public TextMeshProUGUI stepsTitleText;
     public TextMeshProUGUI descriptionText;
+    public Button continueStepsButton;
+    public GameObject[] highlightRects;
 
-    [Header("Controllers")]
-    public TutorialHighlightController highlightController;
+    [Header("Grid Control")]
     public TutorialGridController gridController;
 
     private int currentStep = 0;
 
-    private readonly string[] stepTitles = new string[]
+    private string[] stepTitles = new string[]
     {
         "Understanding the grid",
         "The Clues",
-        "The Clues",
-        "Let's practice",
-        "Crossing Out",
-        "Final Tip"
+        "More Clues",
+        "Let's Practice",
+        "Empty Squares",
+        "Try It",
+        "Finished!"
     };
 
-    private readonly string[] stepDescriptions = new string[]
+    private string[] stepDescriptions = new string[]
     {
         "The goal is to uncover a hidden picture by following numerical clues.",
         "Clues on top tell you how many filled cells are within the column.",
-        "Since this is a 4x6 grid, the max amount of column grid is 6.\nSo, we know this entire column is filled.",
+        "Since this is a 4x6 grid, the max amount of column grid is 6. So, we know this entire column is filled.",
         "Now, click on the cells to fill them in.",
-        "If you're unsure, right-click to mark an empty square with an X.",
-        "Good job! You're ready to solve the real puzzle."
+        "To mark empty cells, right click on them to place an X.",
+        "Try marking the remaining cells now!",
+        "Awesome! You're ready."
     };
 
     void Start()
@@ -60,21 +61,40 @@ public class TutorialManager : MonoBehaviour
         levelPanel.SetActive(false);
         tutorialStepPanel.SetActive(true);
         currentStep = 0;
-        ShowStep();
+        ShowCurrentStep();
     }
 
-    void ShowStep()
+    void ShowCurrentStep()
     {
         stepsTitleText.text = stepTitles[currentStep];
         descriptionText.text = stepDescriptions[currentStep];
 
-        continueStepsButton.gameObject.SetActive(currentStep != 3); // Hide button on practice step
+        for (int i = 0; i < highlightRects.Length; i++)
+            highlightRects[i].SetActive(i == currentStep);
 
-        highlightController?.ShowHighlightForStep(currentStep);
-        gridController?.ConfigureForStep(currentStep);
+        if (currentStep == 3)
+        {
+            continueStepsButton.gameObject.SetActive(false);
+            gridController.EnableColumn(2);
+        }
+        else if (currentStep == 5)
+        {
+            continueStepsButton.gameObject.SetActive(false);
+            gridController.EnableAllCells();
+        }
+        else
+        {
+            continueStepsButton.gameObject.SetActive(true);
+            gridController.DisableAllCells();
+        }
     }
 
-    public void NextStep()
+    public void NotifyPracticeComplete()
+    {
+        continueStepsButton.gameObject.SetActive(true);
+    }
+
+    void NextStep()
     {
         currentStep++;
         if (currentStep >= stepTitles.Length)
@@ -83,7 +103,7 @@ public class TutorialManager : MonoBehaviour
             return;
         }
 
-        ShowStep();
+        ShowCurrentStep();
     }
 
     void SkipTutorial()
