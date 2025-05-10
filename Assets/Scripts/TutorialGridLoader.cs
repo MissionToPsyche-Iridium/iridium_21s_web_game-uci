@@ -78,6 +78,15 @@ public class TutorialGridLoader : MonoBehaviour
                 GameObject cell = Instantiate(cellPrefab, gridParent);
                 cell.name = $"Cell {r},{c}";
 
+                ButtonScript cellButton = cell.GetComponent<ButtonScript>();
+
+               //ADDED BY LANCE
+               //****************************************************************************
+                cellButton.row = r;
+                cellButton.col = c;
+                cellButton.puzzle = tutorialPuzzle;
+                //***************************************************************************
+
                 // gray out cells to make them non-interactive in the tutorial
                 Button btn = cell.GetComponent<Button>();
                 if (btn) btn.interactable = false;
