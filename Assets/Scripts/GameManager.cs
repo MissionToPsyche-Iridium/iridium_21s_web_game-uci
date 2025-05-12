@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
@@ -17,6 +18,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] List<Sprite> victorySprites;
     [SerializeField] Transform gridParent, rowClueParent, colClueParent;
     [SerializeField] GameObject rowCluePrefab, colCluePrefab, cellButtonPrefab;
+
+    [Header("Analyze")]
+    [SerializeField] GameObject analyzePanel;
+    [SerializeField] Button analyzeButton;
+    [SerializeField] private Animator completedPuzzleToSolutionTransition;
 
     [Header("Win")]
     [SerializeField] GameObject victoryPanel;
@@ -67,6 +73,9 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        analyzeButton.onClick.AddListener(OnAnalyzeButtonClicked);
+        analyzePanel.SetActive(false);
+
         victoryButton.onClick.AddListener(BackToOverworld);
         victoryPanel.SetActive(false);
 
@@ -280,9 +289,11 @@ public class GameManager : MonoBehaviour
             }
             if (numPuzzlesSolved > 3)
             {
+                TimerScript.instance.PauseTimer();
                 PlayerPrefs.SetInt("MaxCurrentLevel", (puzzleIndex + 1)/4);
-                Debug.Log("Current Max Level: " + PlayerPrefs.GetInt("MaxCurrentLevel"));
-                victoryPanel.SetActive(true);
+
+                // Unity coroutines allow time-based delays
+                StartCoroutine(ShowAnalyzePanelAfterPuzzleSolved());
             }
             else
             {
@@ -293,7 +304,7 @@ public class GameManager : MonoBehaviour
                 LoadCurrentPuzzle();
             }
 
-                TimerScript.instance.PauseTimer();
+                
         }
         
     }
@@ -350,5 +361,33 @@ public class GameManager : MonoBehaviour
         puzzle.GridData = new int[rows, columns];
         puzzle.SaveProgress();
         GeneratePuzzle();
+    }
+
+    private void OnAnalyzeButtonClicked()
+    {
+        StartCoroutine(ShowSolutionPanelAfterAnalyzing());
+    }
+
+    private IEnumerator ShowAnalyzePanelAfterPuzzleSolved()
+    {
+        completedPuzzleToSolutionTransition.SetTrigger("isPuzzleSolved");
+
+
+        yield return new WaitForSeconds(5.0f);
+
+
+        analyzePanel.SetActive(true);
+    }
+
+
+    private IEnumerator ShowSolutionPanelAfterAnalyzing()
+    {
+        completedPuzzleToSolutionTransition.SetTrigger("isAnalyzing");
+
+
+        yield return new WaitForSeconds(5.0f);
+
+
+        victoryPanel.SetActive(true);
     }
 }
