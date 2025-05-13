@@ -300,10 +300,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84ca817f005904997a8058fd75a8c716, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlightImage: {fileID: 2013599405}
+  highlightBox: {fileID: 2013599403}
   highlights:
-  - position: {x: 497, y: 209}
-    size: {x: 646, y: 649}
+  - position: {x: -333, y: -3}
+    size: {x: 700, y: 700}
+  - position: {x: -232, y: 205}
+    size: {x: 344, y: 250}
+  - position: {x: -200, y: 10}
+    size: {x: 100, y: 750}
+  - position: {x: -200, y: 10}
+    size: {x: 100, y: 750}
+  - position: {x: -200, y: 10}
+    size: {x: 100, y: 750}
+  - position: {x: -341, y: 10}
+    size: {x: 100, y: 750}
+  - position: {x: -341, y: 10}
+    size: {x: 100, y: 750}
+  - position: {x: -341, y: 10}
+    size: {x: 100, y: 750}
+  - position: {x: -475, y: -101}
+    size: {x: 250, y: 500}
+  - position: {x: -337, y: -65}
+    size: {x: 600, y: 100}
+  - position: {x: -337, y: -65}
+    size: {x: 600, y: 100}
+  - position: {x: -337, y: -65}
+    size: {x: 600, y: 100}
+  - position: {x: -337, y: 67}
+    size: {x: 600, y: 100}
+  - position: {x: -337, y: 67}
+    size: {x: 600, y: 100}
+  - position: {x: -333, y: -3}
+    size: {x: 700, y: 700}
 --- !u!4 &328128499
 Transform:
   m_ObjectHideFlags: 0
@@ -5319,7 +5347,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -5250657687756452233, guid: c50d55f5f5fbc432d882772b43e96814, type: 3}
+  m_Sprite: {fileID: -7276487482102133146, guid: c8c7562f089ae44a3b603fd97fc724b5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

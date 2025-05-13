@@ -31,8 +31,18 @@ public class TutorialManager : MonoBehaviour
         "The Clues",
         "The Clues",
         "Let's practice",
-        "Crossing Out",
-        "Final Tip"
+        "The Clues",
+        "The Clues",
+        "The Clues",
+        "The Clues",
+        "The Clues",
+        "The Clues",
+        "The Clues",
+        "The Clues",
+        "The Clues",
+        "The Clues",
+        "The Clues",
+        "Congrats!"
     };
 
     private readonly string[] stepDescriptions = new string[]
@@ -41,8 +51,17 @@ public class TutorialManager : MonoBehaviour
         "Clues on top tell you how many filled cells are within the column.",
         "Since this is a 4x6 grid, the max amount of column grid is 6.\nSo, we know this entire column is filled.",
         "Now, click on the cells to fill them in.",
-        "If you're unsure, right-click to mark an empty square with an X.",
-        "Good job! You're ready to solve the real puzzle."
+        "Nice job!",
+        "When a clue shows more than one number, each group of filled squares must be kept apart by at least one empty square.",
+        "The first cell is filled for you. Try to fill the rest out!",
+        "Nice job! Now, click on the empty cells to mark it with an 'X'. These are known white cells.",
+        "Nice job!",
+        "Let's learn about the rows. Clues on the side tell you how many filled cells are within each row.",
+        "Notice that this row was automatically completed as soon as the intersecting column was filled. Let's mark the remaining cells with an 'X'!",
+        "Nice job!",
+        "This row requires 3 filled squares in a row.\nFill in the remaining squares to complete it.",
+        "Nice job!",
+        "Now, finish the rest of the nonogram with what you've just learned!"
     };
 
     void Start()
@@ -68,13 +87,18 @@ public class TutorialManager : MonoBehaviour
         stepsTitleText.text = stepTitles[currentStep];
         descriptionText.text = stepDescriptions[currentStep];
 
-        continueStepsButton.gameObject.SetActive(currentStep != 3); // Hide button on practice step
-
         highlightController?.ShowHighlightForStep(currentStep);
         gridController?.ConfigureForStep(currentStep);
+
+        continueStepsButton.gameObject.SetActive(true);
     }
 
-    public void NextStep()
+    public void NotifyPracticeComplete()
+    {
+        continueStepsButton.gameObject.SetActive(true);
+    }
+
+    void NextStep()
     {
         currentStep++;
         if (currentStep >= stepTitles.Length)

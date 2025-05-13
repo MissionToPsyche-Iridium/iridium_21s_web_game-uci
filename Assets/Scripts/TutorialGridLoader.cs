@@ -6,7 +6,7 @@ using System.IO;
 public class TutorialGridLoader : MonoBehaviour
 {
     [Header("Puzzle Settings")]
-    [SerializeField] private string puzzleFileName = "Tutorial"; // no extension
+    [SerializeField] private string puzzleFileName = "TutorialPuz"; // no extension
     [SerializeField] private Transform gridParent;
     [SerializeField] private Transform rowClueParent;
     [SerializeField] private Transform colClueParent;

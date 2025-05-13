@@ -31,19 +31,21 @@ public class TutorialGridController : MonoBehaviour
         }
     }
 
-    public void ConfigureForStep(int stepIndex)
+    public void ConfigureForStep(int step)
     {
-        ButtonScript[] allCells = GetComponentsInChildren<ButtonScript>();
+        var allButtons = puzzleContainer.GetComponentsInChildren<ButtonScript>();
 
-        foreach (var cell in allCells)
+        foreach (var btn in allButtons)
         {
-            if (stepIndex == 3)
+            if (btn == null) continue;
+
+            if (step == 3)
             {
-                cell.EnableForTutorial(cell.col == 2);
+                btn.EnableForTutorial(btn.col == 2); // Only 3rd column (col = 2)
             }
             else
             {
-                cell.EnableForTutorial(false);
+                btn.EnableForTutorial(false); // Disable all interactivity
             }
         }
     }
