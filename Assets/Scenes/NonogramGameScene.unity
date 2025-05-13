@@ -867,7 +867,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -13, y: 0}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &248739096
@@ -890,7 +890,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Revert all puzzle progress to the beginning. '
+  m_text: 'Revert all current puzzle progress back to a blank grid. '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9e3b5603c1812413fa531d8dcafc69df, type: 2}
   m_sharedMaterial: {fileID: -4929812492172880612, guid: 9e3b5603c1812413fa531d8dcafc69df, type: 2}
@@ -955,7 +955,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -57.786987, y: 0, z: -62.867188, w: 0}
+  m_margin: {x: -57.786987, y: 0, z: -86.04544, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

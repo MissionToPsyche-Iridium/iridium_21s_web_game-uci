@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
 
     int puzzleIndex = 0;
     int rows, columns;
+    bool restartStopwatch = false;
 
     AudioManager sounds;
     NonogramPuzzle puzzle;
@@ -133,10 +134,14 @@ public class GameManager : MonoBehaviour
     {
         rows = puzzle.Rows;
         columns = puzzle.Cols;
+        float checkTime = TimerScript.instance.elapsedTime;
 
-        if (TimerScript.instance.elapsedTime > 0)
-        { TimerScript.instance.RestartTimer(); }
-        else
+        if (checkTime > 0 && restartStopwatch)
+        { 
+            TimerScript.instance.RestartTimer();
+            restartStopwatch = false;
+        }
+        else if (checkTime == 0 && !restartStopwatch)
         { TimerScript.instance.BeginTimer(0); }
 
         gridParent.GetComponent<GridLayoutGroup>().constraintCount = columns;
@@ -360,6 +365,7 @@ public class GameManager : MonoBehaviour
         // Restart the progress and regenerate the puzzle
         puzzle.GridData = new int[rows, columns];
         puzzle.SaveProgress();
+        restartStopwatch = true;
         GeneratePuzzle();
     }
 
