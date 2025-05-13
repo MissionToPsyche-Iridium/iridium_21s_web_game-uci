@@ -32,7 +32,8 @@ public class GameManager : MonoBehaviour
 
     int puzzleIndex = 0;
     int rows, columns;
-    bool restartStopwatch = false;
+    public bool restartStopwatch = false;
+    public float prevSolvedTime = 0f;
 
     AudioManager sounds;
     NonogramPuzzle puzzle;
@@ -138,7 +139,7 @@ public class GameManager : MonoBehaviour
 
         if (checkTime > 0 && restartStopwatch)
         { 
-            TimerScript.instance.RestartTimer();
+            TimerScript.instance.RestartTimer(prevSolvedTime);
             restartStopwatch = false;
         }
         else if (checkTime == 0 && !restartStopwatch)
@@ -282,6 +283,7 @@ public class GameManager : MonoBehaviour
             // Show win screen
             sounds.PlaySFX(sounds.completeSFX);
             ++numPuzzlesSolved;
+            prevSolvedTime = TimerScript.instance.elapsedTime;
 
             // Find and set the solution sprite assigned to this puzzle
             for (int i = 0; i < savedPuzzleFiles.Count; ++i)
