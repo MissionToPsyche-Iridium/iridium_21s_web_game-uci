@@ -1,10 +1,10 @@
 using UnityEngine;
+using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
     public static SceneController instance;
-    [SerializeField] string sceneToLoad;
     [SerializeField] Animator transition;
 
     private void Awake()
@@ -20,9 +20,16 @@ public class SceneController : MonoBehaviour
         }
     }
 
-    public void ChangeScene()
+    public void ChangeScene(string sceneToLoad)
+    {
+        StartCoroutine(LoadingScene(sceneToLoad));
+    }
+
+    IEnumerator LoadingScene(string scene)
     {
         transition.SetTrigger("End");
-        SceneManager.LoadSceneAsync(sceneToLoad);
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadSceneAsync(scene);
+        transition.SetTrigger("Start");
     }
 }

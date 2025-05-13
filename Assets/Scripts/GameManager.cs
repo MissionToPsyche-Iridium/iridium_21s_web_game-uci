@@ -339,7 +339,7 @@ public class GameManager : MonoBehaviour
 
     void BackToOverworld()
     {
-        SceneManager.LoadScene("MapScene");
+        SceneController.instance.ChangeScene("MapScene");
     }
 
     public void SaveGame()
