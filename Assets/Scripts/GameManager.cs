@@ -71,6 +71,7 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         sounds = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        
     }
 
     void Start()
@@ -82,6 +83,7 @@ public class GameManager : MonoBehaviour
         victoryPanel.SetActive(false);
 
         SetPuzzleIndex();
+        UpdateStageText();
     }
 
     void SetPuzzleIndex()
@@ -114,7 +116,6 @@ public class GameManager : MonoBehaviour
             if (System.IO.File.Exists(savedFilePath))
             {
                 string json = System.IO.File.ReadAllText(savedFilePath);
-                Debug.Log("Loading saved puzzle: " + LevelLoader.puzzleName);
                 NonogramPuzzle loadedPuzzle = JsonUtility.FromJson<NonogramPuzzle>(json);
                 return loadedPuzzle;
             }
@@ -309,6 +310,7 @@ public class GameManager : MonoBehaviour
                 LevelLoader.puzzleToLoad = newPuzzle;
                 LevelLoader.puzzleName = nextPuzzle.name;
                 LoadCurrentPuzzle();
+                UpdateStageText();
             }
 
                 
@@ -397,5 +399,10 @@ public class GameManager : MonoBehaviour
 
 
         victoryPanel.SetActive(true);
+    }
+
+    void UpdateStageText()
+    {
+        GameObject.Find("StageText").GetComponentInChildren<TMP_Text>().text = "Stage " + (puzzleIndex +1);
     }
 }
