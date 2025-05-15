@@ -148,12 +148,16 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 7ab8eeee9c344a54788ac26e3f9e38a6, type: 3}
   - {fileID: 8300000, guid: 7474fa329eda2fe4e9cbfa2cfdcb38fb, type: 3}
   - {fileID: 8300000, guid: 28ac54f9ae9151444bb92178f7945275, type: 3}
+  - {fileID: 8300000, guid: c013be3bf097a4241aa6ebe42d2453fb, type: 3}
+  - {fileID: 8300000, guid: 548aa89bd08153949909b1965ca716d8, type: 3}
   soundSource: {fileID: 1874912777310412713}
   gridTileSFX: {fileID: 8300000, guid: 8322984f9fdc3824a95ef848d9b4bb56, type: 3}
   undoRedoSFX: {fileID: 8300000, guid: edb08eeac7c122540a8588333bd582ca, type: 3}
   restartSFX: {fileID: 8300000, guid: 8ea70c07635b69a47bed62abb3e3ebb2, type: 3}
   completeSFX: {fileID: 8300000, guid: 2b5cadafecd044a419d1e8ddd5cee655, type: 3}
   pauseSFX: {fileID: 8300000, guid: 6eef2211eb629c14ead99026f7165ee3, type: 3}
+  clueSolvedSFX: {fileID: 0}
+  clueUnsolvedSFX: {fileID: 0}
   nodeClickSFX: {fileID: 8300000, guid: 2615faaed23ce1f4bbfa2b757c472369, type: 3}
   hoverSFX: {fileID: 8300000, guid: 069986774f9dfb4418757930c5feeda6, type: 3}
   generalUIButton: {fileID: 8300000, guid: 6013c999714ab4b4089e4bf7f695996e, type: 3}

@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
 
     int puzzleIndex = 0;
     int rows, columns;
+    public bool restartStopwatch = false;
+    public float prevSolvedTime = 0f;
 
     AudioManager sounds;
     NonogramPuzzle puzzle;
@@ -69,6 +71,7 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         sounds = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        
     }
 
     void Start()
@@ -80,6 +83,7 @@ public class GameManager : MonoBehaviour
         victoryPanel.SetActive(false);
 
         SetPuzzleIndex();
+        UpdateStageText();
     }
 
     void SetPuzzleIndex()
@@ -112,7 +116,6 @@ public class GameManager : MonoBehaviour
             if (System.IO.File.Exists(savedFilePath))
             {
                 string json = System.IO.File.ReadAllText(savedFilePath);
-                Debug.Log("Loading saved puzzle: " + LevelLoader.puzzleName);
                 NonogramPuzzle loadedPuzzle = JsonUtility.FromJson<NonogramPuzzle>(json);
                 return loadedPuzzle;
             }
@@ -133,10 +136,14 @@ public class GameManager : MonoBehaviour
     {
         rows = puzzle.Rows;
         columns = puzzle.Cols;
+        float checkTime = TimerScript.instance.elapsedTime;
 
-        if (TimerScript.instance.elapsedTime > 0)
-        { TimerScript.instance.RestartTimer(); }
-        else
+        if (checkTime > 0 && restartStopwatch)
+        { 
+            TimerScript.instance.RestartTimer(prevSolvedTime);
+            restartStopwatch = false;
+        }
+        else if (checkTime == 0 && !restartStopwatch)
         { TimerScript.instance.BeginTimer(0); }
 
         gridParent.GetComponent<GridLayoutGroup>().constraintCount = columns;
@@ -277,6 +284,7 @@ public class GameManager : MonoBehaviour
             // Show win screen
             sounds.PlaySFX(sounds.completeSFX);
             ++numPuzzlesSolved;
+            prevSolvedTime = TimerScript.instance.elapsedTime;
 
             // Find and set the solution sprite assigned to this puzzle
             for (int i = 0; i < savedPuzzleFiles.Count; ++i)
@@ -302,6 +310,7 @@ public class GameManager : MonoBehaviour
                 LevelLoader.puzzleToLoad = newPuzzle;
                 LevelLoader.puzzleName = nextPuzzle.name;
                 LoadCurrentPuzzle();
+                UpdateStageText();
             }
 
                 
@@ -339,7 +348,7 @@ public class GameManager : MonoBehaviour
 
     void BackToOverworld()
     {
-        SceneManager.LoadScene("MapScene");
+        SceneController.instance.ChangeScene("MapScene");
     }
 
     public void SaveGame()
@@ -360,6 +369,7 @@ public class GameManager : MonoBehaviour
         // Restart the progress and regenerate the puzzle
         puzzle.GridData = new int[rows, columns];
         puzzle.SaveProgress();
+        restartStopwatch = true;
         GeneratePuzzle();
     }
 
@@ -389,5 +399,10 @@ public class GameManager : MonoBehaviour
 
 
         victoryPanel.SetActive(true);
+    }
+
+    void UpdateStageText()
+    {
+        GameObject.Find("StageText").GetComponentInChildren<TMP_Text>().text = "Stage " + (puzzleIndex +1);
     }
 }

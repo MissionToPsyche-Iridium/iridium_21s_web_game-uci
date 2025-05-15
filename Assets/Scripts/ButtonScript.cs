@@ -138,7 +138,16 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler
 
         while (UIUndoRedo.instance.undoActions.Count > 0)
         {
-            UIUndoRedo.instance.undoActions.Peek().GetComponent<ButtonScript>().ClearCell();
+            GameObject objectPresent = UIUndoRedo.instance.undoActions.Peek();
+            if (objectPresent != null)
+            {
+                ButtonScript buttonScript = objectPresent.GetComponent<ButtonScript>();
+                if (buttonScript != null)
+                {
+                    buttonScript.ClearCell();
+                }
+            }
+
             UIUndoRedo.instance.undoActions.Pop();
         }
     }

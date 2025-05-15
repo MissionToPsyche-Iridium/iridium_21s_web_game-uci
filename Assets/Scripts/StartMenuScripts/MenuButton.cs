@@ -49,7 +49,8 @@ public class MenuButton : MonoBehaviour
         if (!string.IsNullOrEmpty(sceneToLoad))
         {
             sounds.PlaySFX(sounds.generalUIButton);
-            SceneManager.LoadScene(sceneToLoad);
+            //SceneManager.LoadScene(sceneToLoad);
+            SceneController.instance.ChangeScene(sceneToLoad);
         }
     }
 }
