@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using UnityEngine.Audio;
 using UnityEngine.Rendering;
 
@@ -12,9 +13,12 @@ public class OptionsScript : MonoBehaviour
     public Slider musicSlider;
 
     private bool isInitialized = false;
+    private bool soundSetYet = false;
+    private bool isDragging = false;
 
     public CanvasGroup smSound, mdSound, lgSound, mtSound;
     public CanvasGroup music, mtMusic;
+    AudioManager sounds;
 
     private void Start()
     {
@@ -27,12 +31,16 @@ public class OptionsScript : MonoBehaviour
         if (!isInitialized)
         {
             isInitialized = true;
+            // Fix for when sound plays immediately when entering in Options
+            soundSetYet = true; 
         }
         else
         {
             SetSFX(sfxVolume);
             SetMusic(musicVolume);
         }
+
+
     }
 
     private void Awake()
@@ -45,6 +53,36 @@ public class OptionsScript : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+        sounds = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
+
+    public void OnBeginDrag()
+    {
+        //Debug.Log("begin drag triggered");
+        if (!isDragging)
+        {
+            isDragging = true;
+            //if (soundSetYet) { sounds.PlaySFX(sounds.emptyInput); }
+        }
+    }
+
+    public void OnMouseDrag()
+    {
+        if (isDragging)
+        {
+            //Debug.Log("drag triggered");
+            //if (soundSetYet) { sounds.PlaySFX(sounds.emptyInput); }
+        }
+    }
+    public void OnEndDrag()
+    {
+        //Debug.Log("end drag triggered");
+
+        if (isDragging)
+        {
+            isDragging = false;
+            if (soundSetYet) { sounds.PlaySFX(sounds.emptyInput); }
         }
     }
 
@@ -76,6 +114,7 @@ public class OptionsScript : MonoBehaviour
         }
         PlayerPrefs.SetFloat("SFXVol", volume);
         PlayerPrefs.Save();
+        //if (soundSetYet) { sounds.PlaySFX(sounds.emptyInput); }
     }
 
     public void SetMusic(float volume)

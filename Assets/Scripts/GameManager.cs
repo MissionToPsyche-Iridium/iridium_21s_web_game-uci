@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
@@ -18,6 +19,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] Transform gridParent, rowClueParent, colClueParent;
     [SerializeField] GameObject rowCluePrefab, colCluePrefab, cellButtonPrefab;
 
+    [Header("Analyze")]
+    [SerializeField] GameObject analyzePanel;
+    [SerializeField] Button analyzeButton;
+    [SerializeField] private Animator completedPuzzleToSolutionTransition;
+
     [Header("Win")]
     [SerializeField] GameObject victoryPanel;
     [SerializeField] Button victoryButton;
@@ -26,6 +32,8 @@ public class GameManager : MonoBehaviour
 
     int puzzleIndex = 0;
     int rows, columns;
+    public bool restartStopwatch = false;
+    public float prevSolvedTime = 0f;
 
     AudioManager sounds;
     NonogramPuzzle puzzle;
@@ -34,14 +42,28 @@ public class GameManager : MonoBehaviour
 
     Dictionary<int, string> matchPuzzle = new Dictionary<int, string>()
     {
-        {0, "PsycheLogo"},
-        {1, "Spacecraft"},
-        {2, "Asteroid"},
-        {3, "Instruments"}
+        {0, "5x5Rocket"},
+        {1, "5x5SpaceX"},
+        {2, "5x5Sixteen"},
+        {3, "5x5PsycheLogo"},
+        {4, "6x6SatelliteDish"},
+        {5, "6x6HallThruster"},
+        {6, "6x6GravityAssist"},
+        {7, "6x6Spacecraft"},
+        {8, "8x8Belt"},
+        {9, "8x8Spacecraft"},
+        {10, "8x8OrbitAxes"},
+        {11, "8x8Asteroid"},
+        {12, "PsycheLogo"},
+        {13, "Spacecraft"},
+        {14, "Asteroid"},
+        {15, "Instruments"}
     };
 
     Dictionary<int, GameObject> RowClueDictionary = new Dictionary<int, GameObject>();
     Dictionary<int, GameObject> ColClueDictionary = new Dictionary<int, GameObject>();
+
+    int numPuzzlesSolved = 0;
 
 
 
@@ -49,14 +71,19 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         sounds = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        
     }
 
     void Start()
     {
+        analyzeButton.onClick.AddListener(OnAnalyzeButtonClicked);
+        analyzePanel.SetActive(false);
+
         victoryButton.onClick.AddListener(BackToOverworld);
         victoryPanel.SetActive(false);
 
         SetPuzzleIndex();
+        UpdateStageText();
     }
 
     void SetPuzzleIndex()
@@ -89,7 +116,6 @@ public class GameManager : MonoBehaviour
             if (System.IO.File.Exists(savedFilePath))
             {
                 string json = System.IO.File.ReadAllText(savedFilePath);
-                Debug.Log("Loading saved puzzle: " + LevelLoader.puzzleName);
                 NonogramPuzzle loadedPuzzle = JsonUtility.FromJson<NonogramPuzzle>(json);
                 return loadedPuzzle;
             }
@@ -110,10 +136,14 @@ public class GameManager : MonoBehaviour
     {
         rows = puzzle.Rows;
         columns = puzzle.Cols;
+        float checkTime = TimerScript.instance.elapsedTime;
 
-        if (TimerScript.instance.elapsedTime > 0)
-        { TimerScript.instance.RestartTimer(); }
-        else
+        if (checkTime > 0 && restartStopwatch)
+        { 
+            TimerScript.instance.RestartTimer(prevSolvedTime);
+            restartStopwatch = false;
+        }
+        else if (checkTime == 0 && !restartStopwatch)
         { TimerScript.instance.BeginTimer(0); }
 
         gridParent.GetComponent<GridLayoutGroup>().constraintCount = columns;
@@ -206,12 +236,21 @@ public class GameManager : MonoBehaviour
         {
             if(CheckRow(r))
             {
-                RowClueDictionary[r].GetComponentInChildren<TMP_Text>().color = Color.grey;
+                if(RowClueDictionary[r].GetComponentInChildren<TMP_Text>().color != Color.grey)
+                {
+                    RowClueDictionary[r].GetComponentInChildren<TMP_Text>().color = Color.grey;
+                    sounds.PlaySFX(sounds.clueSolvedSFX);
+                }
+                
             }
             else
             {
                 puzzleSolved = false;
-                RowClueDictionary[r].GetComponentInChildren<TMP_Text>().color = Color.black;
+                if(RowClueDictionary[r].GetComponentInChildren<TMP_Text>().color == Color.grey)
+                {
+                    RowClueDictionary[r].GetComponentInChildren<TMP_Text>().color = Color.black;
+                    sounds.PlaySFX(sounds.clueUnsolvedSFX);
+                }
             }
         }
 
@@ -220,12 +259,22 @@ public class GameManager : MonoBehaviour
         {
             if (CheckColumn(c))
             {
-                ColClueDictionary[c].GetComponentInChildren<TMP_Text>().color = Color.grey;
+                if (ColClueDictionary[c].GetComponentInChildren<TMP_Text>().color != Color.grey)
+                {
+                    ColClueDictionary[c].GetComponentInChildren<TMP_Text>().color = Color.grey;
+                    sounds.PlaySFX(sounds.clueSolvedSFX);
+                }
+                
             }
             else
             {
                 puzzleSolved = false;
-                ColClueDictionary[c].GetComponentInChildren<TMP_Text>().color = Color.black;
+                if (ColClueDictionary[c].GetComponentInChildren<TMP_Text>().color == Color.grey)
+                {
+                    ColClueDictionary[c].GetComponentInChildren<TMP_Text>().color = Color.black;
+                    sounds.PlaySFX(sounds.clueUnsolvedSFX);
+                }
+                
             }
         }
 
@@ -233,20 +282,38 @@ public class GameManager : MonoBehaviour
         {
             // Game is won
             // Show win screen
-            PlayerPrefs.SetInt("MaxCurrentLevel", puzzleIndex + 1);
             sounds.PlaySFX(sounds.completeSFX);
+            ++numPuzzlesSolved;
+            prevSolvedTime = TimerScript.instance.elapsedTime;
 
             // Find and set the solution sprite assigned to this puzzle
             for (int i = 0; i < savedPuzzleFiles.Count; ++i)
             {
-                if (puzzleIndex == i)
+                if (puzzleIndex/4 == i)
                 {
                     victoryScreenSprite = victorySprites[i];
                     solutionScreen.SetSolutionScreen(victoryScreenSprite);
                 }
             }
-            victoryPanel.SetActive(true);
-            TimerScript.instance.PauseTimer();
+            if (numPuzzlesSolved > 3)
+            {
+                TimerScript.instance.PauseTimer();
+                PlayerPrefs.SetInt("MaxCurrentLevel", (puzzleIndex + 1)/4);
+
+                // Unity coroutines allow time-based delays
+                StartCoroutine(ShowAnalyzePanelAfterPuzzleSolved());
+            }
+            else
+            {
+                TextAsset nextPuzzle = Resources.Load<TextAsset>("SavedPuzzles/"+ matchPuzzle[puzzleIndex + 1]);
+                NonogramPuzzle newPuzzle = JsonUtility.FromJson<NonogramPuzzle>(nextPuzzle.text);
+                LevelLoader.puzzleToLoad = newPuzzle;
+                LevelLoader.puzzleName = nextPuzzle.name;
+                LoadCurrentPuzzle();
+                UpdateStageText();
+            }
+
+                
         }
         
     }
@@ -281,7 +348,7 @@ public class GameManager : MonoBehaviour
 
     void BackToOverworld()
     {
-        SceneManager.LoadScene("MapScene");
+        SceneController.instance.ChangeScene("MapScene");
     }
 
     public void SaveGame()
@@ -291,6 +358,7 @@ public class GameManager : MonoBehaviour
 
         puzzle.SaveProgress();
         puzzle.timer = TimerScript.instance.elapsedTime;
+        //puzzle.skipTutorial = TutorialManager.instance.skipLaunchPanel;
 
         string json = JsonUtility.ToJson(puzzle, true);
         System.IO.File.WriteAllText(saveProgressPath + fileName + ".json", json);
@@ -301,6 +369,40 @@ public class GameManager : MonoBehaviour
         // Restart the progress and regenerate the puzzle
         puzzle.GridData = new int[rows, columns];
         puzzle.SaveProgress();
+        restartStopwatch = true;
         GeneratePuzzle();
+    }
+
+    private void OnAnalyzeButtonClicked()
+    {
+        StartCoroutine(ShowSolutionPanelAfterAnalyzing());
+    }
+
+    private IEnumerator ShowAnalyzePanelAfterPuzzleSolved()
+    {
+        completedPuzzleToSolutionTransition.SetTrigger("isPuzzleSolved");
+
+
+        yield return new WaitForSeconds(5.0f);
+
+
+        analyzePanel.SetActive(true);
+    }
+
+
+    private IEnumerator ShowSolutionPanelAfterAnalyzing()
+    {
+        completedPuzzleToSolutionTransition.SetTrigger("isAnalyzing");
+
+
+        yield return new WaitForSeconds(5.0f);
+
+
+        victoryPanel.SetActive(true);
+    }
+
+    void UpdateStageText()
+    {
+        GameObject.Find("StageText").GetComponentInChildren<TMP_Text>().text = "Stage " + (puzzleIndex +1);
     }
 }

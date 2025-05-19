@@ -10907,8 +10907,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c41f7a6b293c2145b18e10ea92bd24e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rows: 10
-  cols: 10
+  rows: 8
+  cols: 8
   gridParent: {fileID: 1176545421}
   rowClueParent: {fileID: 1683980109}
   colClueParent: {fileID: 751543406}

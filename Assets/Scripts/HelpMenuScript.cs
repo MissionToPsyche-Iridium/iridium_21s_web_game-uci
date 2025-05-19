@@ -1,12 +1,11 @@
 using UnityEngine;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class HelpMenuScript : MonoBehaviour
 {
     [SerializeField] GameObject helpPanel;
     [SerializeField] CanvasGroup helpButton;
 
     private bool isHelpPressed = false;
-    private string sceneToLoad = "";
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

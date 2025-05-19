@@ -16,6 +16,7 @@ public class NonogramPuzzle
     public int[] SaveData;
     public int[] SolutionFlatGridData; // For serialization
     public float timer;
+    public bool skipTutorial; 
 
     [System.NonSerialized]
     int[,] gridData;

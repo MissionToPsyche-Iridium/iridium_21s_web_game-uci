@@ -11,7 +11,8 @@ public class NodeController : MonoBehaviour
         if (!string.IsNullOrEmpty(sceneToLoad))
         {
             loadLevel();
-            SceneManager.LoadScene(sceneToLoad);
+            //SceneManager.LoadScene(sceneToLoad);
+            SceneController.instance.ChangeScene(sceneToLoad);
         }
     }
 

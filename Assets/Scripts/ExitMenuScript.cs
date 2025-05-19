@@ -1,5 +1,5 @@
 using System;
-using UnityEditor.SearchService;
+//using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -29,7 +29,8 @@ public class ExitMenuScript : MonoBehaviour
         // Save the game, exit to main menu or map
         sounds.PlaySFX(sounds.generalUIButton);
         GameManager.Instance.SaveGame();
-        SceneManager.LoadScene(sceneToLoad);
+        //SceneManager.LoadScene(sceneToLoad);
+        SceneController.instance.ChangeScene(sceneToLoad);
     }
 
     public void OnNo()
@@ -37,7 +38,8 @@ public class ExitMenuScript : MonoBehaviour
         // Don't save the game, exit to main menu or map
         sounds.PlaySFX(sounds.generalUIButton);
         Debug.Log(sceneToLoad);
-        SceneManager.LoadScene(sceneToLoad);
+        //SceneManager.LoadScene(sceneToLoad);
+        SceneController.instance.ChangeScene(sceneToLoad);
     }
 
     public void OnCancel()

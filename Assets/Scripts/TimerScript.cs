@@ -33,9 +33,9 @@ public class TimerScript : MonoBehaviour
         StartCoroutine(UpdateTimer());
     }
 
-    public void RestartTimer()
+    public void RestartTimer(float timeToSet)
     {
-        elapsedTime = 0;
+        elapsedTime = timeToSet;
     }
 
     public void PauseTimer()
