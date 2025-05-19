@@ -1846,6 +1846,8 @@ MonoBehaviour:
   victoryPanel: {fileID: 868836023}
   victoryButton: {fileID: 1702250674}
   solutionScreen: {fileID: 2005350376}
+  restartStopwatch: 0
+  prevSolvedTime: 0
 --- !u!4 &421472068
 Transform:
   m_ObjectHideFlags: 0
@@ -2067,7 +2069,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 591.4, y: 8.4}
+  m_AnchoredPosition: {x: 601.1002, y: 8.4}
   m_SizeDelta: {x: 90, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &466531448
@@ -8808,111 +8810,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1585749314}
   m_CullTransparentMesh: 1
---- !u!1001 &1607378002
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 609933200699053440, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
-      propertyPath: OutputAudioMixerGroup
-      value: 
-      objectReference: {fileID: 8760106005019355628, guid: cbba7c3b208f5d74da949f44a412462e, type: 2}
-    - target: {fileID: 1874912777310412713, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
-      propertyPath: OutputAudioMixerGroup
-      value: 
-      objectReference: {fileID: -43719736941656216, guid: cbba7c3b208f5d74da949f44a412462e, type: 2}
-    - target: {fileID: 3019216315043786474, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 703.2041
-      objectReference: {fileID: 0}
-    - target: {fileID: 3019216315043786474, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 570.5498
-      objectReference: {fileID: 0}
-    - target: {fileID: 3019216315043786474, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -6.354817
-      objectReference: {fileID: 0}
-    - target: {fileID: 3019216315043786474, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3019216315043786474, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3019216315043786474, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3019216315043786474, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3019216315043786474, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3019216315043786474, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3019216315043786474, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3375287051197140606, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
-      propertyPath: pauseSFX
-      value: 
-      objectReference: {fileID: 8300000, guid: 096f4913bc941f642a54fcd067677b15, type: 3}
-    - target: {fileID: 3375287051197140606, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
-      propertyPath: emptyInput
-      value: 
-      objectReference: {fileID: 8300000, guid: 6eef2211eb629c14ead99026f7165ee3, type: 3}
-    - target: {fileID: 3375287051197140606, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
-      propertyPath: songVolume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3375287051197140606, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
-      propertyPath: completeSFX
-      value: 
-      objectReference: {fileID: 8300000, guid: 2b5cadafecd044a419d1e8ddd5cee655, type: 3}
-    - target: {fileID: 3375287051197140606, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
-      propertyPath: gridTileSFX
-      value: 
-      objectReference: {fileID: 8300000, guid: 8322984f9fdc3824a95ef848d9b4bb56, type: 3}
-    - target: {fileID: 3375287051197140606, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
-      propertyPath: soundVolume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3375287051197140606, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
-      propertyPath: clueSolvedSFX
-      value: 
-      objectReference: {fileID: 8300000, guid: d21300a5c50582e43afa255c68d31783, type: 3}
-    - target: {fileID: 3375287051197140606, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
-      propertyPath: clueUnsolvedSFX
-      value: 
-      objectReference: {fileID: 8300000, guid: d009e5915ab564b45b46b343b03377ff, type: 3}
-    - target: {fileID: 3375287051197140606, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
-      propertyPath: generalUIButton
-      value: 
-      objectReference: {fileID: 8300000, guid: 6013c999714ab4b4089e4bf7f695996e, type: 3}
-    - target: {fileID: 3375287051197140606, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
-      propertyPath: 'playlist.Array.data[1]'
-      value: 
-      objectReference: {fileID: 8300000, guid: 7474fa329eda2fe4e9cbfa2cfdcb38fb, type: 3}
-    - target: {fileID: 8165585509999232922, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
-      propertyPath: m_Name
-      value: AudioManager
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
 --- !u!1 &1614105990
 GameObject:
   m_ObjectHideFlags: 0
@@ -9661,7 +9558,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 790, y: 8.4}
+  m_AnchoredPosition: {x: 799.7002, y: 8.4}
   m_SizeDelta: {x: 90, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1767419800
@@ -14764,4 +14661,3 @@ SceneRoots:
   - {fileID: 2036878916}
   - {fileID: 1983402637}
   - {fileID: 421472068}
-  - {fileID: 1607378002}

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -25,22 +26,39 @@ public class AudioManager : MonoBehaviour
     public AudioClip generalUIButton;
     public AudioClip emptyInput;
 
-    void Start()
+    void Awake()
     {
         songSource = GetComponent<AudioSource>();
+        PlayNext(0);
+    }
 
-        if (!songSource.isPlaying)
+    void OnEnable()
+    {
+        SceneManager.activeSceneChanged += OnSceneChanged;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.activeSceneChanged -= OnSceneChanged;
+    }
+
+    void OnSceneChanged(Scene oldScene, Scene newScene)
+    {
+        if (newScene.name == "NonogramGameScene")
         {
-            PlayNext(Random.Range(0, playlist.Length));
+            PlayNext(Random.Range(1, playlist.Length));
+        }
+        else if (songSource.clip != playlist[0])
+        {
+            PlayNext(0);
         }
     }
 
     void Update()
     {
-
         if (!songSource.isPlaying)
         {
-            PlayNext(Random.Range(0, playlist.Length));
+            PlayNext(Random.Range(1, playlist.Length));
         }
     }
 

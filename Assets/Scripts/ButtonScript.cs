@@ -93,6 +93,7 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler
             }
         }
         UpdateVisuals();
+        GameManager.Instance.CheckWinCondition();
     }
 
     public void RedoCell()
@@ -118,6 +119,7 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler
             State = CellState.Blank;
         }
         UpdateVisuals();
+        GameManager.Instance.CheckWinCondition();
     }
 
     public void ClearCell()
