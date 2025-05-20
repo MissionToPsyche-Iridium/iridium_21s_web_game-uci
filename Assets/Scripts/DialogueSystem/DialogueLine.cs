@@ -15,6 +15,7 @@ namespace DialogueSystem
 
         [Header("Time Parameters")]
         [SerializeField] private float delay;
+        [SerializeField] private float delayBetweenLines;
 
         [Header("Character Image")]
         [SerializeField] private Sprite characterSprite;
@@ -25,9 +26,13 @@ namespace DialogueSystem
             textHolder = GetComponent<Text>();
             textHolder.text = "";
 
-            StartCoroutine(WriteText(input, textHolder, textColor, textFont, delay));
             imageHolder.sprite = characterSprite;
             imageHolder.preserveAspect = true;
+        }
+
+        private void Start()
+        {
+            StartCoroutine(WriteText(input, textHolder, textColor, textFont, delay, delayBetweenLines));
         }
     }
 }
