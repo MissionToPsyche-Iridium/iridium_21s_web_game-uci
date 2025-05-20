@@ -209,7 +209,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 2038437629}
     m_Modifications:
     - target: {fileID: 609933200699053440, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
       propertyPath: OutputAudioMixerGroup
@@ -220,16 +220,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -43719736941656216, guid: cbba7c3b208f5d74da949f44a412462e, type: 2}
     - target: {fileID: 3019216315043786474, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.9983713
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019216315043786474, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.9983713
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019216315043786474, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.9983713
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019216315043786474, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 703.2041
+      value: -230.46484
       objectReference: {fileID: 0}
     - target: {fileID: 3019216315043786474, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 570.5498
+      value: 29.795937
       objectReference: {fileID: 0}
     - target: {fileID: 3019216315043786474, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.354817
+      value: -2.4103804
       objectReference: {fileID: 0}
     - target: {fileID: 3019216315043786474, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
       propertyPath: m_LocalRotation.w
@@ -264,6 +276,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 069986774f9dfb4418757930c5feeda6, type: 3}
     - target: {fileID: 3375287051197140606, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
+      propertyPath: pauseSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 096f4913bc941f642a54fcd067677b15, type: 3}
+    - target: {fileID: 3375287051197140606, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
       propertyPath: nodeClickSFX
       value: 
       objectReference: {fileID: 8300000, guid: 2615faaed23ce1f4bbfa2b757c472369, type: 3}
@@ -276,25 +292,33 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: d009e5915ab564b45b46b343b03377ff, type: 3}
     - target: {fileID: 3375287051197140606, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
+      propertyPath: playlist.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3375287051197140606, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
       propertyPath: 'playlist.Array.data[0]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8300000, guid: 94806785bf8a98d449baef8fc3c5f6d3, type: 3}
     - target: {fileID: 3375287051197140606, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
       propertyPath: 'playlist.Array.data[1]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8300000, guid: 7ab8eeee9c344a54788ac26e3f9e38a6, type: 3}
     - target: {fileID: 3375287051197140606, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
       propertyPath: 'playlist.Array.data[2]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8300000, guid: c013be3bf097a4241aa6ebe42d2453fb, type: 3}
     - target: {fileID: 3375287051197140606, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
       propertyPath: 'playlist.Array.data[3]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8300000, guid: 28ac54f9ae9151444bb92178f7945275, type: 3}
     - target: {fileID: 3375287051197140606, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
       propertyPath: 'playlist.Array.data[4]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8300000, guid: 548aa89bd08153949909b1965ca716d8, type: 3}
+    - target: {fileID: 3375287051197140606, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
+      propertyPath: 'playlist.Array.data[5]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 7474fa329eda2fe4e9cbfa2cfdcb38fb, type: 3}
     - target: {fileID: 8165585509999232922, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
       propertyPath: m_Name
       value: AudioManager
@@ -304,6 +328,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
+--- !u!4 &62780749 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3019216315043786474, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
+  m_PrefabInstance: {fileID: 62780748}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &96316453
 GameObject:
   m_ObjectHideFlags: 0
@@ -4986,7 +5015,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Psyche Anteater
+  m_text: Aenigma 16
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a3f1b373668b9194491d5f3c3fd92387, type: 2}
   m_sharedMaterial: {fileID: 6164090050152161699, guid: a3f1b373668b9194491d5f3c3fd92387, type: 2}
@@ -5426,6 +5455,7 @@ Transform:
   m_LocalScale: {x: 1.0016314, y: 1.0016314, z: 1.0016314}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 62780749}
   - {fileID: 436928539}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5473,4 +5503,3 @@ SceneRoots:
   - {fileID: 2038437629}
   - {fileID: 700821952}
   - {fileID: 201341517}
-  - {fileID: 62780748}
