@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      dialogue-sprite-geckle_0: 8391270899878780958
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

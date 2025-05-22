@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      dialogue-sprite-bridges_0: -2537615077610235990
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
