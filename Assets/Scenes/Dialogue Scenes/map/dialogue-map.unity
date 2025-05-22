@@ -1781,7 +1781,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cfe2d77637214c318e85e78ce79fa1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: "You are now part of an ambitious journey into the depths of space\u2013one
+  input: "You are now part of an ambitious journey into the depths of space, one
     that may hold the secrets of our solar system\u2019s past. Geckle can explain
     a bit more about the mission."
   textFont: {fileID: 12800000, guid: b6f87074ef7df4a8586128206a11ec3d, type: 3}
