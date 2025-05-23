@@ -29,17 +29,17 @@ public class TutorialGridLoader : MonoBehaviour
 
     void LoadPuzzle()
     {
-        string path = Path.Combine(Application.dataPath, "SavedPuzzles", puzzleFileName + ".json");
-        if (File.Exists(path))
+        TextAsset puzzleJson = Resources.Load<TextAsset>("SavedPuzzles/" + puzzleFileName);
+        if (puzzleJson != null)
         {
-            string json = File.ReadAllText(path);
-            tutorialPuzzle = JsonUtility.FromJson<NonogramPuzzle>(json);
+            tutorialPuzzle = JsonUtility.FromJson<NonogramPuzzle>(puzzleJson.text);
         }
         else
         {
-            Debug.LogError("Tutorial puzzle not found at path: " + path);
+            Debug.LogError("Tutorial puzzle not found in Resources/SavedPuzzles: " + puzzleFileName);
         }
     }
+
 
     void GenerateTutorialGrid()
     {
