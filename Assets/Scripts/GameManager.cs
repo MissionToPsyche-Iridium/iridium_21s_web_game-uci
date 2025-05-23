@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
     AudioManager sounds;
     NonogramPuzzle puzzle;
 
-    string saveProgressPath = Application.dataPath + "/ProgressPuzzles/";
+    //string saveProgressPath = Application.dataPath + "/ProgressPuzzles/";
 
     Dictionary<int, string> matchPuzzle = new Dictionary<int, string>()
     {
@@ -106,19 +106,26 @@ public class GameManager : MonoBehaviour
 
     NonogramPuzzle LoadPuzzle()
     {
-        
+        //PlayerPrefs.DeleteKey("SavedPuzzleIndex");
+        //PlayerPrefs.DeleteKey("SavedPuzzle");
         if (LevelLoader.puzzleToLoad != null)
         {
-            // Assign an index number to each puzzle by name
-            puzzleIndex = matchPuzzle.FirstOrDefault(x => x.Value == LevelLoader.puzzleName).Key;
-
-            string savedFilePath = saveProgressPath + LevelLoader.puzzleName + ".json";
-            if (System.IO.File.Exists(savedFilePath))
+            // If a puzzle is already loaded, use it
+            if (PlayerPrefs.HasKey("SavedPuzzleIndex"))
             {
-                string json = System.IO.File.ReadAllText(savedFilePath);
-                NonogramPuzzle loadedPuzzle = JsonUtility.FromJson<NonogramPuzzle>(json);
+                puzzleIndex = PlayerPrefs.GetInt("SavedPuzzleIndex");
+            }
+
+            // If a puzzle is saved, load it
+            if (PlayerPrefs.HasKey("SavedPuzzle"))
+            { 
+                string puzzleJson = PlayerPrefs.GetString("SavedPuzzle");
+                NonogramPuzzle loadedPuzzle = JsonUtility.FromJson<NonogramPuzzle>(puzzleJson);
                 return loadedPuzzle;
             }
+
+            // Assign an index number to each puzzle by name
+            puzzleIndex = matchPuzzle.FirstOrDefault(x => x.Value == LevelLoader.puzzleName).Key;
 
             return LevelLoader.puzzleToLoad;
         }
@@ -285,6 +292,7 @@ public class GameManager : MonoBehaviour
             sounds.PlaySFX(sounds.completeSFX);
             ++numPuzzlesSolved;
             prevSolvedTime = TimerScript.instance.elapsedTime;
+            PlayerPrefs.DeleteKey("SavedPuzzle");
 
             // Find and set the solution sprite assigned to this puzzle
             for (int i = 0; i < savedPuzzleFiles.Count; ++i)
@@ -294,6 +302,10 @@ public class GameManager : MonoBehaviour
                     victoryScreenSprite = victorySprites[i];
                     solutionScreen.SetSolutionScreen(victoryScreenSprite);
                 }
+            }
+            if (numPuzzlesSolved % 4 == 0)
+            {
+                PlayerPrefs.DeleteKey("SavedPuzzleIndex");
             }
             if (numPuzzlesSolved > 3)
             {
@@ -353,15 +365,20 @@ public class GameManager : MonoBehaviour
 
     public void SaveGame()
     {
-        // Save the current progress to a file in Progress Puzzles
-        string fileName = matchPuzzle[puzzleIndex];
+        // Save the current progress to player prefs (local storage)
+        PlayerPrefs.SetInt("SavedPuzzleIndex", puzzleIndex);
+        Debug.Log(puzzleIndex);
 
         puzzle.SaveProgress();
         puzzle.timer = TimerScript.instance.elapsedTime;
+        string puzzleJson = JsonUtility.ToJson(puzzle, true);
+        PlayerPrefs.SetString("SavedPuzzle", puzzleJson);
+
+        PlayerPrefs.Save();
         //puzzle.skipTutorial = TutorialManager.instance.skipLaunchPanel;
 
-        string json = JsonUtility.ToJson(puzzle, true);
-        System.IO.File.WriteAllText(saveProgressPath + fileName + ".json", json);
+        //string json = JsonUtility.ToJson(puzzle, true);
+        //System.IO.File.WriteAllText(saveProgressPath + "test.json", json);
     }
 
     public void RestartProgress()
