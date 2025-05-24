@@ -7,6 +7,7 @@ public class TooltipsHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 {
     private Coroutine visibleTimer;
     public GameObject tooltip;
+    public GameObject tooltipArrow;
     private float delay = 0.5f;
 
     public void OnPointerEnter(PointerEventData pointerEventData)
@@ -23,11 +24,13 @@ public class TooltipsHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         }
 
         TooltipsManager.instance.TooltipInvisible(tooltip);
+        TooltipsManager.instance.TooltipInvisible(tooltipArrow);
     }
 
     IEnumerator ShowTooltip(float delay)
     {
         yield return new WaitForSeconds(delay);
         TooltipsManager.instance.TooltipVisible(tooltip);
+        TooltipsManager.instance.TooltipVisible(tooltipArrow);
     }
 }
