@@ -15,6 +15,8 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler
     [SerializeField] private Sprite blankSprite;
     [SerializeField] private Sprite filledSprite;
 
+    private Image targetImage;
+
     [HideInInspector] public int row, col;
     [HideInInspector] public NonogramPuzzle puzzle;
 
@@ -30,6 +32,14 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler
     {
         instance = this;
         sounds = GameObject.FindGameObjectWithTag("Audio")?.GetComponent<AudioManager>();
+
+        // Auto-load sprites from Resources if not assigned
+        if (blankSprite == null)
+            blankSprite = Resources.Load<Sprite>("nonogram_cell_unfilled");
+        if (filledSprite == null)
+            filledSprite = Resources.Load<Sprite>("nonogram_cell_filled");
+        if (crossedSprite == null)
+            crossedSprite = Resources.Load<Sprite>("nonogram_cell_crossed");
     }
 
     public void OnPointerClick(PointerEventData data)
@@ -38,13 +48,58 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler
 
         if (isPartOfTutorial)
         {
-            if (isTutorialInteractive && data.button == PointerEventData.InputButton.Left)
+            if (!isTutorialInteractive)
             {
-                ToggleTutorialState();
+                Debug.Log($"Cell ({row}, {col}) is not interactive in tutorial.");
+                return;
             }
+
+            if (data.button == PointerEventData.InputButton.Left)
+            {
+                // Correct cycling: Blank → Filled → Crossed → Blank
+                if (State == CellState.Blank)
+                {
+                    State = CellState.Filled;
+                    puzzle.GridData[row, col] = 1;
+                }
+                else if (State == CellState.Filled)
+                {
+                    State = CellState.Crossed;
+                    puzzle.GridData[row, col] = 2;
+                }
+                else if (State == CellState.Crossed)
+                {
+                    State = CellState.Blank;
+                    puzzle.GridData[row, col] = 0;
+                }
+
+                UpdateVisuals();
+                Object.FindFirstObjectByType<TutorialManager>()?.TryAutoAdvanceAfterInteraction();
+                return;
+            }
+
+            if (data.button == PointerEventData.InputButton.Right)
+            {
+                if (State != CellState.Crossed)
+                {
+                    State = CellState.Crossed;
+                    puzzle.GridData[row, col] = 2;
+                }
+                else
+                {
+                    State = CellState.Blank;
+                    puzzle.GridData[row, col] = 0;
+                }
+
+                UpdateVisuals();
+                Object.FindFirstObjectByType<TutorialManager>()?.TryAutoAdvanceAfterInteraction();
+                return;
+            }
+
             return;
         }
 
+        // Non-tutorial behavior
         if (data.button == PointerEventData.InputButton.Left)
         {
             ChangeGameState();
@@ -57,16 +112,29 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler
 
     private void ToggleTutorialState()
     {
-        if (State == CellState.Blank)
+        Debug.Log($"[Tutorial] Toggling state at ({row},{col}) from {State}");
+
+        switch (State)
         {
-            State = CellState.Filled;
+            case CellState.Blank:
+                State = CellState.Filled;
+                puzzle.GridData[row, col] = 1;
+                break;
+            case CellState.Filled:
+                State = CellState.Crossed;
+                puzzle.GridData[row, col] = 2;
+                break;
+            case CellState.Crossed:
+                State = CellState.Blank;
+                puzzle.GridData[row, col] = 0;
+                break;
         }
-        else
-        {
-            State = CellState.Blank;
-        }
+
         UpdateVisuals();
+
+        Object.FindFirstObjectByType<TutorialManager>()?.TryAutoAdvanceAfterInteraction();
     }
+
 
     public void ChangeGameState()
     {
@@ -195,20 +263,26 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler
 
     public void UpdateVisuals()
     {
-        if (TryGetComponent(out Button uiButton))
+        Image image = GetComponent<Image>();
+        if (image == null)
         {
-            switch (State)
-            {
-                case CellState.Blank:
-                    uiButton.image.sprite = blankSprite;
-                    break;
-                case CellState.Filled:
-                    uiButton.image.sprite = filledSprite;
-                    break;
-                case CellState.Crossed:
-                    uiButton.image.sprite = crossedSprite;
-                    break;
-            }
+            Debug.LogWarning($"[Visual] No Image component found on cell ({row},{col})!");
+            return;
+        }
+
+        Debug.Log($"[Visual] Updating sprite at ({row},{col}) to {State}");
+
+        switch (State)
+        {
+            case CellState.Blank:
+                image.sprite = blankSprite;
+                break;
+            case CellState.Filled:
+                image.sprite = filledSprite;
+                break;
+            case CellState.Crossed:
+                image.sprite = crossedSprite;
+                break;
         }
     }
 }

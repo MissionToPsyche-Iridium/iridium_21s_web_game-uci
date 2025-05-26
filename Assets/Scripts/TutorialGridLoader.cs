@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -33,6 +34,8 @@ public class TutorialGridLoader : MonoBehaviour
         if (puzzleJson != null)
         {
             tutorialPuzzle = JsonUtility.FromJson<NonogramPuzzle>(puzzleJson.text);
+            Object.FindFirstObjectByType<TutorialGridController>().puzzle = tutorialPuzzle;
+
         }
         else
         {
@@ -70,7 +73,7 @@ public class TutorialGridLoader : MonoBehaviour
             colClue.GetComponent<TMP_Text>().text = string.Join("\n", tutorialPuzzle.ColClues[c].Clues);
         }
 
-        // generate 
+       // generate 
         for (int r = 0; r < rows; r++)
         {
             for (int c = 0; c < cols; c++)
@@ -80,18 +83,21 @@ public class TutorialGridLoader : MonoBehaviour
 
                 ButtonScript cellButton = cell.GetComponent<ButtonScript>();
 
-               //ADDED BY LANCE
-               //****************************************************************************
                 cellButton.row = r;
                 cellButton.col = c;
                 cellButton.puzzle = tutorialPuzzle;
-                //***************************************************************************
+                cellButton.isPartOfTutorial = true; // Flag cell as part of tutorial
+
+                cellButton.State = CellState.Blank;
+                tutorialPuzzle.GridData[r, c] = 0;
+                cellButton.UpdateVisuals();
 
                 // gray out cells to make them non-interactive in the tutorial
                 Button btn = cell.GetComponent<Button>();
                 if (btn) btn.interactable = false;
             }
         }
+
     }
 
     void ClearGrid()
