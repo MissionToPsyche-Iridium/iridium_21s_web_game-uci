@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 92468c01ee5fb2744b4549b34eea9c7f
+guid: c50d55f5f5fbc432d882772b43e96814
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3146624851325252209
-    second: button_continue_active_0
+      213: -5250657687756452233
+    second: highlight_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -48,7 +48,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -96,17 +96,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: button_continue_active_0
+      name: highlight_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 268
-        height: 84
+        width: 654
+        height: 657
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f8d87578e51f454d0800000000000000
-      internalID: -3146624851325252209
+      spriteID: 77e4a14f6aae127b0800000000000000
+      internalID: -5250657687756452233
       vertices: []
       indices: 
       edges: []
@@ -135,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      button_continue_active_0: -3146624851325252209
+      highlight_0: -5250657687756452233
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
