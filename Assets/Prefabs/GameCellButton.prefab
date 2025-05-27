@@ -120,19 +120,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6219325065302380509}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7934052273546716792}
-        m_TargetAssemblyTypeName: ButtonScript, Assembly-CSharp
-        m_MethodName: ChangeGameState
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &7934052273546716792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,4 +143,9 @@ MonoBehaviour:
     Cols: 0
     RowClues: []
     ColClues: []
+    SaveData: 
     SolutionFlatGridData: 
+    timer: 0
+    skipTutorial: 0
+  isPartOfTutorial: 0
+  isTutorialInteractive: 0

@@ -5,47 +5,143 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public enum CellState { Crossed, Blank, Filled }
+
 public class ButtonScript : MonoBehaviour, IPointerClickHandler
 {
     public static ButtonScript instance;
-    AudioManager sounds;
-    public CellState State { get; set; } = CellState.Blank;
-    [SerializeField] Sprite crossedSprite, blankSprite, filledSprite;
+
+    [Header("Sprites")]
+    [SerializeField] private Sprite crossedSprite;
+    [SerializeField] private Sprite blankSprite;
+    [SerializeField] private Sprite filledSprite;
+
+    private Image targetImage;
 
     [HideInInspector] public int row, col;
-    // Connection to puzzle
     [HideInInspector] public NonogramPuzzle puzzle;
+
+    private AudioManager sounds;
+
+    public CellState State { get; set; } = CellState.Blank;
+
+    [Header("Tutorial Settings")]
+    public bool isPartOfTutorial = false;
+    public bool isTutorialInteractive = false;
 
     private void Awake()
     {
         instance = this;
-        sounds = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        sounds = GameObject.FindGameObjectWithTag("Audio")?.GetComponent<AudioManager>();
+
+        // Auto-load sprites from Resources if not assigned
+        if (blankSprite == null)
+            blankSprite = Resources.Load<Sprite>("nonogram_cell_unfilled");
+        if (filledSprite == null)
+            filledSprite = Resources.Load<Sprite>("nonogram_cell_filled");
+        if (crossedSprite == null)
+            crossedSprite = Resources.Load<Sprite>("nonogram_cell_crossed");
     }
 
-    public void ChangeGeneratorState()  // Called from the button
+    public void OnPointerClick(PointerEventData data)
     {
-        if (State == CellState.Blank)
+        Debug.Log($"Cell clicked: ({row}, {col})");
+
+        if (isPartOfTutorial)
         {
-            State = CellState.Filled;
-        }
-        else
-        {
-            State = CellState.Blank;
+            if (!isTutorialInteractive)
+            {
+                Debug.Log($"Cell ({row}, {col}) is not interactive in tutorial.");
+                return;
+            }
+
+            if (data.button == PointerEventData.InputButton.Left)
+            {
+                // Correct cycling: Blank → Filled → Crossed → Blank
+                if (State == CellState.Blank)
+                {
+                    State = CellState.Filled;
+                    puzzle.GridData[row, col] = 1;
+                }
+                else if (State == CellState.Filled)
+                {
+                    State = CellState.Crossed;
+                    puzzle.GridData[row, col] = 2;
+                }
+                else if (State == CellState.Crossed)
+                {
+                    State = CellState.Blank;
+                    puzzle.GridData[row, col] = 0;
+                }
+
+                UpdateVisuals();
+                Object.FindFirstObjectByType<TutorialManager>()?.TryAutoAdvanceAfterInteraction();
+                return;
+            }
+
+            if (data.button == PointerEventData.InputButton.Right)
+            {
+                if (State != CellState.Crossed)
+                {
+                    State = CellState.Crossed;
+                    puzzle.GridData[row, col] = 2;
+                }
+                else
+                {
+                    State = CellState.Blank;
+                    puzzle.GridData[row, col] = 0;
+                }
+
+                UpdateVisuals();
+                Object.FindFirstObjectByType<TutorialManager>()?.TryAutoAdvanceAfterInteraction();
+                return;
+            }
+
+            return;
         }
 
-        puzzle.SolutionData[row, col] = puzzle.SolutionData[row, col] == 1 ? 0 : 1;
+        // Non-tutorial behavior
+        if (data.button == PointerEventData.InputButton.Left)
+        {
+            ChangeGameState();
+        }
+        else if (data.button == PointerEventData.InputButton.Right)
+        {
+            ToggleCrossedState();
+        }
+    }
+
+    private void ToggleTutorialState()
+    {
+        Debug.Log($"[Tutorial] Toggling state at ({row},{col}) from {State}");
+
+        switch (State)
+        {
+            case CellState.Blank:
+                State = CellState.Filled;
+                puzzle.GridData[row, col] = 1;
+                break;
+            case CellState.Filled:
+                State = CellState.Crossed;
+                puzzle.GridData[row, col] = 2;
+                break;
+            case CellState.Crossed:
+                State = CellState.Blank;
+                puzzle.GridData[row, col] = 0;
+                break;
+        }
 
         UpdateVisuals();
-        //Notify GridManager
-        GridManager.instance.OnCellStateChanged();
+
+        Object.FindFirstObjectByType<TutorialManager>()?.TryAutoAdvanceAfterInteraction();
     }
+
 
     public void ChangeGameState()
     {
-        sounds.PlaySFX(sounds.gridTileSFX);
+        sounds?.PlaySFX(sounds.gridTileSFX);
 
-        UIUndoRedo.instance.undoActions.Push(this.gameObject);
-        UIUndoRedo.instance.redoActions.Clear();
+        UIUndoRedo.instance?.undoActions.Push(gameObject);
+        UIUndoRedo.instance?.redoActions.Clear();
 
         if (State == CellState.Blank)
         {
@@ -62,9 +158,23 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler
             puzzle.GridData[row, col] = 0;
             State = CellState.Blank;
         }
+
         UpdateVisuals();
-        // Check for win condition
-        GameManager.Instance.CheckWinCondition();
+        GameManager.Instance?.CheckWinCondition();
+    }
+
+    private void ToggleCrossedState()
+    {
+        sounds?.PlaySFX(sounds.gridTileSFX);
+
+        UIUndoRedo.instance?.undoActions.Push(gameObject);
+        UIUndoRedo.instance?.redoActions.Clear();
+
+        puzzle.GridData[row, col] = 3;
+        State = CellState.Crossed;
+
+        UpdateVisuals();
+        GameManager.Instance?.CheckWinCondition();
     }
 
     public void UndoCell()
@@ -81,16 +191,8 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler
         }
         else
         {
-            if (puzzle.GridData[row, col] == 3)
-            {
-                puzzle.GridData[row, col] = 4;
-                State = CellState.Blank;
-            }
-            else
-            {
-                puzzle.GridData[row, col] = 1;
-                State = CellState.Filled;
-            }
+            puzzle.GridData[row, col] = 1;
+            State = CellState.Filled;
         }
         UpdateVisuals();
         GameManager.Instance.CheckWinCondition();
@@ -98,12 +200,7 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler
 
     public void RedoCell()
     {
-        if (puzzle.GridData[row, col] == 4)
-        {
-            puzzle.GridData[row, col] = 3;
-            State = CellState.Crossed;
-        }
-        else if (State == CellState.Blank)
+        if (State == CellState.Blank)
         {
             puzzle.GridData[row, col] = 1;
             State = CellState.Filled;
@@ -134,11 +231,11 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler
 
     public void Restart()
     {
-        sounds.PlaySFX(sounds.restartSFX);
+        sounds?.PlaySFX(sounds.restartSFX);
 
-        UIUndoRedo.instance.redoActions.Clear();
+        UIUndoRedo.instance?.redoActions.Clear();
 
-        while (UIUndoRedo.instance.undoActions.Count > 0)
+        while (UIUndoRedo.instance?.undoActions.Count > 0)
         {
             GameObject objectPresent = UIUndoRedo.instance.undoActions.Peek();
             if (objectPresent != null)
@@ -154,30 +251,38 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    public void OnPointerClick(PointerEventData data)
+    public void EnableForTutorial(bool isEnabled)
     {
-        if (data.button == PointerEventData.InputButton.Right)
+        isTutorialInteractive = isEnabled;
+
+        if (TryGetComponent(out Button uiButton))
         {
-            sounds.PlaySFX(sounds.gridTileSFX);
-
-            UIUndoRedo.instance.undoActions.Push(this.gameObject);
-            UIUndoRedo.instance.redoActions.Clear();
-
-            puzzle.GridData[row, col] = State == CellState.Filled ? puzzle.GridData[row, col] = 2 
-                : puzzle.GridData[row, col] = 3;
-            State = CellState.Crossed;
-            UpdateVisuals();
-            GameManager.Instance.CheckWinCondition();
+            uiButton.interactable = isEnabled;
         }
     }
 
     public void UpdateVisuals()
     {
+        Image image = GetComponent<Image>();
+        if (image == null)
+        {
+            Debug.LogWarning($"[Visual] No Image component found on cell ({row},{col})!");
+            return;
+        }
+
+        Debug.Log($"[Visual] Updating sprite at ({row},{col}) to {State}");
+
         switch (State)
         {
-            case CellState.Blank: GetComponent<Button>().image.sprite = blankSprite; break;
-            case CellState.Filled: GetComponent<Button>().image.sprite = filledSprite; break;
-            case CellState.Crossed: GetComponent<Button>().image.sprite = crossedSprite; break;
+            case CellState.Blank:
+                image.sprite = blankSprite;
+                break;
+            case CellState.Filled:
+                image.sprite = filledSprite;
+                break;
+            case CellState.Crossed:
+                image.sprite = crossedSprite;
+                break;
         }
     }
 }

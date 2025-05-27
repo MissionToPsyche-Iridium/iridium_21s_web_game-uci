@@ -1,2 +1,14 @@
 fileFormatVersion: 2
 guid: 9d5e167c7d9346341bdf9e5126ffa8cb
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - crossedSprite: {fileID: 5042252446262214595, guid: 2f6b3e7bf79c23e45bc0f75914ec1cb8, type: 3}
+  - blankSprite: {fileID: 562549789, guid: 2446c981bb3ead24cb48d200ca212cdd, type: 3}
+  - filledSprite: {fileID: -5757596414194590282, guid: 81b9382ce8a8b614cab85e0bc63a47e9, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
