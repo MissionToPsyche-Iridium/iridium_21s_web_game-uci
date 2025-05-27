@@ -108,6 +108,9 @@ public class GameManager : MonoBehaviour
     {
         //PlayerPrefs.DeleteKey("SavedPuzzleIndex");
         //PlayerPrefs.DeleteKey("SavedPuzzle");
+        //PlayerPrefs.DeleteKey("SavedTime");
+
+
         if (LevelLoader.puzzleToLoad != null)
         {
             // If a puzzle is already loaded, use it
@@ -117,9 +120,11 @@ public class GameManager : MonoBehaviour
             }
 
             // If a puzzle is saved, load it
-            if (PlayerPrefs.HasKey("SavedPuzzle"))
+            if (PlayerPrefs.HasKey("SavedPuzzle") && 
+                PlayerPrefs.GetInt("SavedPuzzleIndex") == puzzleIndex)
             { 
                 string puzzleJson = PlayerPrefs.GetString("SavedPuzzle");
+                PlayerPrefs.SetString("SavedPuzzle", string.Empty);
                 NonogramPuzzle loadedPuzzle = JsonUtility.FromJson<NonogramPuzzle>(puzzleJson);
                 return loadedPuzzle;
             }
@@ -144,8 +149,16 @@ public class GameManager : MonoBehaviour
         rows = puzzle.Rows;
         columns = puzzle.Cols;
         float checkTime = TimerScript.instance.elapsedTime;
+        bool checkSavedTime = PlayerPrefs.HasKey("SavedTime") &&
+            PlayerPrefs.GetFloat("SavedTime")>0 &&
+            PlayerPrefs.GetInt("SavedPuzzleIndex") == puzzleIndex;
 
-        if (checkTime > 0 && restartStopwatch)
+        if (checkSavedTime)
+        {
+            TimerScript.instance.RestartTimer(PlayerPrefs.GetFloat("SavedTime"));
+            PlayerPrefs.SetFloat("SavedTime", 0f);
+        }
+        else if (checkTime > 0 && restartStopwatch)
         { 
             TimerScript.instance.RestartTimer(prevSolvedTime);
             restartStopwatch = false;
@@ -293,6 +306,7 @@ public class GameManager : MonoBehaviour
             ++numPuzzlesSolved;
             prevSolvedTime = TimerScript.instance.elapsedTime;
             PlayerPrefs.DeleteKey("SavedPuzzle");
+            PlayerPrefs.DeleteKey("SavedTime");
 
             // Find and set the solution sprite assigned to this puzzle
             for (int i = 0; i < savedPuzzleFiles.Count; ++i)
@@ -370,7 +384,7 @@ public class GameManager : MonoBehaviour
         Debug.Log(puzzleIndex);
 
         puzzle.SaveProgress();
-        puzzle.timer = TimerScript.instance.elapsedTime;
+        PlayerPrefs.SetFloat("SavedTime", TimerScript.instance.elapsedTime);
         string puzzleJson = JsonUtility.ToJson(puzzle, true);
         PlayerPrefs.SetString("SavedPuzzle", puzzleJson);
 
