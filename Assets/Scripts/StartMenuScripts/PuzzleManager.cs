@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class PuzzleManager : MonoBehaviour
 {
@@ -44,15 +46,27 @@ public class PuzzleManager : MonoBehaviour
 
         yield return new WaitForSeconds(swingDuration);
 
-        // Set values and start the second puzzle animation
-        float puzzlePosY = Screen.height * 0.4f;
-        float secondPosY = puzzlePosY + targetPosY*0.3f;
+        // Prepare secondPuzzle (UI element assumed)
+        RectTransform puzzleRect = secondPuzzle.GetComponent<RectTransform>();
 
-        LeanTween.moveY(secondPuzzle, puzzlePosY, 2f)
+        // Force anchors and pivot to center to avoid unintended shifts
+        puzzleRect.anchorMin = new Vector2(0.5f, 0.5f);
+        puzzleRect.anchorMax = new Vector2(0.5f, 0.5f);
+        puzzleRect.pivot = new Vector2(0.5f, 0.5f);
+
+        // Get current X position to keep it locked
+        float puzzlePosX = puzzleRect.anchoredPosition.x;
+
+        // Set values and start the second puzzle animation
+        float originalY = puzzleRect.anchoredPosition.y;
+        float secondPosY = originalY + targetPosY*0.5f;
+
+        // Animate Y position only, keeping X the same
+        LeanTween.move(puzzleRect, new Vector2(puzzlePosX, originalY), 2f)
             .setEase(LeanTweenType.easeInOutSine)
             .setOnComplete(() =>
             {
-                LeanTween.moveY(secondPuzzle, secondPosY, 2f)
+                LeanTween.move(puzzleRect, new Vector2(puzzlePosX, secondPosY), 2f)
                     .setEase(LeanTweenType.easeInOutSine)
                     .setLoopPingPong(3);
             });
