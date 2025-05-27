@@ -270,8 +270,6 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler
             return;
         }
 
-        Debug.Log($"[Visual] Updating sprite at ({row},{col}) to {State}");
-
         switch (State)
         {
             case CellState.Blank:

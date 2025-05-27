@@ -28,7 +28,7 @@ public class TimerScript : MonoBehaviour
     //Initiated in GameManager when the scene loads
     public void BeginTimer(float timer)
     {
-        //timerState = true;
+        timerState = true;
         elapsedTime = timer;
         StartCoroutine(UpdateTimer());
     }
