@@ -324,7 +324,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: InteractiveTutorialScene
-  linkedLevel: {fileID: 4900000, guid: d42678020b41bfd4580575faa1e53b9d, type: 3}
+  linkedLevel: {fileID: 4900000, guid: c3041d7638011704891116d10bd24a32, type: 3}
 --- !u!114 &53537789
 MonoBehaviour:
   m_ObjectHideFlags: 0
