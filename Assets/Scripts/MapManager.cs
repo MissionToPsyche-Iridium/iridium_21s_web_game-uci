@@ -19,7 +19,7 @@ public class MapManager : MonoBehaviour
         SetupLevelNodes();
 
         //Added by Lance
-        if(currentLevel > 0)
+        if (currentLevel > 0)
         {
             GameObject.Find("DialogueHolder Intro").SetActive(false);
         }
