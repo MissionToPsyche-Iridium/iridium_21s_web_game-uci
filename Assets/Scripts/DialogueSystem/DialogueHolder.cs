@@ -14,6 +14,11 @@ namespace DialogueSystem
 
         private IEnumerator dialogueSequence()
         {
+            if (TimerScript.instance != null)
+            {
+                TimerScript.instance.PauseTimer();
+            }
+
             for (int i = 0; i < transform.childCount; i++)
             {
                 Deactivate();
@@ -22,6 +27,11 @@ namespace DialogueSystem
             }
             dialogueComplete = true;
             gameObject.SetActive(false);
+
+            if (TimerScript.instance != null)
+            {
+                TimerScript.instance.PauseTimer();
+            }
         }
 
         private void Deactivate()

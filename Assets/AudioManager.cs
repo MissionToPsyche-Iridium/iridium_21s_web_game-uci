@@ -25,6 +25,7 @@ public class AudioManager : MonoBehaviour
     [Header("General Sounds")]
     public AudioClip generalUIButton;
     public AudioClip emptyInput;
+    public AudioClip dialogueText;
 
     void Awake()
     {
@@ -71,5 +72,22 @@ public class AudioManager : MonoBehaviour
     public void PlaySFX(AudioClip sound)
     {
         soundSource.PlayOneShot(sound);
+    }
+
+    public void PlayDialogueSFX()
+    {
+        soundSource.clip = dialogueText;
+        soundSource.loop = true;
+        soundSource.Play();
+    }
+
+    public void StopDialogueSFX()
+    {
+        if (soundSource.isPlaying && soundSource.clip == dialogueText)
+        {
+            soundSource.Stop();
+            soundSource.loop = false; 
+            soundSource.clip = null; 
+        }
     }
 }
