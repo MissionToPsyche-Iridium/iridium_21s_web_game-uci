@@ -565,8 +565,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4271930125475434489, guid: 1e5cf2ef10baf034d9596a38080185a0, type: 3}
       propertyPath: input
-      value: "We\u2019re currently in the asteroid belt between Mars and Jupiter,
-        and guess what asteroid resides in this belt?"
+      value: The spacecraft is currently in the asteroid belt between Mars and Jupiter,
+        and guess what asteroid resides in this belt?
       objectReference: {fileID: 0}
     - target: {fileID: 4271930125475434489, guid: 1e5cf2ef10baf034d9596a38080185a0, type: 3}
       propertyPath: characterSprite
@@ -6255,7 +6255,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1892309530181123432, guid: 869df1a1104dc40b6b7cc923670388e6, type: 3}
       propertyPath: input
-      value: We've finally made it to Psyche. How's everyone feeling?
+      value: The spacecraft has finally made it to Psyche. How's everyone feeling?
       objectReference: {fileID: 0}
     - target: {fileID: 3368345666661083626, guid: 869df1a1104dc40b6b7cc923670388e6, type: 3}
       propertyPath: m_Pivot.x
@@ -7408,7 +7408,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4271930125475434489, guid: 1e5cf2ef10baf034d9596a38080185a0, type: 3}
       propertyPath: input
-      value: "We\u2019re using Mars\u2019 momentum to get a free speed boost!"
+      value: "We\u2019re using Mars\u2019 momentum to give the spacecraft a free
+        speed boost!"
       objectReference: {fileID: 0}
     - target: {fileID: 4271930125475434489, guid: 1e5cf2ef10baf034d9596a38080185a0, type: 3}
       propertyPath: characterSprite
@@ -8541,8 +8542,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4271930125475434489, guid: 1e5cf2ef10baf034d9596a38080185a0, type: 3}
       propertyPath: input
-      value: "My name is Bridges and I am the Mission Lead for NASA\u2019s Psyche
-        Mission."
+      value: "My name is Commander Bridge and I am the Mission Lead for NASA\u2019s
+        Psyche Mission."
       objectReference: {fileID: 0}
     - target: {fileID: 5328056516236473824, guid: 1e5cf2ef10baf034d9596a38080185a0, type: 3}
       propertyPath: m_Name
@@ -8634,7 +8635,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1892309530181123432, guid: 869df1a1104dc40b6b7cc923670388e6, type: 3}
       propertyPath: input
-      value: "W-woah, there\u2019s a lot of asteroids around us."
+      value: "W-woah, there\u2019s a lot of asteroids around the spacecraft."
       objectReference: {fileID: 0}
     - target: {fileID: 1892309530181123432, guid: 869df1a1104dc40b6b7cc923670388e6, type: 3}
       propertyPath: characterSprite
@@ -9803,7 +9804,7 @@ PrefabInstance:
     - target: {fileID: 4271930125475434489, guid: 1e5cf2ef10baf034d9596a38080185a0, type: 3}
       propertyPath: input
       value: Thank you, player! There will be so many things we can look at when
-        we get back home!
+        the spacecraft returns home!
       objectReference: {fileID: 0}
     - target: {fileID: 4271930125475434489, guid: 1e5cf2ef10baf034d9596a38080185a0, type: 3}
       propertyPath: characterSprite
@@ -10018,8 +10019,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4271930125475434489, guid: 1e5cf2ef10baf034d9596a38080185a0, type: 3}
       propertyPath: input
-      value: In fact, if our calculations are off by even a fraction, we could end
-        up drifting off course forever!
+      value: In fact, if our calculations are off by even a fraction, the craft could
+        end up drifting off course forever!
       objectReference: {fileID: 0}
     - target: {fileID: 4271930125475434489, guid: 1e5cf2ef10baf034d9596a38080185a0, type: 3}
       propertyPath: characterSprite
@@ -10268,7 +10269,8 @@ PrefabInstance:
       objectReference: {fileID: 4301478795972374436, guid: 807c2ec2982ff4334b1941fff7ce4fa5, type: 3}
     - target: {fileID: 1892309530181123432, guid: 869df1a1104dc40b6b7cc923670388e6, type: 3}
       propertyPath: input
-      value: "We\u2019ve reached Mars. Time for a critical maneuver: gravity assist."
+      value: 'The spacecraft has reached Mars. Time for a critical maneuver: gravity
+        assist.'
       objectReference: {fileID: 0}
     - target: {fileID: 3368345666661083626, guid: 869df1a1104dc40b6b7cc923670388e6, type: 3}
       propertyPath: m_Pivot.x
