@@ -5,9 +5,7 @@ public class TutorialGridController : MonoBehaviour
 {
     [Header("Grid & Puzzle")]
     public GameObject puzzleContainer;
-    public NonogramPuzzle puzzle;  // This must be assigned from the loader
-
-    // Used for enabling cells based on the step
+    public NonogramPuzzle puzzle; 
     public void ConfigureForStep(int step)
     {
         ButtonScript[] allCells = puzzleContainer.GetComponentsInChildren<ButtonScript>();
@@ -22,6 +20,15 @@ public class TutorialGridController : MonoBehaviour
                     enableCell = cell.col == 2;
                     break;
                 case 5:
+                    enableCell = cell.col == 0;
+
+                    if (cell.row == 0 && cell.col == 0)
+                    {
+                        cell.State = CellState.Filled;
+                        puzzle.GridData[cell.row, cell.col] = 1;
+                        cell.UpdateVisuals();
+                    }
+                    break;
                 case 6:
                     enableCell = cell.col == 0;
                     break;
@@ -43,15 +50,14 @@ public class TutorialGridController : MonoBehaviour
             cell.EnableForTutorial(enableCell);
         }
     }
-
-    // Goal data for interactive steps
+    
     public class TutorialStepGoal
     {
         public List<Vector2Int> RequiredFilledCells = new List<Vector2Int>();
         public List<Vector2Int> RequiredCrossedCells = new List<Vector2Int>();
     }
 
-    private Dictionary<int, TutorialStepGoal> stepGoals = new Dictionary<int, TutorialStepGoal>
+    public Dictionary<int, TutorialStepGoal> stepGoals = new Dictionary<int, TutorialStepGoal>
     {
         { 3, new TutorialStepGoal {
             RequiredFilledCells = new List<Vector2Int> {
@@ -65,7 +71,6 @@ public class TutorialGridController : MonoBehaviour
         }},
         { 5, new TutorialStepGoal {
             RequiredFilledCells = new List<Vector2Int> {
-                new Vector2Int(0, 0),
                 new Vector2Int(2, 0),
                 new Vector2Int(4, 0),
                 new Vector2Int(5, 0),
@@ -97,8 +102,6 @@ public class TutorialGridController : MonoBehaviour
         }}
     };
 
-
-    // Called from ButtonScript or tutorial manager to check if a step is complete
     public bool IsCurrentStepComplete(int currentStep)
     {
         if (!stepGoals.ContainsKey(currentStep) || puzzle == null)
