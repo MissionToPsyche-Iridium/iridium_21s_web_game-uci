@@ -20,6 +20,15 @@ public class TutorialGridController : MonoBehaviour
                     enableCell = cell.col == 2;
                     break;
                 case 5:
+                    enableCell = cell.col == 0;
+
+                    if (cell.row == 0 && cell.col == 0)
+                    {
+                        cell.State = CellState.Filled;
+                        puzzle.GridData[cell.row, cell.col] = 1;
+                        cell.UpdateVisuals();
+                    }
+                    break;
                 case 6:
                     enableCell = cell.col == 0;
                     break;
@@ -48,7 +57,7 @@ public class TutorialGridController : MonoBehaviour
         public List<Vector2Int> RequiredCrossedCells = new List<Vector2Int>();
     }
 
-    private Dictionary<int, TutorialStepGoal> stepGoals = new Dictionary<int, TutorialStepGoal>
+    public Dictionary<int, TutorialStepGoal> stepGoals = new Dictionary<int, TutorialStepGoal>
     {
         { 3, new TutorialStepGoal {
             RequiredFilledCells = new List<Vector2Int> {
@@ -62,7 +71,6 @@ public class TutorialGridController : MonoBehaviour
         }},
         { 5, new TutorialStepGoal {
             RequiredFilledCells = new List<Vector2Int> {
-                new Vector2Int(0, 0),
                 new Vector2Int(2, 0),
                 new Vector2Int(4, 0),
                 new Vector2Int(5, 0),
