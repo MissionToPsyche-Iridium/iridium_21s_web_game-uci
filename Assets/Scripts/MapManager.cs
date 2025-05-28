@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
@@ -19,6 +20,18 @@ public class MapManager : MonoBehaviour
         SetupLevelNodes();
 
         //Added by Lance
+        Debug.Log("Current Level: " + currentLevel);
+
+        if (currentLevel < 3)
+        {
+            GameObject.Find("DialogueHolder End Game").SetActive(false);
+        }
+        else
+        {
+            GameObject.Find("DialogueHolder End Game").SetActive(true);
+            StartCoroutine(WaitForOutroAndChangeScene());
+        }
+
         if (currentLevel > 0)
         {
             GameObject.Find("DialogueHolder Intro").SetActive(false);
@@ -77,6 +90,19 @@ public class MapManager : MonoBehaviour
             yield return null;
         };
 
+    }
+
+    //Added by Lance
+    private IEnumerator WaitForOutroAndChangeScene()
+    {
+        // Wait while the linkedDialogueHolder is active
+        while (GameObject.Find("DialogueHolder End Game").activeSelf)
+        {
+            yield return null; // Wait for the next frame
+        }
+
+        // Once linkedDialogueHolder is inactive, change the scene
+        SceneManager.LoadScene("CreditsScene");
     }
 
 }
