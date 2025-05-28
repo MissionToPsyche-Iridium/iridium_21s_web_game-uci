@@ -1,5 +1,6 @@
 using System.Collections;
 using DialogueSystem;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,15 +9,27 @@ public class NodeController : MonoBehaviour
     public string sceneToLoad;
     [SerializeField] TextAsset linkedLevel;
     [SerializeField] GameObject linkedDialogueHolder;
+    [SerializeField] private GameObject dialogueIntro;
 
     void OnMouseUpAsButton()
     {
-        if (!string.IsNullOrEmpty(sceneToLoad))
-        {
-            linkedDialogueHolder.SetActive(true);
-            loadLevel();
-            StartCoroutine(WaitForAnimationAndChangeScene());
-        }
+        // if (!dialogueIntro.activeSelf)
+        // {
+        //     if (!string.IsNullOrEmpty(sceneToLoad))
+        //     {
+        //         linkedDialogueHolder.SetActive(true);
+        //         loadLevel();
+        //         StartCoroutine(WaitForAnimationAndChangeScene());
+        //     }
+        // }
+
+        // More readable version of above code
+        if (dialogueIntro.activeSelf) return;
+        if (string.IsNullOrEmpty(sceneToLoad)) return;
+
+        linkedDialogueHolder.SetActive(true);
+        loadLevel();
+        StartCoroutine(WaitForAnimationAndChangeScene());
     }
 
     void loadLevel()
