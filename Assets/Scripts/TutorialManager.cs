@@ -51,7 +51,7 @@ public class TutorialManager : MonoBehaviour
         "Now, click on the cells to fill them in.",
         "When a clue shows more than one number, each group of filled squares must be kept apart by at least one empty square.",
         "The first cell is filled for you. \nTry to fill the rest out!",
-        "Nice job!\n\n Now, click on the empty cells twice to mark it with an 'X'. These are known white cells.",
+        "Nice job!\n\n Now, click on the empty cells twice or right click to mark it with an 'X'. These are known white cells.",
         "Let's learn about the rows. \n\nClues on the side tell you how many filled cells are within each row.",
         "Notice that this row was automatically completed as soon as the intersecting column was filled.\n\nLet's mark the remaining cells with an 'X'!",
         "This row requires 3 filled squares in a row.\n\nFill in the remaining squares to complete it.",
@@ -97,7 +97,7 @@ public class TutorialManager : MonoBehaviour
         currentStep++;
         if (currentStep >= stepTitles.Length)
         {
-            SceneManager.LoadScene("NonogramGameScene");
+            SceneController.instance.ChangeScene("NonogramGameScene");
             return;
         }
 
@@ -106,7 +106,7 @@ public class TutorialManager : MonoBehaviour
 
     void SkipTutorial()
     {
-        SceneManager.LoadScene("NonogramGameScene");
+        SceneController.instance.ChangeScene("NonogramGameScene");
     }
 
     public void TryAutoAdvanceAfterInteraction()

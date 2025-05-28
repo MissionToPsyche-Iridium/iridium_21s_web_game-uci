@@ -6,6 +6,7 @@ public class SceneController : MonoBehaviour
 {
     public static SceneController instance;
     [SerializeField] Animator transition;
+    public float[] levelTimes = new float[4];
 
     private void Awake()
     {
@@ -31,5 +32,23 @@ public class SceneController : MonoBehaviour
         yield return new WaitForSeconds(1);
         SceneManager.LoadSceneAsync(scene);
         transition.SetTrigger("Start");
+    }
+
+    public void SaveLevelTimeResult(int level, float time)
+    {
+        if (level < levelTimes.Length)
+        {
+            levelTimes[level] = time;
+            Debug.Log("Level " + level + ", time: " + time);
+        }
+        else
+        {
+            Debug.LogError("Invalid level: " + level);
+        }
+    }
+
+    public float GetLevelTimeResult(int levelIndex)
+    {
+        return levelTimes[levelIndex];
     }
 }
