@@ -56,7 +56,6 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler
 
             if (data.button == PointerEventData.InputButton.Left)
             {
-                // Correct cycling: Blank → Filled → Crossed → Blank
                 if (State == CellState.Blank)
                 {
                     State = CellState.Filled;

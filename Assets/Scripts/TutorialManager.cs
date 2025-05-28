@@ -114,9 +114,7 @@ public class TutorialManager : MonoBehaviour
         if (interactiveSteps.Contains(currentStep) &&
             gridController.IsCurrentStepComplete(currentStep))
         {
-            NotifyPracticeComplete(); // reveal Continue
+            NotifyPracticeComplete();
         }
     }
-
-
 }

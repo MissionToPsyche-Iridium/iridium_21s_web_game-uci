@@ -5,9 +5,7 @@ public class TutorialGridController : MonoBehaviour
 {
     [Header("Grid & Puzzle")]
     public GameObject puzzleContainer;
-    public NonogramPuzzle puzzle;  // This must be assigned from the loader
-
-    // Used for enabling cells based on the step
+    public NonogramPuzzle puzzle; 
     public void ConfigureForStep(int step)
     {
         ButtonScript[] allCells = puzzleContainer.GetComponentsInChildren<ButtonScript>();
@@ -43,8 +41,7 @@ public class TutorialGridController : MonoBehaviour
             cell.EnableForTutorial(enableCell);
         }
     }
-
-    // Goal data for interactive steps
+    
     public class TutorialStepGoal
     {
         public List<Vector2Int> RequiredFilledCells = new List<Vector2Int>();
@@ -97,8 +94,6 @@ public class TutorialGridController : MonoBehaviour
         }}
     };
 
-
-    // Called from ButtonScript or tutorial manager to check if a step is complete
     public bool IsCurrentStepComplete(int currentStep)
     {
         if (!stepGoals.ContainsKey(currentStep) || puzzle == null)
