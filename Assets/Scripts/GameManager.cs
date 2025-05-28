@@ -324,6 +324,8 @@ public class GameManager : MonoBehaviour
             if (numPuzzlesSolved > 3)
             {
                 TimerScript.instance.PauseTimer();
+                // For the end game with a window of the final time results 
+                SceneController.instance.SaveLevelTimeResult(puzzleIndex / 4, prevSolvedTime);
                 PlayerPrefs.SetInt("MaxCurrentLevel", (puzzleIndex + 1)/4);
 
                 // Unity coroutines allow time-based delays
