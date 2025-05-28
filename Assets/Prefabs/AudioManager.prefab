@@ -162,6 +162,7 @@ MonoBehaviour:
   hoverSFX: {fileID: 8300000, guid: 069986774f9dfb4418757930c5feeda6, type: 3}
   generalUIButton: {fileID: 8300000, guid: 6013c999714ab4b4089e4bf7f695996e, type: 3}
   emptyInput: {fileID: 8300000, guid: 6eef2211eb629c14ead99026f7165ee3, type: 3}
+  dialogueText: {fileID: 8300000, guid: 22028201c4426154eadd98c2ecb1ade3, type: 3}
 --- !u!82 &1874912777310412713
 AudioSource:
   m_ObjectHideFlags: 0

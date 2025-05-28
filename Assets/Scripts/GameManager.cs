@@ -156,7 +156,7 @@ public class GameManager : MonoBehaviour
 
         if (checkSavedTime)
         {
-            TimerScript.instance.RestartTimer(PlayerPrefs.GetFloat("SavedTime"));
+            TimerScript.instance.BeginTimer(PlayerPrefs.GetFloat("SavedTime"));
             PlayerPrefs.SetFloat("SavedTime", 0f);
         }
         else if (checkTime > 0 && restartStopwatch)
