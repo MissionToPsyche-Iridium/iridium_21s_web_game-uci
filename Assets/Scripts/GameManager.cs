@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] List<TextAsset> savedPuzzleFiles;
     [SerializeField] List<Sprite> victorySprites;
+    [SerializeField] List<GameObject> DialogueHolders;
     [SerializeField] Transform gridParent, rowClueParent, colClueParent;
     [SerializeField] GameObject rowCluePrefab, colCluePrefab, cellButtonPrefab;
 
@@ -308,9 +309,17 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.DeleteKey("SavedPuzzle");
             PlayerPrefs.DeleteKey("SavedTime");
 
+            
+
+
             // Find and set the solution sprite assigned to this puzzle
             for (int i = 0; i < savedPuzzleFiles.Count; ++i)
             {
+                if ((puzzleIndex + 1) % 4 != 0)
+                {
+                    DialogueHolders[puzzleIndex + 1].SetActive(true);
+                }
+
                 if (puzzleIndex/4 == i)
                 {
                     victoryScreenSprite = victorySprites[i];
