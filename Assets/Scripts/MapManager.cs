@@ -10,6 +10,7 @@ public class MapManager : MonoBehaviour
 {
     [SerializeField] List<SpriteRenderer> levelSprite;
     [SerializeField] List<CanvasGroup> levelCanvasGroup;
+    [SerializeField] GameObject outroDialogue;
     private int currentLevel;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -28,7 +29,6 @@ public class MapManager : MonoBehaviour
         }
         else
         {
-            GameObject.Find("DialogueHolder End Game").SetActive(true);
             StartCoroutine(WaitForOutroAndChangeScene());
         }
 
@@ -96,7 +96,7 @@ public class MapManager : MonoBehaviour
     private IEnumerator WaitForOutroAndChangeScene()
     {
         // Wait while the linkedDialogueHolder is active
-        while (GameObject.Find("DialogueHolder End Game").activeSelf)
+        while (outroDialogue.activeSelf)
         {
             yield return null; // Wait for the next frame
         }

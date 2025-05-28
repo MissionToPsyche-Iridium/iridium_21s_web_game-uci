@@ -48,7 +48,6 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler
         {
             if (!isTutorialInteractive)
             {
-                Debug.Log($"Cell ({row}, {col}) is not interactive in tutorial.");
                 return;
             }
 

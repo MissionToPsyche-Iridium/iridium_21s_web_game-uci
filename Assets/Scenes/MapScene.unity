@@ -5969,7 +5969,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7636977540287148579, guid: 869df1a1104dc40b6b7cc923670388e6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6881,6 +6881,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1440534698}
   m_CullTransparentMesh: 1
+--- !u!1 &1474213233 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7636977540287148579, guid: 869df1a1104dc40b6b7cc923670388e6, type: 3}
+  m_PrefabInstance: {fileID: 1391865630}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1505205070
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10236,6 +10241,7 @@ MonoBehaviour:
   - {fileID: 2047269106}
   - {fileID: 1538553303}
   - {fileID: 833818105}
+  outroDialogue: {fileID: 1474213233}
 --- !u!4 &2134878382
 Transform:
   m_ObjectHideFlags: 0
