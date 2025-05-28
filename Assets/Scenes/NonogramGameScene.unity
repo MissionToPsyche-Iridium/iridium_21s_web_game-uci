@@ -1046,6 +1046,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3019216315043786474, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
   m_PrefabInstance: {fileID: 1765345303}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &190485965 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 609933200699053440, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
+  m_PrefabInstance: {fileID: 1765345303}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &213626099
 GameObject:
   m_ObjectHideFlags: 0
@@ -15731,6 +15736,10 @@ PrefabInstance:
       propertyPath: clueSolvedSFX
       value: 
       objectReference: {fileID: 8300000, guid: d21300a5c50582e43afa255c68d31783, type: 3}
+    - target: {fileID: 3375287051197140606, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
+      propertyPath: dialogueSource
+      value: 
+      objectReference: {fileID: 190485965}
     - target: {fileID: 3375287051197140606, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
       propertyPath: clueUnsolvedSFX
       value: 

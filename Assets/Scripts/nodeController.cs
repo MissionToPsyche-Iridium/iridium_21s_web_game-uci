@@ -48,6 +48,6 @@ public class NodeController : MonoBehaviour
         }
 
         // Once linkedDialogueHolder is inactive, change the scene
-        SceneManager.LoadScene(sceneToLoad);
+        SceneController.instance.ChangeScene(sceneToLoad);
     }
 }

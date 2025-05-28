@@ -6081,6 +6081,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: d21300a5c50582e43afa255c68d31783, type: 3}
     - target: {fileID: 3375287051197140606, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
+      propertyPath: dialogueSource
+      value: 
+      objectReference: {fileID: 1393375309}
+    - target: {fileID: 3375287051197140606, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
       propertyPath: clueUnsolvedSFX
       value: 
       objectReference: {fileID: 8300000, guid: d009e5915ab564b45b46b343b03377ff, type: 3}
@@ -6124,6 +6128,11 @@ PrefabInstance:
 --- !u!4 &1393375306 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3019216315043786474, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
+  m_PrefabInstance: {fileID: 1393375305}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1393375309 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 609933200699053440, guid: 68599ab1756751245aaf06dd2dcd1b90, type: 3}
   m_PrefabInstance: {fileID: 1393375305}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1405940385
