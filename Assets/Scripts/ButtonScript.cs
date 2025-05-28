@@ -44,8 +44,6 @@ public class ButtonScript : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData data)
     {
-        Debug.Log($"Cell clicked: ({row}, {col})");
-
         if (isPartOfTutorial)
         {
             if (!isTutorialInteractive)

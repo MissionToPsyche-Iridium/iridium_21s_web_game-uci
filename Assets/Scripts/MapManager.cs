@@ -17,6 +17,12 @@ public class MapManager : MonoBehaviour
         currentLevel = PlayerPrefs.GetInt("MaxCurrentLevel", 0);
 
         SetupLevelNodes();
+
+        //Added by Lance
+        if(currentLevel > 0)
+        {
+            GameObject.Find("DialogueHolder Intro").SetActive(false);
+        }
     }
 
     private void SetupLevelNodes()

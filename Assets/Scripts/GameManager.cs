@@ -315,9 +315,12 @@ public class GameManager : MonoBehaviour
             // Find and set the solution sprite assigned to this puzzle
             for (int i = 0; i < savedPuzzleFiles.Count; ++i)
             {
-                if ((puzzleIndex + 1) % 4 != 0)
+                if ((puzzleIndex + 1) % 4 != 0 && puzzleIndex < 12)
                 {
-                    DialogueHolders[puzzleIndex + 1].SetActive(true);
+                    if (DialogueHolders[puzzleIndex +1] != null)
+                    {
+                        DialogueHolders[puzzleIndex + 1].SetActive(true);
+                    }
                 }
 
                 if (puzzleIndex/4 == i)

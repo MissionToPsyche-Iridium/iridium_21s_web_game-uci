@@ -1,3 +1,5 @@
+using System.Collections;
+using DialogueSystem;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,16 +7,15 @@ public class NodeController : MonoBehaviour
 {
     public string sceneToLoad;
     [SerializeField] TextAsset linkedLevel;
-    [SerializeField] GameObject linkedDialogHolder;
+    [SerializeField] GameObject linkedDialogueHolder;
 
     void OnMouseUpAsButton()
     {
         if (!string.IsNullOrEmpty(sceneToLoad))
         {
-            linkedDialogHolder.SetActive(true);
+            linkedDialogueHolder.SetActive(true);
             loadLevel();
-            //SceneManager.LoadScene(sceneToLoad);
-            SceneController.instance.ChangeScene(sceneToLoad);
+            StartCoroutine(WaitForAnimationAndChangeScene());
         }
     }
 
@@ -23,5 +24,17 @@ public class NodeController : MonoBehaviour
         NonogramPuzzle loadedPuzzle = JsonUtility.FromJson<NonogramPuzzle>(linkedLevel.text);
         LevelLoader.puzzleToLoad = loadedPuzzle;
         LevelLoader.puzzleName = linkedLevel.name;
+    }
+
+    private IEnumerator WaitForAnimationAndChangeScene()
+    {
+        // Wait while the linkedDialogueHolder is active
+        while (linkedDialogueHolder.activeSelf)
+        {
+            yield return null; // Wait for the next frame
+        }
+
+        // Once linkedDialogueHolder is inactive, change the scene
+        SceneManager.LoadScene(sceneToLoad);
     }
 }

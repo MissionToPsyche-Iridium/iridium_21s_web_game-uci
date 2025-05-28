@@ -6,6 +6,7 @@ namespace DialogueSystem
 {
     public class DialogueHolder : MonoBehaviour
     {
+        public bool dialogueComplete = false;
         private void Awake()
         {
             StartCoroutine(dialogueSequence());
@@ -19,6 +20,7 @@ namespace DialogueSystem
                 transform.GetChild(i).gameObject.SetActive(true);
                 yield return new WaitUntil(() => transform.GetChild(i).GetComponent<DialogueLine>().finished);
             }
+            dialogueComplete = true;
             gameObject.SetActive(false);
         }
 
