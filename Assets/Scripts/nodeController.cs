@@ -10,6 +10,7 @@ public class NodeController : MonoBehaviour
     [SerializeField] TextAsset linkedLevel;
     [SerializeField] GameObject linkedDialogueHolder;
     [SerializeField] private GameObject dialogueIntro;
+    [SerializeField] private GameObject dialogueOutro;
 
     void OnMouseUpAsButton()
     {
@@ -24,8 +25,7 @@ public class NodeController : MonoBehaviour
         // }
 
         // More readable version of above code
-        if (dialogueIntro.activeSelf) return;
-        if (string.IsNullOrEmpty(sceneToLoad)) return;
+        if (dialogueIntro.activeSelf || dialogueOutro.activeSelf || string.IsNullOrEmpty(sceneToLoad)) return;
 
         linkedDialogueHolder.SetActive(true);
         loadLevel();
