@@ -31,6 +31,8 @@ public class AudioManager : MonoBehaviour
     {
         songSource = GetComponent<AudioSource>();
         PlayNext(0);
+        Application.runInBackground = true;
+        AudioListener.pause = false;
     }
 
     void OnEnable()
