@@ -12,6 +12,7 @@ public class MapManager : MonoBehaviour
     [SerializeField] List<CanvasGroup> levelCanvasGroup;
     [SerializeField] GameObject outroDialogue;
     private int currentLevel;
+    AudioManager mapSounds;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
@@ -21,11 +22,11 @@ public class MapManager : MonoBehaviour
         SetupLevelNodes();
 
         //Added by Lance
-        Debug.Log("Current Level: " + currentLevel);
-
         if (currentLevel < 4)
         {
             GameObject.Find("DialogueHolder End Game").SetActive(false);
+            mapSounds = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+            mapSounds.StopDialogueSFX();
         }
         else
         {

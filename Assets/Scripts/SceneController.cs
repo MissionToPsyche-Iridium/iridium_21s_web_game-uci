@@ -39,7 +39,6 @@ public class SceneController : MonoBehaviour
         if (level < levelTimes.Length)
         {
             levelTimes[level] = time;
-            Debug.Log("Level " + level + ", time: " + time);
         }
         else
         {
