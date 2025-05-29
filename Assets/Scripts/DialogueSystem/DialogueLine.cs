@@ -23,7 +23,7 @@ namespace DialogueSystem
 
         private void Awake()
         {
-            textHolder = GetComponent<Text>();
+            textHolder = transform.Find("DialogueBox/DialogueText").GetComponent<Text>(); 
             textHolder.text = "";
 
             imageHolder.sprite = characterSprite;
