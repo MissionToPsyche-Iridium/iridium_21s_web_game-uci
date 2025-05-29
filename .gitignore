@@ -12,8 +12,10 @@
 /[Uu]ser[Ss]ettings/
 /current-build/
 /ProjectSettings
+/Assets/
+Packages
+./Packages
 /Packages
-
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
