@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 namespace DialogueSystem
 {
@@ -10,7 +9,7 @@ namespace DialogueSystem
         public bool finished { get; private set; }
         AudioManager sounds;
 
-        protected IEnumerator WriteText(string input, TextMeshProUGUI textHolder, Color textColor, TMP_FontAsset textFont, float delay, float delayBetweenLines)
+        protected IEnumerator WriteText(string input, Text textHolder, Color textColor, Font textFont, float delay, float delayBetweenLines)
         {
             textHolder.color = textColor;
             textHolder.font = textFont;

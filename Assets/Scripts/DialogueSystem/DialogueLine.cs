@@ -1,17 +1,16 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 namespace DialogueSystem
 {
     public class DialogueLine : DialogueBaseClass
     {
-        private TextMeshProUGUI textHolder;
+        private Text textHolder;
 
         [Header("Text Options")]
         [SerializeField] private string input;
-        [SerializeField] private TMP_FontAsset textFont;
+        [SerializeField] private Font textFont;
         [SerializeField] private Color textColor;
 
         [Header("Time Parameters")]
@@ -24,7 +23,7 @@ namespace DialogueSystem
 
         private void Awake()
         {
-            textHolder = transform.Find("DialogueBox/DialogueText").GetComponent<TextMeshProUGUI>(); 
+            textHolder = transform.Find("DialogueBox/DialogueText").GetComponent<Text>(); 
             textHolder.text = "";
 
             imageHolder.sprite = characterSprite;
