@@ -272,6 +272,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneToLoad: InteractiveTutorialScene
   linkedLevel: {fileID: 4900000, guid: 6e0be3678cad24de3a3199a92c0d6987, type: 3}
+  linkedDialogueHolder: {fileID: 0}
+  dialogueIntro: {fileID: 0}
+  dialogueOutro: {fileID: 0}
 --- !u!114 &120730409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -538,7 +541,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Level 1 - Launch
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7ed27d1bb8fcb144d946d280286f0b19, type: 2}
   m_sharedMaterial: {fileID: -2607753931099241753, guid: 7ed27d1bb8fcb144d946d280286f0b19, type: 2}
@@ -565,7 +568,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
+  m_fontSize: 45.4
   m_fontSizeBase: 45.4
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2207,7 +2210,6 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Welcome to the world of Nonograms! These puzzles are a fun way to exercise
     your brain.
-
 
 
     Want to learn more?
