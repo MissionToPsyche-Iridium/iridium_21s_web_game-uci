@@ -28,7 +28,10 @@ public class ExitMenuScript : MonoBehaviour
     {
         // Save the game, exit to main menu or map
         sounds.PlaySFX(sounds.generalUIButton);
-        GameManager.Instance.SaveGame();
+        if (sceneToLoad == "MapScene")
+        {
+            GameManager.Instance.SaveGame();
+        }
         //SceneManager.LoadScene(sceneToLoad);
         SceneController.instance.ChangeScene(sceneToLoad);
     }

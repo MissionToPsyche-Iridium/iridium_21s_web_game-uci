@@ -68,6 +68,9 @@ public class PausedMenuScript : MonoBehaviour
         sceneToLoad = "StartMenu";
         pausePanel.SetActive(false);
         exitPanel.SetActive(true);
+        PlayerPrefs.DeleteKey("SavedPuzzleIndex");
+        PlayerPrefs.DeleteKey("SavedPuzzle");
+        PlayerPrefs.DeleteKey("SavedTime");
         ExitMenuScript.instance.SendMessage("SetExitScene", sceneToLoad);
     }
 
