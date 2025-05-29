@@ -23,7 +23,7 @@ public class MapManager : MonoBehaviour
         //Added by Lance
         Debug.Log("Current Level: " + currentLevel);
 
-        if (currentLevel < 3)
+        if (currentLevel < 4)
         {
             GameObject.Find("DialogueHolder End Game").SetActive(false);
         }

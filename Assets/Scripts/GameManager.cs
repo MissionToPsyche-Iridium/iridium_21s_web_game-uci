@@ -329,16 +329,13 @@ public class GameManager : MonoBehaviour
                     solutionScreen.SetSolutionScreen(victoryScreenSprite);
                 }
             }
-            if (numPuzzlesSolved % 4 == 0)
+            if ((puzzleIndex + 1) % 4 == 0)
             {
                 PlayerPrefs.DeleteKey("SavedPuzzleIndex");
-            }
-            if (numPuzzlesSolved > 3)
-            {
                 TimerScript.instance.PauseTimer();
                 // For the end game with a window of the final time results 
                 SceneController.instance.SaveLevelTimeResult(puzzleIndex / 4, prevSolvedTime);
-                PlayerPrefs.SetInt("MaxCurrentLevel", (puzzleIndex + 1)/4);
+                PlayerPrefs.SetInt("MaxCurrentLevel", (puzzleIndex + 1) / 4);
 
                 // Unity coroutines allow time-based delays
                 StartCoroutine(ShowAnalyzePanelAfterPuzzleSolved());
