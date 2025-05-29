@@ -6937,6 +6937,10 @@ PrefabInstance:
       propertyPath: input
       value: The spacecraft has finally made it to Psyche. How's everyone feeling?
       objectReference: {fileID: 0}
+    - target: {fileID: 3156229778322248424, guid: 869df1a1104dc40b6b7cc923670388e6, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3368345666661083626, guid: 869df1a1104dc40b6b7cc923670388e6, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -9506,6 +9510,10 @@ PrefabInstance:
       propertyPath: characterSprite
       value: 
       objectReference: {fileID: 4301478795972374436, guid: 807c2ec2982ff4334b1941fff7ce4fa5, type: 3}
+    - target: {fileID: 3156229778322248424, guid: 869df1a1104dc40b6b7cc923670388e6, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3368345666661083626, guid: 869df1a1104dc40b6b7cc923670388e6, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -11273,6 +11281,10 @@ PrefabInstance:
       propertyPath: input
       value: 'The spacecraft has reached Mars. Time for a critical maneuver: gravity
         assist.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3156229778322248424, guid: 869df1a1104dc40b6b7cc923670388e6, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3368345666661083626, guid: 869df1a1104dc40b6b7cc923670388e6, type: 3}
       propertyPath: m_Pivot.x
