@@ -5442,6 +5442,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transition: {fileID: 436928540}
+  levelTimes:
+  - 0
+  - 0
+  - 0
+  - 0
 --- !u!4 &2038437629
 Transform:
   m_ObjectHideFlags: 0
